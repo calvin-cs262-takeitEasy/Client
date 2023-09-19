@@ -30,16 +30,16 @@ export default function LoginScreen() {
                     </Text>
 
 
-            {/* line to accept email */}
+            {/* line to accept username */}
                     <View style={{flexDirection:'row', borderBottomColor:'#ccc', borderBottomWidth:1,paddingBottom:8,marginBottom:25}}>
                         <MaterialIcons
                             name="alternate-email"
                             size={20}
-                            color="#666"
+                            color="#d5d6db"
                             style={{marginRight:5}}/>
                         
                         <TextInput 
-                        placeholder='Email ID' 
+                        placeholder='Username' 
                         style={{flex:1,
                             paddingVertical:0,
                             color:'#d5d6db'}} 
@@ -53,7 +53,7 @@ export default function LoginScreen() {
                         <Ionicons
                             name="ios-lock-closed-outline"
                             size={20}
-                            color="#666"
+                            color="#d5d6db"
                             style={{marginRight:5}}/>
                         
                         <TextInput 
