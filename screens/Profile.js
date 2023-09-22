@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function AlarmScreen() {
+const Profile = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Alarm</Text>
+      <Text style={{
+      color:'#d5d6db'}}>
+      Profile
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +16,10 @@ export default function AlarmScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2a2d36',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+export default Profile
