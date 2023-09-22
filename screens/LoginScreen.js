@@ -7,6 +7,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 export default function LoginScreen() {
 
+    const login = () => alert('You pressed a button.')
+
+    const register = () => alert('You pressed a button.')
+
+    const forgot = () => alert('You pressed a button.')
+
     return (
         <SafeAreaView style={{flex:1,justifyContent:'center',backgroundColor: '#2a2d36'}}>
             <View style={styles.container}>
@@ -68,7 +74,7 @@ export default function LoginScreen() {
 
             {/* forgot password button */}
                     <TouchableOpacity 
-                    onPress={() => alert('You pressed a button.')}
+                    onPress={forgot}
                     style={{color:'#6224ad',fontWeight:'700'}}>
                     <Text style={{
                         color:'#d5d6db'}}>
@@ -80,7 +86,7 @@ export default function LoginScreen() {
 
             {/* login button */}               
                     <TouchableOpacity 
-                    onPress={() => alert('You pressed a button.')} 
+                    onPress={login} 
                     style={{backgroundColor:'#6224ad',
                             padding:20,
                             borderRadius:10,
@@ -97,7 +103,7 @@ export default function LoginScreen() {
 
             {/* register button */}
                     <TouchableOpacity
-                    onPress={() => alert('You pressed a button.')} 
+                    onPress={register} 
                     style={{backgroundColor:'#6224ad',
                             padding:20,
                             borderRadius:10,
