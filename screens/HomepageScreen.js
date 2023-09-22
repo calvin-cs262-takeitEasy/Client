@@ -4,7 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function HomepageScreen() {
   return (
     <View style={styles.container}>
-      <Text>Homepage</Text>
+      <Text style={{
+      color:'#d5d6db'}}>
+      Homepage
+      </Text>
       <StatusBar style="auto" />
     </View>
   );

@@ -13,7 +13,7 @@ export default function LoginScreen() {
                 <View style={{paddingHorizontal:25}}>
                     
             {/* placeholder for future app logo */}
-                    <View style={{flex:1,alignItems:'center'}}>
+                    <View style={{flex:1,alignItems:'center',padding:50}}>
                         <Text style={{
                         color:'#d5d6db'}}>
                         Possible Logo here?
@@ -23,6 +23,7 @@ export default function LoginScreen() {
             {/* login title text */}
                     <Text style={{
                         fontSize:28,
+                        padding:5,
                         fontWeight:'500',
                         color:'#d5d6db',
                         marginBottom:30,}}>
@@ -66,42 +67,48 @@ export default function LoginScreen() {
 
 
             {/* forgot password button */}
-                    <TouchableOpacity style={{color:'#6224ad',fontWeight:'700'}}>
+                    <TouchableOpacity 
+                    onPress={() => alert('You pressed a button.')}
+                    style={{color:'#6224ad',fontWeight:'700'}}>
                     <Text style={{
                         color:'#d5d6db'}}>
                         Forgot?
-                        </Text>
+                    </Text>
                     </TouchableOpacity>
                     </View>
 
 
             {/* login button */}               
                     <TouchableOpacity 
+                    onPress={() => alert('You pressed a button.')} 
                     style={{backgroundColor:'#6224ad',
-                    padding:20,
-                    borderRadius:10,
-                    marginBottom:30}}>
-                        <Text 
+                            padding:20,
+                            borderRadius:10,
+                            marginBottom:30}}>
+                    <Text 
                         style={{textAlign:'center',
                         fontWeight:'700',
                         fontSize:16,
                         color:'#d5d6db'}}>
-                        Login</Text>
+                        Login
+                    </Text>
                     </TouchableOpacity>
 
 
             {/* register button */}
-                    <TouchableOpacity 
+                    <TouchableOpacity
+                    onPress={() => alert('You pressed a button.')} 
                     style={{backgroundColor:'#6224ad',
-                    padding:20,
-                    borderRadius:10,
-                    marginBottom:30}}>
-                        <Text 
+                            padding:20,
+                            borderRadius:10,
+                            marginBottom:30}}>
+                    <Text 
                         style={{textAlign:'center',
                         fontWeight:'700',
                         fontSize:16,
                         color:'#d5d6db'}}>
-                        Register</Text>
+                        Register
+                    </Text>
                     </TouchableOpacity>
 
 
