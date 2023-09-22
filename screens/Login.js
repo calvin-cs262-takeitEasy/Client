@@ -6,7 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native-web";
+} from "react-native";
 import React from "react";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -164,9 +164,7 @@ const Login = ({ navigation }) => {
   );
 };
 
-{
-  /* background color */
-}
+{/* background color */}
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#2a2d36",

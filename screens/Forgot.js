@@ -6,7 +6,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-} from "react-native-web";
+} from "react-native";
 
 const Forgot = ({ navigation }) => {
   return (
