@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function StudyScreen() {
+const Study = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Study</Text>
+      <Text style={{
+      color:'#d5d6db'}}>
+      Study
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +16,10 @@ export default function StudyScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2a2d36',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+export default Study

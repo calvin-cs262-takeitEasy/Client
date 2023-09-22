@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function FriendsScreen() {
+const Friends = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Text>Friends</Text>
+      <Text style={{
+      color:'#d5d6db'}}>
+      Friends
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,8 +16,10 @@ export default function FriendsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2a2d36',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+export default Friends

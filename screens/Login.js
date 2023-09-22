@@ -5,24 +5,38 @@ import React from "react";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-export default function LoginScreen() {
+
+const Login = ({navigation}) => {
+
+    const login = () => {
+        navigation.navigate('Homepage')
+    }
+
+    const register = () => {
+        navigation.navigate('Register')
+    }
+
+    const forgot = () => {
+        navigation.navigate('Forgot')
+    }
 
     return (
         <SafeAreaView style={{flex:1,justifyContent:'center',backgroundColor: '#2a2d36'}}>
             <View style={styles.container}>
                 <View style={{paddingHorizontal:25}}>
                     
-            {/* placeholder for future app logo */}
-                    <View style={{flex:1,alignItems:'center'}}>
+                {/* placeholder for future app logo */}
+                    <View style={{flex:1,alignItems:'center',padding:50}}>
                         <Text style={{
                         color:'#d5d6db'}}>
                         Possible Logo here?
                         </Text>
                     </View>
 
-            {/* login title text */}
+                {/* login title text */}
                     <Text style={{
-                        fontSize:28,
+                        fontSize:28, 
+                        padding:5,
                         fontWeight:'500',
                         color:'#d5d6db',
                         marginBottom:30,}}>
@@ -30,14 +44,13 @@ export default function LoginScreen() {
                     </Text>
 
 
-            {/* line to accept username */}
+                {/* line to accept username */}
                     <View style={{flexDirection:'row', borderBottomColor:'#ccc', borderBottomWidth:1,paddingBottom:8,marginBottom:25}}>
                         <MaterialIcons
                             name="alternate-email"
                             size={20}
                             color="#d5d6db"
                             style={{marginRight:5}}/>
-                        
                         <TextInput 
                         placeholder='Username' 
                         style={{flex:1,
@@ -48,14 +61,13 @@ export default function LoginScreen() {
                     </View>
 
 
-            {/* line to accept password */}
+                {/* line to accept password */}
                     <View style={{flexDirection:'row', borderBottomColor:'#ccc', borderBottomWidth:1,paddingBottom:8,marginBottom:25}}>
                         <Ionicons
                             name="ios-lock-closed-outline"
                             size={20}
                             color="#d5d6db"
                             style={{marginRight:5}}/>
-                        
                         <TextInput 
                         placeholder='Password' 
                         style={{flex:1,
@@ -65,43 +77,49 @@ export default function LoginScreen() {
                     />
 
 
-            {/* forgot password button */}
-                    <TouchableOpacity style={{color:'#6224ad',fontWeight:'700'}}>
+                {/* forgot password button */}
+                    <TouchableOpacity 
+                    onPress={forgot}
+                    style={{color:'#6224ad',fontWeight:'700'}}>
                     <Text style={{
                         color:'#d5d6db'}}>
                         Forgot?
-                        </Text>
+                    </Text>
                     </TouchableOpacity>
                     </View>
 
 
-            {/* login button */}               
+                {/* login button */}               
                     <TouchableOpacity 
+                    onPress={login} 
                     style={{backgroundColor:'#6224ad',
-                    padding:20,
-                    borderRadius:10,
-                    marginBottom:30}}>
-                        <Text 
+                            padding:20,
+                            borderRadius:10,
+                            marginBottom:30}}>
+                    <Text 
                         style={{textAlign:'center',
                         fontWeight:'700',
                         fontSize:16,
                         color:'#d5d6db'}}>
-                        Login</Text>
+                        Login
+                    </Text>
                     </TouchableOpacity>
 
 
-            {/* register button */}
-                    <TouchableOpacity 
+                {/* register button */}
+                    <TouchableOpacity
+                    onPress={register} 
                     style={{backgroundColor:'#6224ad',
-                    padding:20,
-                    borderRadius:10,
-                    marginBottom:30}}>
-                        <Text 
+                            padding:20,
+                            borderRadius:10,
+                            marginBottom:30}}>
+                    <Text 
                         style={{textAlign:'center',
                         fontWeight:'700',
                         fontSize:16,
                         color:'#d5d6db'}}>
-                        Register</Text>
+                        Register
+                    </Text>
                     </TouchableOpacity>
 
 
@@ -117,3 +135,5 @@ const styles = StyleSheet.create({
       backgroundColor: '#2a2d36',
     },
 });
+
+export default Login
