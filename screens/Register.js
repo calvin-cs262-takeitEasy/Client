@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
           <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
             <Text
               style={{
-                color: "#d5d6db",
+                color: "#ECDBBA",
               }}
             >
               Possible Logo here?
@@ -44,7 +44,7 @@ const Login = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: "#d5d6db",
+              color: "#ECDBBA",
               marginBottom: 30,
             }}
           >
@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: "#ccc",
+              borderBottomColor: "#ECDBBA",
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -64,7 +64,7 @@ const Login = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color="#d5d6db"
+              color="#ECDBBA"
               style={{ marginRight: 5 }}
             />
             <TextInput
@@ -78,7 +78,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: "#ccc",
+              borderBottomColor: "#ECDBBA",
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -87,7 +87,7 @@ const Login = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color="#d5d6db"
+              color="#ECDBBA"
               style={{ marginRight: 5 }}
             />
             <TextInput
@@ -101,7 +101,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: "#6224ad",
+              backgroundColor: "#9A2A2A",
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -112,7 +112,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: "#d5d6db",
+                color: "#ECDBBA",
               }}
             >
               Register
@@ -123,7 +123,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: "#6224ad",
+              backgroundColor: "#9A2A2A",
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -134,7 +134,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: "#d5d6db",
+                color: "#ECDBBA",
               }}
             >
               Login
