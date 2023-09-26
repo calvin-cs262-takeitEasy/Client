@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import React from "react";
 
+import { Colors } from "../components/styles";
+
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -27,7 +29,11 @@ const Login = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={{ flex: 1, justifyContent: "center", backgroundColor: "#2a2d36" }}
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: Colors.background,
+      }}
     >
       <View style={styles.container}>
         <View style={{ paddingHorizontal: 25 }}>
@@ -35,7 +41,7 @@ const Login = ({ navigation }) => {
           <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
             <Text
               style={{
-                color: "#ECDBBA",
+                color: Colors.primary,
               }}
             >
               Possible Logo here?
@@ -48,7 +54,7 @@ const Login = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: "#ECDBBA",
+              color: Colors.primary,
               marginBottom: 30,
             }}
           >
@@ -59,7 +65,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: "#ECDBBA",
+              borderBottomColor: Colors.primary,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -68,12 +74,13 @@ const Login = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color="#ECDBBA"
+              color={Colors.primary}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              style={{ flex: 1, paddingVertical: 0, color: "#2D4B31" }}
+              placeholderTextColor={Colors.primary}
+              style={{ flex: 1, paddingVertical: 0, color: Colors.primary }}
               keyboardType="email-address"
             />
           </View>
@@ -82,7 +89,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: "#ECDBBA",
+              borderBottomColor: Colors.primary,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -91,12 +98,13 @@ const Login = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color="#ECDBBA"
+              color={Colors.primary}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              style={{ flex: 1, paddingVertical: 0, color: "#2D4263" }}
+              placeholderTextColor={Colors.primary}
+              style={{ flex: 1, paddingVertical: 0, color: Colors.primary }}
               secureTextEntry={true}
             />
 
@@ -107,7 +115,7 @@ const Login = ({ navigation }) => {
             >
               <Text
                 style={{
-                  color: "#ECDBBA",
+                  color: Colors.primary,
                 }}
               >
                 Forgot?
@@ -119,7 +127,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: "#9A2A2A",
+              backgroundColor: Colors.secondary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -130,7 +138,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: "#ECDBBA",
+                color: Colors.primary,
               }}
             >
               Login
@@ -141,7 +149,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: "#9A2A2A",
+              backgroundColor: Colors.secondary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -152,7 +160,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: "#ECDBBA",
+                color: Colors.primary,
               }}
             >
               Register
@@ -164,10 +172,12 @@ const Login = ({ navigation }) => {
   );
 };
 
-{/* background color */}
+{
+  /* background color */
+}
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#2a2d36",
+    backgroundColor: Colors.background,
   },
 });
 
