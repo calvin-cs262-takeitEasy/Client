@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { Colors } from "../components/styles";
 
 const Forgot = ({ navigation }) => {
   return (
@@ -14,7 +15,7 @@ const Forgot = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text
           style={{
-            color: "#d5d6db",
+            color: Colors.primary,
           }}
         >
           Forgot?
@@ -28,7 +29,7 @@ const Forgot = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2a2d36",
+    backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },

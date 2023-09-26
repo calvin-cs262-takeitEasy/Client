@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import { Colors } from "../components/styles";
 
 const Profile = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text
         style={{
-          color: "#d5d6db",
+          color: Colors.primary,
         }}
       >
         Profile
@@ -19,7 +20,7 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2a2d36",
+    backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
