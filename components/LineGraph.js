@@ -27,7 +27,7 @@ export const LineGraph = () => {
         backgroundGradientFrom: activeColors.secondary,
         backgroundGradientTo: activeColors.tertiary,
         decimalPlaces: 0, // optional, defaults to 2dp
-        color: (opacity = 1) => `rgba(236, 219, 186, ${opacity})`,
+        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         style: {
           borderRadius: 16,
         },
