@@ -115,7 +115,7 @@ const Login = ({ navigation }) => {
             {/* forgot password button */}
             <TouchableOpacity
               onPress={forgot}
-              style={{ color: "#6224ad", fontWeight: "700" }}
+              style={{fontWeight: "700"}}
             >
               <Text
                 style={{

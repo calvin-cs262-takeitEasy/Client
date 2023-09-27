@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { React, useContext, TouchableOpacity } from "react";
+import React, { useContext } from "react";
 
 const Settings = ({ navigation }) => {
   const { theme, updateTheme } = useContext(ThemeContext);
