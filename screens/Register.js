@@ -7,9 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import {React, useContext} from "react";
 
 import { Colors } from "../components/styles";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -23,12 +24,15 @@ const Login = ({ navigation }) => {
     navigation.navigate("Homepage");
   };
 
+  const {theme} = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode]
+
   return (
     <SafeAreaView
       style={{
         flex: 1,
         justifyContent: "center",
-        backgroundColor: Colors.background,
+        backgroundColor: activeColors.background,
       }}
     >
       <View style={styles.container}>
@@ -50,7 +54,7 @@ const Login = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: Colors.primary,
+              color: activeColors.primary,
               marginBottom: 30,
             }}
           >
@@ -61,7 +65,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: Colors.primary,
+              borderBottomColor: activeColors.primary,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -70,13 +74,13 @@ const Login = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color={Colors.primary}
+              color={activeColors.primary}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              placeholderTextColor={Colors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: Colors.primary }}
+              placeholderTextColor={activeColors.primary}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
               keyboardType="email-address"
             />
           </View>
@@ -85,7 +89,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: Colors.primary,
+              borderBottomColor: activeColors.primary,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -94,13 +98,13 @@ const Login = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color={Colors.primary}
+              color={activeColors.primary}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              placeholderTextColor={Colors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: Colors.primary }}
+              placeholderTextColor={activeColors.primary}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
               secureTextEntry={true}
             />
           </View>
@@ -109,7 +113,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: Colors.secondary,
+              backgroundColor: activeColors.secondary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -120,7 +124,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: Colors.primary,
+                color: activeColors.primary,
               }}
             >
               Register
@@ -131,7 +135,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: Colors.secondary,
+              backgroundColor: activeColors.secondary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -142,7 +146,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: Colors.primary,
+                color: activeColors.primary,
               }}
             >
               Login
@@ -159,7 +163,7 @@ const Login = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.background,
+    //backgroundColor: activeColors.background,
   },
 });
 

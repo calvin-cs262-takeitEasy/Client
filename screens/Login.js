@@ -17,7 +17,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Login = ({ navigation }) => {
   const login = () => {
-    navigation.navigate("Settings");
+    navigation.navigate("Homepage");
   };
 
   const register = () => {

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import React, { useContext } from "react";
@@ -9,40 +9,48 @@ const Settings = ({ navigation }) => {
   let activeColors = Colors[theme.mode];
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
-        <Text
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: activeColors.background,
+      }}
+    >
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
+          <Text
+            style={{
+              color: activeColors.primary,
+            }}
+          >
+            Settings
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => updateTheme()}
           style={{
-            color: activeColors.primary,
+            backgroundColor: activeColors.secondary,
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
           }}
         >
-          Settings
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "700",
+              fontSize: 16,
+              color: activeColors.primary,
+            }}
+          >
+            Dark Mode
+          </Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={updateTheme}
-        style={{
-          backgroundColor: activeColors.secondary,
-          padding: 20,
-          borderRadius: 10,
-          marginBottom: 30,
-        }}
-      >
-        <Text
-          style={{
-            textAlign: "center",
-            fontWeight: "700",
-            fontSize: 16,
-            color: activeColors.primary,
-          }}
-        >
-          Dark Mode
-        </Text>
-      </TouchableOpacity>
-
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    </SafeAreaView>
   );
 };
 

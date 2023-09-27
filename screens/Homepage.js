@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
@@ -10,23 +11,45 @@ import {
 } from "react-native";
 
 import { Colors } from "../components/styles";
-import { LineGraph } from "../components/LineGraph"
+import { ThemeContext } from "../contexts/ThemeContext";
+import { LineGraph } from "../components/LineGraph";
 
 const Homepage = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode]
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text
-          style={{
-            color: Colors.primary,
-          }}
-        >
-          Homepage
-        </Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-      <LineGraph />
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: activeColors.background,
+      }}
+    >
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text
+            style={{
+              color: activeColors.primary,
+            }}
+          >
+            Homepage
+          </Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+          <Text
+            style={{
+              color: activeColors.primary,
+            }}
+          >
+            Go To Settings
+          </Text>
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+        <LineGraph />
+      </View>
+    </SafeAreaView>
   );
 };
 

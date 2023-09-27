@@ -1,26 +1,39 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import { Colors } from "../components/styles";
+import { ThemeContext } from "../contexts/ThemeContext";
+import {React, useContext} from "react";
 
 const Friends = ({ navigation }) => {
+  const {theme} = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode]
+
   return (
-    <View style={styles.container}>
-      <Text
-        style={{
-          color: Colors.primary,
-        }}
-      >
-        Friends
-      </Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: activeColors.background,
+      }}
+    >
+      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
+        <Text
+          style={{
+            color: activeColors.primary,
+          }}
+          >
+          Friends
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
+    //backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
