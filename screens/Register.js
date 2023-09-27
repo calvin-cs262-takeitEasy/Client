@@ -8,14 +8,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {React, useContext} from "react";
-
+import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
   const login = () => {
     navigation.navigate("Login");
   };
@@ -158,6 +158,12 @@ const Login = ({ navigation }) => {
   );
 };
 
+Register.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
 {
   /* background color */
 }
@@ -167,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Register;

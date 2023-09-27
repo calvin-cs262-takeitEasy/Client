@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import {React, useContext} from "react";
@@ -28,6 +29,12 @@ const Forgot = ({ navigation }) => {
       </TouchableOpacity>
     </SafeAreaView>
   );
+};
+
+Forgot.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({

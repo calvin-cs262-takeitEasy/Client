@@ -9,6 +9,7 @@ import {
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
 const Settings = ({ navigation }) => {
   const { theme, updateTheme } = useContext(ThemeContext);
@@ -79,6 +80,12 @@ const Settings = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
+};
+
+Settings.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({

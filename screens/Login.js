@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {React, useContext} from "react";
+import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -174,6 +175,12 @@ const Login = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
+};
+
+Login.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 {
