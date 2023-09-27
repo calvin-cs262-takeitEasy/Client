@@ -1,5 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import React, { useContext } from "react";
@@ -44,7 +50,28 @@ const Settings = ({ navigation }) => {
               color: activeColors.primary,
             }}
           >
-            Dark Mode
+            {theme.mode === "dark" ? "Dark Mode" : "Light Mode"}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => updateTheme({ system: true })}
+          style={{
+            backgroundColor: activeColors.secondary,
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "700",
+              fontSize: 16,
+              color: activeColors.primary,
+            }}
+          >
+            System Theme
           </Text>
         </TouchableOpacity>
 
