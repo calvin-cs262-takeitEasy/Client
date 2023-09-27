@@ -1,12 +1,19 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 
 const Alarm = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -22,12 +29,18 @@ const Alarm = ({ navigation }) => {
           style={{
             color: activeColors.primary,
           }}
-          >
+        >
           Alarm
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
+};
+
+Alarm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({

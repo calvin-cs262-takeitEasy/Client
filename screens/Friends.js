@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-nat
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import {React, useContext} from "react";
+import PropTypes from "prop-types";
 
 const Friends = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -28,6 +29,12 @@ const Friends = ({ navigation }) => {
       </TouchableOpacity>
     </SafeAreaView>
   );
+};
+
+Friends.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const styles = StyleSheet.create({
