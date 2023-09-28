@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
+import Notification from "../components/Notification";
 
 const Homepage = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -27,6 +28,7 @@ const Homepage = ({ navigation }) => {
       }}
     >
       <View style={styles.container}>
+        
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
@@ -47,8 +49,10 @@ const Homepage = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
-        <LineGraph />
+        {/*<LineGraph />*/}
+        <Notification text={'Test1'}/>
       </View>
+      
     </SafeAreaView>
   );
 };
