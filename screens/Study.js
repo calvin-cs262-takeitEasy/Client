@@ -21,7 +21,7 @@ const Study = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
         <Text
           style={{
-            color: activeColors.primary,
+            color: activeColors.text,
           }}
           >
           Study

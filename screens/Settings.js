@@ -27,7 +27,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
           <Text
             style={{
-              color: activeColors.primary,
+              color: activeColors.text,
             }}
           >
             Settings
@@ -37,7 +37,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => updateTheme()}
           style={{
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -48,7 +48,7 @@ const Settings = ({ navigation }) => {
               textAlign: "center",
               fontWeight: "700",
               fontSize: 16,
-              color: activeColors.primary,
+              color: "#FFF",
             }}
           >
             {theme.mode === "dark" ? "Dark Mode" : "Light Mode"}
@@ -58,7 +58,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => updateTheme({ system: true })}
           style={{
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -69,7 +69,7 @@ const Settings = ({ navigation }) => {
               textAlign: "center",
               fontWeight: "700",
               fontSize: 16,
-              color: activeColors.primary,
+              color: "#FFF",
             }}
           >
             System Theme

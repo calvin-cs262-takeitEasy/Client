@@ -33,6 +33,7 @@ const Login = ({ navigation }) => {
   let activeColors = Colors[theme.mode]
 
   return (
+    
     <SafeAreaView
       style={{
         flex: 1,
@@ -46,7 +47,7 @@ const Login = ({ navigation }) => {
           <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
             <Text
               style={{
-                color: activeColors.primary,
+                color: activeColors.text,
               }}
             >
               Possible Logo here?
@@ -59,7 +60,7 @@ const Login = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: activeColors.primary,
+              color: activeColors.text,
               marginBottom: 30,
             }}
           >
@@ -70,7 +71,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -79,12 +80,12 @@ const Login = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              placeholderTextColor={activeColors.primary}
+              placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
               keyboardType="email-address"
             />
@@ -94,7 +95,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -103,12 +104,12 @@ const Login = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              placeholderTextColor={activeColors.primary}
+              placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
               secureTextEntry={true}
             />
@@ -120,7 +121,7 @@ const Login = ({ navigation }) => {
             >
               <Text
                 style={{
-                  color: activeColors.primary,
+                  color: activeColors.text,
                 }}
               >
                 Forgot?
@@ -132,7 +133,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -143,7 +144,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Login
@@ -154,7 +155,7 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -165,7 +166,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Register
