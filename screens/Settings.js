@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+import Header from "../shared/header";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
@@ -19,15 +20,16 @@ const Settings = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <View style={styles.container}>
+      <Header name="Settings" />
+      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
           <Text
             style={{
-              color: activeColors.primary,
+              color: activeColors.text,
             }}
           >
             Settings
@@ -37,7 +39,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => updateTheme()}
           style={{
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -48,7 +50,7 @@ const Settings = ({ navigation }) => {
               textAlign: "center",
               fontWeight: "700",
               fontSize: 16,
-              color: activeColors.primary,
+              color: "#FFF",
             }}
           >
             {theme.mode === "dark" ? "Dark Mode" : "Light Mode"}
@@ -58,7 +60,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => updateTheme({ system: true })}
           style={{
-            backgroundColor: activeColors.secondary,
+            backgroundColor: activeColors.primary,
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,
@@ -69,7 +71,7 @@ const Settings = ({ navigation }) => {
               textAlign: "center",
               fontWeight: "700",
               fontSize: 16,
-              color: activeColors.primary,
+              color: "#FFF",
             }}
           >
             System Theme

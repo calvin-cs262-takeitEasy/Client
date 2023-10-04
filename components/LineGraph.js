@@ -23,9 +23,9 @@ export const LineGraph = () => {
       width={Dimensions.get("window").width} // from react-native
       height={220}
       chartConfig={{
-        backgroundColor: activeColors.secondary,
-        backgroundGradientFrom: activeColors.secondary,
-        backgroundGradientTo: activeColors.tertiary,
+        backgroundColor: activeColors.primary,
+        backgroundGradientFrom: activeColors.primary,
+        backgroundGradientTo: activeColors.primary,
         decimalPlaces: 0, // optional, defaults to 2dp
         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         style: {

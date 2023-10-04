@@ -21,7 +21,7 @@ const Forgot = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text
           style={{
-            color: activeColors.primary,
+            color: activeColors.text,
           }}
           >
           Forgot

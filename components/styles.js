@@ -1,14 +1,20 @@
+// #F0F is for if we don't currently have a color for that
+
 export const Colors = {
   light: {
-    primary: "#112D4E",
-    secondary: "#DBE2EF",
-    tertiary: "#3F72AF",
-    background: "#F9F7F7",
+    primary: "#064663", 
+    secondary: "#F0F", 
+    tertiary: "#F0F",
+    background: "#FFFFFF",
+    backgroundAccent: "#EAEAEA",
+    text: "#000000",
   },
   dark: {
-    primary: "#FFF", // ECDBBA
-    secondary: "#064663", // 9A2A2A
-    tertiary: "#212224",
-    background: "#1E1F21", // 2a2d36
+    primary: "#064663", 
+    secondary: "#F0F", 
+    tertiary: "#F0F",
+    background: "#1E1F21",
+    backgroundAccent: "#212224",
+    text: "#FFFFFF",
   },
 };

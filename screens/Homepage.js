@@ -2,17 +2,16 @@ import React, { useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
-  Dimensions,
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
+import Header from "../shared/header";
 import Notification from "../components/Notification";
 
 const Homepage = ({ navigation }) => {
@@ -27,12 +26,13 @@ const Homepage = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
+    <Header name="Home"/>
       <View style={styles.container}>
         
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
-              color: activeColors.primary,
+              color: activeColors.text,
             }}
           >
             Homepage
@@ -42,7 +42,7 @@ const Homepage = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Text
             style={{
-              color: activeColors.primary,
+              color: activeColors.text,
             }}
           >
             Go To Settings

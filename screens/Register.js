@@ -41,7 +41,7 @@ const Register = ({ navigation }) => {
           <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
             <Text
               style={{
-                color: "#ECDBBA",
+                color: activeColors.text,
               }}
             >
               Possible Logo here?
@@ -54,7 +54,7 @@ const Register = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: activeColors.primary,
+              color: activeColors.text,
               marginBottom: 30,
             }}
           >
@@ -65,7 +65,7 @@ const Register = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -74,13 +74,13 @@ const Register = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               keyboardType="email-address"
             />
           </View>
@@ -89,7 +89,7 @@ const Register = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -98,13 +98,13 @@ const Register = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}
             />
           </View>
@@ -113,7 +113,7 @@ const Register = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -124,7 +124,7 @@ const Register = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Register
@@ -135,7 +135,7 @@ const Register = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               marginBottom: 30,
@@ -146,7 +146,7 @@ const Register = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Login

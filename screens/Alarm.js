@@ -27,7 +27,7 @@ const Alarm = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
         <Text
           style={{
-            color: activeColors.primary,
+            color: activeColors.text,
           }}
         >
           Alarm
