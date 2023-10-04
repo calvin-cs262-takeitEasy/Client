@@ -50,7 +50,10 @@ const Homepage = ({ navigation }) => {
         </TouchableOpacity>
         <StatusBar style="auto" />
         {/*<LineGraph />*/}
-        <Notification text={'Test1'}/>
+        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
+        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
+        
+        
       </View>
       
     </SafeAreaView>
