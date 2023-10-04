@@ -12,6 +12,7 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
+import Notification from "../components/Notification";
 
 const Homepage = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -27,6 +28,7 @@ const Homepage = ({ navigation }) => {
     >
     <Header name="Home"/>
       <View style={styles.container}>
+        
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
@@ -47,8 +49,13 @@ const Homepage = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
-        <LineGraph />
+        {/*<LineGraph />*/}
+        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
+        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
+        
+        
       </View>
+      
     </SafeAreaView>
   );
 };
