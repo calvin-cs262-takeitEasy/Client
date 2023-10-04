@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+import Header from "../shared/header";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
@@ -19,11 +20,12 @@ const Settings = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <View style={styles.container}>
+      <Header name="Settings" />
+      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
           <Text
             style={{

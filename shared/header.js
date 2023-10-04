@@ -31,19 +31,25 @@ const Header = (props) => {
             fontSize: 20,
             color: "#FFF",
             letterSpacing: 1,
-            paddingLeft: 15,
+            marginLeft: 15,
+            width: Dimensions.get("window").width - 110,
           }}
         >
           {props.name}
         </Text>
       </View>
 
-      <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-        <TouchableOpacity style={{ padding: 5 }}>
-          <SimpleLineIcons name="bell" size={20} color={"#FFF"} />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "flex-end",
+        }}
+      >
+        <TouchableOpacity style={{ padding: 10 }}>
+          <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 5 }}>
-          <Octicons name="gear" size={20} color={"#FFF"} />
+        <TouchableOpacity style={{ padding: 10 }}>
+          <Octicons name="gear" size={25} color={"#FFF"} />
         </TouchableOpacity>
       </View>
     </View>
