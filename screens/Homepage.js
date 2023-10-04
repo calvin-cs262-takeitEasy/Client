@@ -12,6 +12,7 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
+import Footer from "../shared/footer";
 
 const Homepage = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -48,6 +49,9 @@ const Homepage = ({ navigation }) => {
         </TouchableOpacity>
         <StatusBar style="auto" />
         <LineGraph />
+      </View>
+      <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
+        <Footer page="Home"/>
       </View>
     </SafeAreaView>
   );
