@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { View, Dimensions, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -10,6 +11,27 @@ import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Footer = (props) => {
+
+  const gohome = () => {
+    navigation.navigate("Homepage");
+  };
+
+  const goalarm = () => {
+    navigation.navigate("Alarm");
+  };
+
+  const gostudy = () => {
+    navigation.navigate("Study");
+  };
+
+  const gobedtime = () => {
+    navigation.navigate("Bedtime");
+  };
+
+  const goprofile = () => {
+    navigation.navigate("Profile");
+  };
+
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
@@ -55,7 +77,7 @@ const Footer = (props) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={gohome}>
           <Ionicons name="home-outline" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
@@ -72,7 +94,7 @@ const Footer = (props) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goalarm}>
           <MaterialCommunityIcons
             name="alarm"
             size={25}
@@ -93,7 +115,7 @@ const Footer = (props) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={gostudy}>          
           <Feather name="book" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
@@ -110,7 +132,7 @@ const Footer = (props) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={gobedtime}>
           <MaterialCommunityIcons
             name="alarm-snooze"
             size={25}
@@ -131,7 +153,7 @@ const Footer = (props) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goprofile}>
           <AntDesign name="user" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
