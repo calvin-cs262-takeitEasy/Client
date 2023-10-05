@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { View, Dimensions, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
