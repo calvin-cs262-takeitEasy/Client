@@ -10,38 +10,38 @@ const Notification = (props) => {
   let activeColors = Colors[theme.mode];
 
   return (
-    <View
+    <View //outline color
       style={{
         backgroundColor: "#0F0",
         width: Dimensions.get("window").width - 30,
-        height: 95,
+        height: 115,
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
         margin: 5,
       }}
     >
-      <View
+      <View //notif backdrop
         style={{
           backgroundColor: activeColors.background,
           width: Dimensions.get("window").width - 32,
-          height: 93,
-          padding: 20,
+          height: 113,
+          padding: 10,
           borderRadius: 10,
           flexDirection: "row",
-          alignItems: "center",
+          //alignItems: "center",
           justifyContent: "space-between",
           margin: 5,
         }}
       >
-        <View
+        <View // user icon + name + username
           style={{
             flexDirection: "row",
             alignItems: "center",
             flexWrap: "wrap",
             width: 140,
-            height: 48,
-            backgroundColor: "#F00", //activeColors.secondary,
+            height: 40,
+            backgroundColor: activeColors.secondary,
             borderRadius: 10,
           }}
         >
@@ -50,13 +50,13 @@ const Notification = (props) => {
               name="user"
               size={30}
               color={activeColors.text}
-              style={{ marginRight: 5 }}
+              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} //don't question the negetive margin, idk how it works either
             />
-            <View
+            <View //name + username
               style={{
                 flexDirection: "column",
-                backgroundColor: "#F0F",
                 width: 100,
+                marginLeft: 30,
               }}
             >
               <Text
@@ -77,6 +77,43 @@ const Notification = (props) => {
               </Text>
             </View>
           </TouchableOpacity>
+
+          <View
+            style={{
+              flexDirection: "row",
+              //alignItems: "center",
+              flexWrap: "wrap",
+              width: Dimensions.get("window").width - 52,
+              height: 48,
+              backgroundColor: activeColors.secondary,
+              borderRadius: 10,
+              marginTop: 25,
+            }}
+          >
+            <Text
+              style={{
+                color: activeColors.text,
+                margin: 10,
+                width: (Dimensions.get("window").width - 52) * (2 / 3),
+              }}
+            >
+              {props.Text}
+            </Text>
+
+            <View style={{margin: 10, marginLeft: 60}}>
+              <TouchableOpacity>
+                <AntDesign name="meh" size={16} color={activeColors.text} />
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <FontAwesome
+                  name="comment"
+                  size={16}
+                  color={activeColors.text}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
 
           {/* 
           <View style={{ backgroundColor: "#00F", width: 321, height: 47 }}>
