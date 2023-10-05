@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
@@ -16,8 +17,8 @@ import Footer from "../shared/footer";
 import Notification from "../components/Notification";
 
 const Homepage = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -27,9 +28,8 @@ const Homepage = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-    <Header name="Home"/>
+      <Header name="Home" />
       <View style={styles.container}>
-        
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text
             style={{
@@ -39,7 +39,7 @@ const Homepage = ({ navigation }) => {
             Homepage
           </Text>
         </TouchableOpacity>
-        
+
         <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
           <Text
             style={{
@@ -51,15 +51,22 @@ const Homepage = ({ navigation }) => {
         </TouchableOpacity>
         <StatusBar style="auto" />
         {/*<LineGraph />*/}
-        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
-        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
-        
-        
+        <View style={{ backgroundColor: activeColors.backgroundAccent, width: Dimensions.get("window").width, alignItems: "center"}}>
+          <Notification
+            name={"Name"}
+            username={"@username"}
+            Text={"What user did not commit too:"}
+          />
+          <Notification
+            name={"Name"}
+            username={"@username"}
+            Text={"What user did not commit too:"}
+          />
+        </View>
       </View>
-      <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
-        <Footer page="Home"/>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+        <Footer page="Home" />
       </View>
-
     </SafeAreaView>
   );
 };

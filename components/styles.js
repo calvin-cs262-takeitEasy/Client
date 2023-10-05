@@ -11,7 +11,7 @@ export const Colors = {
   },
   dark: {
     primary: "#064663", 
-    secondary: "#F0F", 
+    secondary: "#212224", 
     tertiary: "#2B2C2E",
     background: "#1E1F21",
     backgroundAccent: "#212224",
