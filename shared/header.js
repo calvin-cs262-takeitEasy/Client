@@ -12,6 +12,10 @@ const Header = (props) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  const gosettings = () => {
+    navigation.navigate("Settings");
+  };
+
   return (
     <View
       style={{
@@ -48,7 +52,7 @@ const Header = (props) => {
         <TouchableOpacity style={{ padding: 10 }}>
           <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 10 }}>
+        <TouchableOpacity onPress={gosettings} style={{ padding: 10 }}>
           <Octicons name="gear" size={25} color={"#FFF"} />
         </TouchableOpacity>
       </View>

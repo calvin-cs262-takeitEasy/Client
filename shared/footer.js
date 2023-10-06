@@ -9,7 +9,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Footer = (props) => {
+const Footer = ({ navigation, page }) => {
 
   const gohome = () => {
     navigation.navigate("Homepage");
@@ -39,15 +39,15 @@ const Footer = (props) => {
     studyColor,
     sleepColor,
     profileColor = activeColors.backgroundAccent;
-  if (props.page == "Home") {
+  if (page == "Home") {
     homeColor = activeColors.tertiary;
-  } else if (props.page == "Alarm") {
+  } else if (page == "Alarm") {
     alarmColor = activeColors.tertiary;
-  } else if (props.page == "Study") {
+  } else if (page == "Study") {
     studyColor = activeColors.tertiary;
-  } else if (props.page == "Sleep") {
+  } else if (page == "Bedtime") {
     sleepColor = activeColors.tertiary;
-  } else if (props.page == "Profile") {
+  } else if (page == "Profile") {
     profileColor = activeColors.tertiary;
   }
 

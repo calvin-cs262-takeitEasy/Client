@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import {React, useContext} from "react";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 
 const Bedtime = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -18,7 +20,7 @@ const Bedtime = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
+      <TouchableOpacity>
         <Text
           style={{
             color: activeColors.text,
@@ -27,6 +29,9 @@ const Bedtime = ({ navigation }) => {
           Bedtime
         </Text>
       </TouchableOpacity>
+      <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
+        <Footer navigation={navigation} page="Bedtime" />
+      </View>
     </SafeAreaView>
   );
 };

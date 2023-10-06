@@ -12,7 +12,7 @@ import Header from "../shared/header";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
-const Settings = ({ navigation }) => {
+const Settings = () => {
   const { theme, updateTheme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
@@ -77,7 +77,6 @@ const Settings = ({ navigation }) => {
             System Theme
           </Text>
         </TouchableOpacity>
-
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
