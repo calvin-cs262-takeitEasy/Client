@@ -49,8 +49,18 @@ const Homepage = ({ navigation }) => {
             Go To Settings
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
+          <Text
+            style={{
+              color: activeColors.text,
+            }}
+          >
+            Pull in a Friend!
+          </Text>
+        </TouchableOpacity>
         <StatusBar style="auto" />
-        {/*<LineGraph />*/}
+        <LineGraph />
         <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
         <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
         
