@@ -25,6 +25,7 @@ const Profile = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
         <Text
           style={{
+            padding: 20,
             color: activeColors.text,
           }}
           >

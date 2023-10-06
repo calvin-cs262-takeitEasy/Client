@@ -18,7 +18,7 @@ const Friends = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
         <Text
           style={{
             color: activeColors.text,
