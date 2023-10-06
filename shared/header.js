@@ -8,9 +8,13 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 
-const Header = (props) => {
+const Header = ({ navigation, name }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+
+  const gosettings = () => {
+    navigation.navigate("Settings");
+  };
 
   return (
     <View
@@ -35,7 +39,7 @@ const Header = (props) => {
             width: Dimensions.get("window").width - 110,
           }}
         >
-          {props.name}
+          {name}
         </Text>
       </View>
 
@@ -48,7 +52,7 @@ const Header = (props) => {
         <TouchableOpacity style={{ padding: 10 }}>
           <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
         </TouchableOpacity>
-        <TouchableOpacity style={{ padding: 10 }}>
+        <TouchableOpacity onPress={gosettings} style={{ padding: 10 }}>
           <Octicons name="gear" size={25} color={"#FFF"} />
         </TouchableOpacity>
       </View>

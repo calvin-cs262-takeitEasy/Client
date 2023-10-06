@@ -6,6 +6,8 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -19,20 +21,18 @@ const Alarm = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
-        <Text
-          style={{
-            color: activeColors.text,
-          }}
-        >
-          Alarm
-        </Text>
-      </TouchableOpacity>
+      <Header navigation={navigation} name="Alarm" />
+
+      {/*//ui here*/}
+      
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+        <Footer navigation={navigation} page="Alarm" />
+      </View>
     </SafeAreaView>
   );
 };

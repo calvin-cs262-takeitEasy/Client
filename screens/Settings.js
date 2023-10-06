@@ -24,15 +24,17 @@ const Settings = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header name="Settings" />
+
+      <Header navigation={navigation} name="Settings" />
       <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
           <Text
             style={{
+              padding: 20,
               color: activeColors.text,
             }}
           >
-            Settings
+            go home
           </Text>
         </TouchableOpacity>
 
@@ -77,7 +79,6 @@ const Settings = ({ navigation }) => {
             System Theme
           </Text>
         </TouchableOpacity>
-
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>

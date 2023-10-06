@@ -4,6 +4,8 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import {React, useContext} from "react";
 import PropTypes from "prop-types";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 
 const Study = ({ navigation }) => {
   const {theme} = useContext(ThemeContext);
@@ -13,20 +15,18 @@ const Study = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
-        <Text
-          style={{
-            color: activeColors.text,
-          }}
-          >
-          Study
-        </Text>
-      </TouchableOpacity>
+      <Header navigation={navigation} name="Study" />
+      
+      {/*//ui here*/}
+
+      <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
+        <Footer navigation={navigation} page="Study" />
+      </View>
     </SafeAreaView>
   );
 };

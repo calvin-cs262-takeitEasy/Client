@@ -15,10 +15,14 @@ import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 import Notification from "../components/Notification";
+import { useNavigation } from "@react-navigation/native";
 
-const Homepage = ({ navigation }) => {
-  const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+
+const Homepage = () => {
+  const {theme} = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode]
+  const navigation = useNavigation(); 
+
 
   return (
     <SafeAreaView
@@ -28,7 +32,8 @@ const Homepage = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header name="Home" />
+
+      <Header navigation={navigation} name="Home" />
       <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text
@@ -75,7 +80,8 @@ const Homepage = ({ navigation }) => {
         </View>
       </View>
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
-        <Footer page="Home" />
+        <Footer navigation={navigation} page="Home" />
+
       </View>
     </SafeAreaView>
   );

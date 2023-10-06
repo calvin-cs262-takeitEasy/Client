@@ -10,6 +10,7 @@ const Notification = (props) => {
   let activeColors = Colors[theme.mode];
 
   return (
+
     <View //outline color
       style={{
         backgroundColor: "#0F0",
