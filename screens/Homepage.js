@@ -29,7 +29,7 @@ const Homepage = ({ navigation }) => {
     >
       <View style={styles.container}>
         
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
           <Text
             style={{
               color: activeColors.primary,
