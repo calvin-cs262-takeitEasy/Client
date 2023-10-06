@@ -6,6 +6,7 @@ import {React, useState, useContext, useEffect} from "react";
 import PropTypes from "prop-types";
 import { SearchBar } from "../components/SearchBar";
 import List from "../components/List";
+import Header from "../shared/header";
 
 
 const Friends = ({ navigation }) => {
@@ -32,14 +33,27 @@ const Friends = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
+      <Header navigation={navigation} name="Bedtime" />
       <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
         <Text
           style={{
+            padding: 20,
+            color: activeColors.text,
+          }}
+          >
+          Back to Profile
+        </Text>
+      </TouchableOpacity>
+
+      <View>
+        <Text
+          style={{
+            padding:130,
             color: activeColors.primary,
           }}
           >
@@ -63,7 +77,8 @@ const Friends = ({ navigation }) => {
 
           )}
         </Text>
-      </TouchableOpacity>
+      </View>
+
     </SafeAreaView>
   );
 };

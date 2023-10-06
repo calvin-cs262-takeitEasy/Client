@@ -35,35 +35,7 @@ const Homepage = () => {
 
       <Header navigation={navigation} name="Home" />
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text
-            style={{
-              color: activeColors.text,
-            }}
-          >
-            Homepage
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-          <Text
-            style={{
-              color: activeColors.text,
-            }}
-          >
-            Go To Settings
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
-          <Text
-            style={{
-              color: activeColors.text,
-            }}
-          >
-            Pull in a Friend!
-          </Text>
-        </TouchableOpacity>
+        
         <StatusBar style="auto" />
         <LineGraph />
         <View style={{ backgroundColor: activeColors.backgroundAccent, width: Dimensions.get("window").width, alignItems: "center"}}>
