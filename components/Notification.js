@@ -121,31 +121,3 @@ const Notification = (props) => {
 };
 
 export default Notification;
-
-{
-  /* 
-          <View style={{ backgroundColor: "#00F", width: 321, height: 47 }}>
-            <Text
-              style={{
-                width: Dimensions.get("window").width - 200,
-                color: activeColors.text,
-              }}
-            >
-              {props.Text}
-            </Text>
-          </View>
-          <TouchableOpacity>
-            <AntDesign
-              name="meh"
-              size={18}
-              color={activeColors.text}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <FontAwesome
-              name="comment"
-              size={18}
-              color={activeColors.text}
-            />
-          </TouchableOpacity> */
-}
