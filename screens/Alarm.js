@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext } from "react";
+import { AlarmClock } from "../components/AlarmClock";
 
 const Alarm = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -28,7 +29,7 @@ const Alarm = ({ navigation }) => {
     >
       <Header navigation={navigation} name="Alarm" />
 
-      {/*//ui here*/}
+      <AlarmClock />
       
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Alarm" />
