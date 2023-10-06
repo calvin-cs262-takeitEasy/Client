@@ -8,7 +8,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 
-const Header = (props) => {
+const Header = ({ navigation, name }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
@@ -39,7 +39,7 @@ const Header = (props) => {
             width: Dimensions.get("window").width - 110,
           }}
         >
-          {props.name}
+          {name}
         </Text>
       </View>
 

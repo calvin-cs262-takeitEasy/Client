@@ -32,30 +32,10 @@ const Homepage = () => {
     <Header navigation={navigation} name="Home"/>
       <View style={styles.container}>
         
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text
-            style={{
-              color: activeColors.text,
-            }}
-          >
-            Homepage
-          </Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-          <Text
-            style={{
-              color: activeColors.text,
-            }}
-          >
-            Go To Settings
-          </Text>
-        </TouchableOpacity>
         <StatusBar style="auto" />
         {/*<LineGraph />*/}
         <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
         <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
-        
         
       </View>
       <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>

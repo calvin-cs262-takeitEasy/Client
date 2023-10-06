@@ -15,20 +15,16 @@ const Bedtime = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity>
-        <Text
-          style={{
-            color: activeColors.text,
-          }}
-          >
-          Bedtime
-        </Text>
-      </TouchableOpacity>
+
+      <Header navigation={navigation} name="Bedtime" />
+      
+      {/*//ui here*/}
+
       <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
         <Footer navigation={navigation} page="Bedtime" />
       </View>

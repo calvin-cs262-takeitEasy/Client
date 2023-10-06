@@ -15,18 +15,20 @@ const Profile = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
+
+      <Header navigation={navigation} name="Profile" />
+      <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
         <Text
           style={{
             color: activeColors.text,
           }}
           >
-          Profile
+          Go to friends
         </Text>
       </TouchableOpacity>
       <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
