@@ -17,7 +17,7 @@ const Notification = (props) => {
           <AntDesign
             name="user"
             size={20}
-            color={"55BCF6"}
+            color={"#55BCF6"}
             style={{ marginRight: 5 }}
           />
           <Text style={styles.itemText}>{props.name}</Text>
@@ -29,14 +29,14 @@ const Notification = (props) => {
       <TouchableOpacity><AntDesign
             name="meh"
             size={18}
-            color={"55BCF6"}
+            color={"#55BCF6"}
             style={{ marginLeft: 5 }}
           />
           </TouchableOpacity>
           <TouchableOpacity><FontAwesome
             name="comment"
             size={18}
-            color={"55BCF6"}
+            color={"#55BCF6"}
             style={{ marginLeft: 5 }}
           /></TouchableOpacity>
     </View>
