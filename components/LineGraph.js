@@ -1,4 +1,4 @@
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import { LineChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { Colors } from "./styles";

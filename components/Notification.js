@@ -100,22 +100,30 @@ const Notification = (props) => {
               {props.Text}
             </Text>
 
-            <View style={{margin: 10, marginLeft: 60}}>
+            <View style={{ margin: 10, marginLeft: 20, flexDirection: "row" }}>
               <TouchableOpacity>
-                <AntDesign name="meh" size={16} color={activeColors.text} />
+                <AntDesign name="meh" size={22} color={activeColors.text} />
               </TouchableOpacity>
 
-              <TouchableOpacity>
+              <TouchableOpacity style={{ marginLeft: 10 }}>
                 <FontAwesome
                   name="comment"
-                  size={16}
+                  size={22}
                   color={activeColors.text}
                 />
               </TouchableOpacity>
             </View>
           </View>
+        </View>
+      </View>
+    </View>
+  );
+};
 
-          {/* 
+export default Notification;
+
+{
+  /* 
           <View style={{ backgroundColor: "#00F", width: 321, height: 47 }}>
             <Text
               style={{
@@ -139,11 +147,5 @@ const Notification = (props) => {
               size={18}
               color={activeColors.text}
             />
-          </TouchableOpacity> */}
-        </View>
-      </View>
-    </View>
-  );
-};
-
-export default Notification;
+          </TouchableOpacity> */
+}

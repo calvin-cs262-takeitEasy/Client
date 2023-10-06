@@ -50,7 +50,7 @@ const Homepage = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
-        {/*<LineGraph />*/}
+        <LineGraph />
         <View style={{ backgroundColor: activeColors.backgroundAccent, width: Dimensions.get("window").width, alignItems: "center"}}>
           <Notification
             name={"Name"}
