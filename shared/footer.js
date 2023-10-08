@@ -10,7 +10,6 @@ import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Footer = ({ navigation, page }) => {
-
   const gohome = () => {
     navigation.navigate("Homepage");
   };
@@ -34,6 +33,7 @@ const Footer = ({ navigation, page }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  //selected icon color
   let homeColor,
     alarmColor,
     studyColor,
@@ -76,7 +76,15 @@ const Footer = ({ navigation, page }) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity onPress={gohome}>
+        <TouchableOpacity
+          onPress={gohome}
+          style={{
+            width: 55,
+            height: 55,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Ionicons name="home-outline" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
@@ -93,7 +101,15 @@ const Footer = ({ navigation, page }) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity onPress={goalarm}>
+        <TouchableOpacity
+          onPress={goalarm}
+          style={{
+            width: 55,
+            height: 55,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <MaterialCommunityIcons
             name="alarm"
             size={25}
@@ -114,7 +130,15 @@ const Footer = ({ navigation, page }) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity onPress={gostudy}>          
+        <TouchableOpacity
+          onPress={gostudy}
+          style={{
+            width: 55,
+            height: 55,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Feather name="book" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
@@ -131,7 +155,15 @@ const Footer = ({ navigation, page }) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity onPress={gobedtime}>
+        <TouchableOpacity
+          onPress={gobedtime}
+          style={{
+            width: 55,
+            height: 55,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <MaterialCommunityIcons
             name="alarm-snooze"
             size={25}
@@ -152,7 +184,15 @@ const Footer = ({ navigation, page }) => {
           marginTop: 5,
         }}
       >
-        <TouchableOpacity onPress={goprofile}>
+        <TouchableOpacity
+          onPress={goprofile}
+          style={{
+            width: 55,
+            height: 55,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <AntDesign name="user" size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
