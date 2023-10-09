@@ -13,7 +13,7 @@ const Notification = (props) => {
 
     <View //outline color
       style={{
-        backgroundColor: "#0F0",
+        backgroundColor: activeColors.accent,
         width: Dimensions.get("window").width - 30,
         height: 115,
         borderRadius: 10,

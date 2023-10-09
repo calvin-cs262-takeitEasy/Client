@@ -38,7 +38,7 @@ const Friends = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Bedtime" />
+      <Header navigation={navigation} name="Friends" />
       <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
         <Text
           style={{
