@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
@@ -28,11 +28,10 @@ const Login = ({ navigation }) => {
     navigation.navigate("Forgot");
   };
 
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
-    
     <SafeAreaView
       style={{
         flex: 1,
@@ -85,7 +84,11 @@ const Login = ({ navigation }) => {
             <TextInput
               placeholder="Username"
               placeholderTextColor={activeColors.text}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              style={{
+                flex: 1,
+                paddingVertical: 0,
+                color: activeColors.primary,
+              }}
               keyboardType="email-address"
             />
           </View>
@@ -109,15 +112,16 @@ const Login = ({ navigation }) => {
             <TextInput
               placeholder="Password"
               placeholderTextColor={activeColors.text}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              style={{
+                flex: 1,
+                paddingVertical: 0,
+                color: activeColors.primary,
+              }}
               secureTextEntry={true}
             />
 
             {/* forgot password button */}
-            <TouchableOpacity
-              onPress={forgot}
-              style={{fontWeight: "700"}}
-            >
+            <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
               <Text
                 style={{
                   color: activeColors.text,
@@ -135,7 +139,7 @@ const Login = ({ navigation }) => {
               backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
+              marginBottom: 0,
             }}
           >
             <Text
@@ -154,18 +158,24 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: activeColors.primary,
+              //backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
+              flexDirection: "row",
+              alignContent: "center",
+              justifyContent: "center",
             }}
           >
+            <Text style={{ color: activeColors.text }}>
+              Don’t have a Commit account?
+            </Text>
             <Text
               style={{
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: "#FFF",
+                color: activeColors.text,
+                paddingLeft: 5,
               }}
             >
               Register
