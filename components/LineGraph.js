@@ -4,39 +4,48 @@ import { Dimensions } from "react-native";
 import { Colors } from "./styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-const linedata = {
-  labels: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
-  datasets: [
-    {
-      data: [3, 4, 9, 2, 5, 6, 1],
-    },
-  ],
-};
+
 
 export const LineGraph = () => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  const linedata = {
+    labels: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+    datasets: [{
+      data: [10, 4, 6, 8, 10, 0, 5, 6],
+      strokeWidth: 2,
+      color: (opacity = 1) => activeColors.primary,
+    },
+    {
+      data: [5,4,6,3,8,0,2,4],
+      strokeWidth: 2,
+      color: (opacity = 1) => "#2EBF03", //green for completed commits
+    },
+    ],
+    legend: ['Commits Made', 'Commits Completed'],
+  };
+
   return (
     <LineChart
-      data={linedata}
-      width={Dimensions.get("window").width} // from react-native
-      height={220}
-      chartConfig={{
-        backgroundColor: activeColors.primary,
-        backgroundGradientFrom: activeColors.primary,
-        backgroundGradientTo: activeColors.primary,
-        decimalPlaces: 0, // optional, defaults to 2dp
-        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-        style: {
-          borderRadius: 16,
-        },
-      }}
-      bezier
-      style={{
-        marginVertical: 8,
+    bezier //keeps it curvy
+    data={linedata}
+    width={Dimensions.get('window').width - 16}
+    height={200}
+    chartConfig={{
+      useShadowColorFromDataset: true,
+      backgroundColor: activeColors.accent,
+      backgroundGradientFrom: activeColors.background,
+      backgroundGradientTo: activeColors.accent,
+      decimalPlaces: 0,
+      color: (opacity = 1) => activeColors.text,
+      style: {
         borderRadius: 16,
-      }}
+      },
+    }}
+    style={{
+      borderRadius: 16,
+    }}
     />
   );
 };

@@ -32,6 +32,18 @@ const Profile = ({ navigation }) => {
           Go to friends
         </Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+        <Text
+          style={{
+            padding: 20,
+            color: activeColors.text,
+          }}
+          >
+          settings for ellie
+        </Text>
+      </TouchableOpacity>
+
       <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
         <Footer navigation={navigation} page="Profile" />
       </View>
