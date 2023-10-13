@@ -30,7 +30,7 @@ const Alarm = ({ navigation }) => {
       <Header navigation={navigation} name="Alarm" />
 
       <AlarmClock />
-      
+
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Alarm" />
       </View>
