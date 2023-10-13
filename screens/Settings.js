@@ -55,7 +55,7 @@ const Settings = ({ navigation }) => {
               color: "#FFF",
             }}
           >
-            {theme.mode === "dark" ? "Dark Mode" : "Light Mode"}
+            {theme.mode === "dark" ? "Light Mode" : "Dark Mode"}
           </Text>
         </TouchableOpacity>
 
