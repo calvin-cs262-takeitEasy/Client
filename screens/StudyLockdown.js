@@ -14,6 +14,11 @@ import {
 const StudyLockdown = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+
+  const timerComplete = () => {
+    navigation.navigate("Study");
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -26,15 +31,18 @@ const StudyLockdown = ({ navigation }) => {
       <CountdownCircleTimer
         isPlaying
         isGrowing={true}
-        duration={100}
+        duration={10}
         colors={activeColors.primary}
         size={250}
         strokeWidth={24}
         trailColor={activeColors.accent}
+        onComplete={timerComplete}
       >
         {({ remainingTime }) => (
-          <Text style={{ color: activeColors.text, fontSize: 100 }}>
-            {remainingTime}
+          <Text style={{ color: activeColors.text, fontSize: 50 }}>
+            {Math.floor(remainingTime / 3600)}:
+            {Math.floor((remainingTime % 3600) / 60)}:
+            {remainingTime % 60}
           </Text>
         )}
       </CountdownCircleTimer>
