@@ -2,21 +2,34 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { React, useContext } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
-const StudyLockdown = ({ navigation }) => {
+const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  const { hour, minute } = route.params;
+  const duration = hour * 3600 + minute * 60;
+
   const timerComplete = () => {
     navigation.navigate("Study");
+  };
+
+  const getTime = (remainingTime) => {
+    const hours = Math.floor(remainingTime / 3600);
+    const minutes = Math.floor((remainingTime % 3600) / 60);
+    const seconds = remainingTime % 60;
+    let minutesStr = minutes.toString();
+    let secondsStr = seconds.toString();
+
+    if (minutes < 10) {
+      minutesStr = "0" + minutes.toString();
+    }
+    if (seconds < 10) {
+      secondsStr = "0" + seconds.toString();
+    }
+
+    return hours.toString() + ":" + minutesStr + ":" + secondsStr;
   };
 
   return (
@@ -31,7 +44,7 @@ const StudyLockdown = ({ navigation }) => {
       <CountdownCircleTimer
         isPlaying
         isGrowing={true}
-        duration={10}
+        duration={duration}
         colors={activeColors.primary}
         size={250}
         strokeWidth={24}
@@ -40,9 +53,7 @@ const StudyLockdown = ({ navigation }) => {
       >
         {({ remainingTime }) => (
           <Text style={{ color: activeColors.text, fontSize: 50 }}>
-            {Math.floor(remainingTime / 3600)}:
-            {Math.floor((remainingTime % 3600) / 60)}:
-            {remainingTime % 60}
+            {getTime(remainingTime)}
           </Text>
         )}
       </CountdownCircleTimer>
