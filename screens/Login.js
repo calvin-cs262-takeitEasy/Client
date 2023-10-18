@@ -5,12 +5,15 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
+  Dimensions,
 } from "react-native";
 import { React, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+//import logo from "../assets/commit-logo.png";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -40,16 +43,16 @@ const Login = ({ navigation }) => {
       }}
     >
       <View style={styles.container}>
-        <View style={{ paddingHorizontal: 25 }}>
-          {/* placeholder for future app logo */}
-          <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
-            <Text
-              style={{
-                color: activeColors.text,
-              }}
-            >
-              Possible Logo here?
-            </Text>
+        <View style={{ paddingHorizontal: 25}}>
+          <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
+          <Image // logo
+            source={require("../assets/commit-logo.png")}
+            style={{
+              width: Dimensions.get("window").width - 170,
+              height: Dimensions.get("window").width - 170,
+              marginBottom: 100,
+            }}
+          />
           </View>
 
           {/* login title text */}
