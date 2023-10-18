@@ -25,7 +25,7 @@ const Settings = ({ navigation }) => {
       }}
     >
 
-      <Header navigation={navigation} name="Settings" />
+      <Header navigation={navigation} name="Settings" type="backButton"/>
       <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
           <Text

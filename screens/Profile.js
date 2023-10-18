@@ -1,15 +1,21 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import PropTypes from "prop-types";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 
 const Profile = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -20,15 +26,14 @@ const Profile = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-
-      <Header navigation={navigation} name="Profile" />
+      <Header navigation={navigation} name="Profile" type="withFriends" />
       <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
         <Text
           style={{
             padding: 20,
             color: activeColors.text,
           }}
-          >
+        >
           Go to friends
         </Text>
       </TouchableOpacity>
@@ -39,12 +44,12 @@ const Profile = ({ navigation }) => {
             padding: 20,
             color: activeColors.text,
           }}
-          >
+        >
           settings for ellie
         </Text>
       </TouchableOpacity>
 
-      <View style={{position: 'absolute', left: 0, right: 0, bottom: 0}}>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Profile" />
       </View>
     </SafeAreaView>
