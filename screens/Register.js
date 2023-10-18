@@ -6,8 +6,10 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
+  Dimensions,
 } from "react-native";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -24,8 +26,8 @@ const Register = ({ navigation }) => {
     navigation.navigate("Homepage");
   };
 
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -38,14 +40,15 @@ const Register = ({ navigation }) => {
       <View style={styles.container}>
         <View style={{ paddingHorizontal: 25 }}>
           {/* placeholder for future app logo */}
-          <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
-            <Text
+          <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
+            <Image // logo
+              source={require("../assets/commit-logo.png")}
               style={{
-                color: "#ECDBBA",
+                width: Dimensions.get("window").width - 170,
+                height: Dimensions.get("window").width - 170,
+                marginBottom: 100,
               }}
-            >
-              Possible Logo here?
-            </Text>
+            />
           </View>
 
           {/* login title text */}
@@ -54,7 +57,7 @@ const Register = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: activeColors.primary,
+              color: activeColors.text,
               marginBottom: 30,
             }}
           >
@@ -65,7 +68,7 @@ const Register = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -74,13 +77,13 @@ const Register = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               keyboardType="email-address"
             />
           </View>
@@ -89,7 +92,7 @@ const Register = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -98,13 +101,36 @@ const Register = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
+              secureTextEntry={true}
+            />
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              borderBottomColor: activeColors.text,
+              borderBottomWidth: 1,
+              paddingBottom: 8,
+              marginBottom: 25,
+            }}
+          >
+            <Ionicons
+              name="ios-lock-closed-outline"
+              size={20}
+              color={activeColors.text}
+              style={{ marginRight: 5 }}
+            />
+            <TextInput
+              placeholder="Confirm Password"
+              placeholderTextColor={activeColors.text}
+              style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}
             />
           </View>
@@ -113,10 +139,9 @@ const Register = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
             }}
           >
             <Text
@@ -124,7 +149,7 @@ const Register = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Register
@@ -135,18 +160,24 @@ const Register = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: activeColors.secondary,
+              //backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
+              flexDirection: "row",
+              alignContent: "center",
+              justifyContent: "center",
             }}
           >
+            <Text style={{ color: activeColors.text }}>
+              Already have a Commit account?
+            </Text>
             <Text
               style={{
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: activeColors.text,
+                paddingLeft: 5,
               }}
             >
               Login

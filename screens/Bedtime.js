@@ -1,32 +1,38 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 
 const Bedtime = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
+        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Homepage")}>
-        <Text
-          style={{
-            color: activeColors.primary,
-          }}
-          >
-          Bedtime
-        </Text>
-      </TouchableOpacity>
+      <Header navigation={navigation} name="Bedtime" />
+
+      {/*//ui here*/}
+
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+        <Footer navigation={navigation} page="Bedtime" />
+      </View>
     </SafeAreaView>
   );
 };

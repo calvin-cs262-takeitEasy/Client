@@ -12,31 +12,30 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
+import { StatusBar } from "expo-status-bar";
+import PropTypes from "prop-types";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 
-export default function App() {
+const Profile = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: activeColors.background}]}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: activeColors.background }]}
+    >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.titleBar}>
-          <TouchableOpacity>
-            <Ionicons
-              name="ios-arrow-back"
-              size={24}
-              color="#52575D"
-            ></Ionicons>
-          </TouchableOpacity>
-          <Ionicons name="md-more" size={24} color="#52575D"></Ionicons>
-        </View>
+        <Header navigation={navigation} name="Profile" type="withFriends" />
 
-        <View style={{ alignSelf: "left" , marginLeft: 10 }}>
+        <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+          <Footer navigation={navigation} page="Profile" />
+        </View>
+        <View style={{ alignSelf: "left", marginLeft: 10 }}>
           <View style={styles.profileImage}>
             <Image
               source={require("../assets/icon.png")}
               style={styles.image}
               resizeMode="left"
-              
             ></Image>
           </View>
           {/* <View style={styles.dm}>
@@ -44,7 +43,9 @@ export default function App() {
           </View> */}
           <View style={styles.active}></View>
           <View style={styles.add}>
-            <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}}>
+            <TouchableOpacity
+              style={{ justifyContent: "center", alignItems: "center" }}
+            >
               <Ionicons
                 name="ios-add"
                 size={38}
@@ -56,18 +57,41 @@ export default function App() {
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={[styles.text, { fontWeight: "200", fontSize: 36, color: activeColors.text }]}>
+          <Text
+            style={[
+              styles.text,
+              { fontWeight: "200", fontSize: 36, color: activeColors.text },
+            ]}
+          >
             User
           </Text>
-          <Text style={[styles.text, { color: activeColors.text, fontSize: 14 }]}>
+          <Text
+            style={[styles.text, { color: activeColors.text, fontSize: 14 }]}
+          >
             Like to sing
           </Text>
         </View>
 
         <View style={styles.statsContainer}>
           <View style={styles.statsBox}>
-            <Text style={[styles.text, { fontSize: 24 }, {color: activeColors.text}]}>100</Text>
-            <Text style={[styles.text, styles.subText, {color: activeColors.text}]}>Commits</Text>
+            <Text
+              style={[
+                styles.text,
+                { fontSize: 24 },
+                { color: activeColors.text },
+              ]}
+            >
+              100
+            </Text>
+            <Text
+              style={[
+                styles.text,
+                styles.subText,
+                { color: activeColors.text },
+              ]}
+            >
+              Commits
+            </Text>
           </View>
           <View
             style={[
@@ -79,12 +103,44 @@ export default function App() {
               },
             ]}
           >
-            <Text style={[styles.text, { fontSize: 24 }, {color: activeColors.text}]}>20</Text>
-            <Text style={[styles.text, styles.subText, {color: activeColors.text}]}>Followers</Text>
+            <Text
+              style={[
+                styles.text,
+                { fontSize: 24 },
+                { color: activeColors.text },
+              ]}
+            >
+              20
+            </Text>
+            <Text
+              style={[
+                styles.text,
+                styles.subText,
+                { color: activeColors.text },
+              ]}
+            >
+              Followers
+            </Text>
           </View>
           <View style={styles.statsBox}>
-            <Text style={[styles.text, { fontSize: 24 }, {color: activeColors.text}]}>100</Text>
-            <Text style={[styles.text, styles.subText, {color: activeColors.text}]}>Failed Commits</Text>
+            <Text
+              style={[
+                styles.text,
+                { fontSize: 24 },
+                { color: activeColors.text },
+              ]}
+            >
+              100
+            </Text>
+            <Text
+              style={[
+                styles.text,
+                styles.subText,
+                { color: activeColors.text },
+              ]}
+            >
+              Failed Commits
+            </Text>
           </View>
         </View>
         {/* <Text style={[styles.subText, styles.recent, {color: activeColors.text}]}>Recent Activity</Text> */}
@@ -102,7 +158,7 @@ export default function App() {
             </View>
           </View> */}
 
-          {/* <View style={styles.recentItem}>
+        {/* <View style={styles.recentItem}>
             <View style={styles.activityIndicator}></View>
             <View style={{ width: 250 }}>
               <Text
@@ -112,12 +168,12 @@ export default function App() {
                 <Text style={[{ fontWeight: "400" }, {color: activeColors.text}]}>KINg Charles</Text>
               </Text>
             </View>
-        </View> */} 
+        </View> */}
         <LineGraph />
       </ScrollView>
     </SafeAreaView>
-   );
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -239,3 +295,5 @@ const styles = StyleSheet.create({
   //   marginRight: 20,
   // },
 });
+
+export default Profile;

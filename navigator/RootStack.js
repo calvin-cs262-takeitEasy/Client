@@ -3,16 +3,17 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Alarm from "./../screens/Alarm";
-import Bedtime from "./../screens/Bedtime";
-import Forgot from "./../screens/Forgot";
-import Friends from "./../screens/Friends";
-import Homepage from "./../screens/Homepage";
-import Login from "./../screens/Login";
-import Profile from "./../screens/Profile";
-import Register from "./../screens/Register";
-import Study from "./../screens/Study";
+import Alarm from "../screens/Alarm";
+import Bedtime from "../screens/Bedtime";
+import Forgot from "../screens/Forgot";
+import Friends from "../screens/Friends";
+import Homepage from "../screens/Homepage";
+import Login from "../screens/Login";
+import Profile from "../screens/Profile";
+import Register from "../screens/Register";
+import Study from "../screens/Study";
 import Settings from "../screens/Settings";
+import StudyLockdown from "../screens/StudyLockdown";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ const RootStack = () => {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Study" component={Study} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="StudyLockdown" component={StudyLockdown} />
       </Stack.Navigator>
     </NavigationContainer>
   );

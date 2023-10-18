@@ -2,22 +2,25 @@ import React, { useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
-  Dimensions,
   StyleSheet,
   Text,
   View,
-  TextInput,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
+import Header from "../shared/header";
+import Footer from "../shared/footer";
 import Notification from "../components/Notification";
+import { useNavigation } from "@react-navigation/native";
 
-const Homepage = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+const Homepage = () => {
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView
@@ -27,35 +30,32 @@ const Homepage = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
+      <Header navigation={navigation} name="Home" />
       <View style={styles.container}>
-        
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <Text
-            style={{
-              color: activeColors.primary,
-            }}
-          >
-            Homepage
-          </Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
-          <Text
-            style={{
-              color: activeColors.primary,
-            }}
-          >
-            Go To Settings
-          </Text>
-        </TouchableOpacity>
         <StatusBar style="auto" />
-        {/*<LineGraph />*/}
-        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
-        <Notification name={'Name'} username={'@username'} Text={'What user did not commit too:'}/>
-        
-        
+        <LineGraph />
+        <View
+          style={{
+            backgroundColor: activeColors.backgroundAccent,
+            width: Dimensions.get("window").width,
+            alignItems: "center",
+          }}
+        >
+          <Notification
+            name={"Name"}
+            username={"@username"}
+            Text={"What user did not commit too:"}
+          />
+          <Notification
+            name={"Name"}
+            username={"@username"}
+            Text={"What user did not commit too:"}
+          />
+        </View>
       </View>
-      
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+        <Footer navigation={navigation} page="Home" />
+      </View>
     </SafeAreaView>
   );
 };

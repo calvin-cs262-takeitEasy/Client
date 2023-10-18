@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,12 +5,15 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Image,
+  Dimensions,
 } from "react-native";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+//import logo from "../assets/commit-logo.png";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -29,8 +31,8 @@ const Login = ({ navigation }) => {
     navigation.navigate("Forgot");
   };
 
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -41,16 +43,16 @@ const Login = ({ navigation }) => {
       }}
     >
       <View style={styles.container}>
-        <View style={{ paddingHorizontal: 25 }}>
-          {/* placeholder for future app logo */}
-          <View style={{ flex: 1, alignItems: "center", padding: 50 }}>
-            <Text
-              style={{
-                color: activeColors.primary,
-              }}
-            >
-              Possible Logo here?
-            </Text>
+        <View style={{ paddingHorizontal: 25}}>
+          <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
+          <Image // logo
+            source={require("../assets/commit-logo.png")}
+            style={{
+              width: Dimensions.get("window").width - 170,
+              height: Dimensions.get("window").width - 170,
+              marginBottom: 100,
+            }}
+          />
           </View>
 
           {/* login title text */}
@@ -59,7 +61,7 @@ const Login = ({ navigation }) => {
               fontSize: 28,
               padding: 5,
               fontWeight: "500",
-              color: activeColors.primary,
+              color: activeColors.text,
               marginBottom: 30,
             }}
           >
@@ -70,7 +72,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -79,13 +81,17 @@ const Login = ({ navigation }) => {
             <MaterialIcons
               name="alternate-email"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Username"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{
+                flex: 1,
+                paddingVertical: 0,
+                color: activeColors.primary,
+              }}
               keyboardType="email-address"
             />
           </View>
@@ -94,7 +100,7 @@ const Login = ({ navigation }) => {
           <View
             style={{
               flexDirection: "row",
-              borderBottomColor: activeColors.primary,
+              borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
               marginBottom: 25,
@@ -103,24 +109,25 @@ const Login = ({ navigation }) => {
             <Ionicons
               name="ios-lock-closed-outline"
               size={20}
-              color={activeColors.primary}
+              color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
               placeholder="Password"
-              placeholderTextColor={activeColors.primary}
-              style={{ flex: 1, paddingVertical: 0, color: activeColors.primary }}
+              placeholderTextColor={activeColors.text}
+              style={{
+                flex: 1,
+                paddingVertical: 0,
+                color: activeColors.primary,
+              }}
               secureTextEntry={true}
             />
 
             {/* forgot password button */}
-            <TouchableOpacity
-              onPress={forgot}
-              style={{fontWeight: "700"}}
-            >
+            <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
               <Text
                 style={{
-                  color: activeColors.primary,
+                  color: activeColors.text,
                 }}
               >
                 Forgot?
@@ -132,10 +139,10 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              backgroundColor: activeColors.secondary,
+              backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
+              marginBottom: 0,
             }}
           >
             <Text
@@ -143,7 +150,7 @@ const Login = ({ navigation }) => {
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: "#FFF",
               }}
             >
               Login
@@ -154,18 +161,24 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              backgroundColor: activeColors.secondary,
+              //backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
-              marginBottom: 30,
+              flexDirection: "row",
+              alignContent: "center",
+              justifyContent: "center",
             }}
           >
+            <Text style={{ color: activeColors.text }}>
+              Don’t have a Commit account?
+            </Text>
             <Text
               style={{
                 textAlign: "center",
                 fontWeight: "700",
                 fontSize: 16,
-                color: activeColors.primary,
+                color: activeColors.text,
+                paddingLeft: 5,
               }}
             >
               Register

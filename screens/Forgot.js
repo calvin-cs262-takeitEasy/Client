@@ -1,13 +1,19 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 
 const Forgot = ({ navigation }) => {
-  const {theme} = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode]
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -21,9 +27,9 @@ const Forgot = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text
           style={{
-            color: activeColors.primary,
+            color: activeColors.text,
           }}
-          >
+        >
           Forgot
         </Text>
       </TouchableOpacity>
