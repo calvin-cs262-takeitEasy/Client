@@ -35,7 +35,6 @@ const Profile = ({ navigation }) => {
             <Image
               source={require("../assets/icon.png")}
               style={styles.image}
-              resizeMode="left"
             ></Image>
           </View>
           {/* <View style={styles.dm}>
