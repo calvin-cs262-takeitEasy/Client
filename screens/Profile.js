@@ -24,12 +24,8 @@ const Profile = ({ navigation }) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: activeColors.background }]}
     >
+      <Header navigation={navigation} name="Profile" type="withFriends" />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header navigation={navigation} name="Profile" type="withFriends" />
-
-        <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
-          <Footer navigation={navigation} page="Profile" />
-        </View>
         <View style={{ alignSelf: "left", marginLeft: 10 }}>
           <View style={styles.profileImage}>
             <Image
@@ -170,6 +166,9 @@ const Profile = ({ navigation }) => {
         </View> */}
         <LineGraph />
       </ScrollView>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+        <Footer navigation={navigation} page="Profile" />
+      </View>
     </SafeAreaView>
   );
 };
