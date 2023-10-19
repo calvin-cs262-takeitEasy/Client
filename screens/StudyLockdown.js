@@ -20,7 +20,7 @@ const StudyLockdown = ({ route, navigation }) => {
   async function playSound() {
     console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(
-      require("../assets/mg.mp3")
+      require("../assets/wake_up.mp3")
     );
     setSound(sound);
 
