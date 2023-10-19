@@ -1,17 +1,45 @@
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
-import { React, useContext } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import { SafeAreaView, Text } from "react-native";
+import { Audio } from "expo-av";
 
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
   const { hour, minute } = route.params;
-  const duration = hour * 3600 + minute * 60;
+  let duration = hour * 3600 + minute * 60;
+  if (duration == 0) {
+    duration = 5;
+  }
+
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/wake_up.mp3")
+    );
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+    console.log("Done Playing Sound");
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const timerComplete = () => {
+    playSound();
     navigation.navigate("Study");
   };
 
