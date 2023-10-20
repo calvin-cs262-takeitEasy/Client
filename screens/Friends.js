@@ -39,16 +39,6 @@ const Friends = ({ navigation }) => {
       }}
     >
       <Header navigation={navigation} name="Friends" type="backButton"/>
-      <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-        <Text
-          style={{
-            padding: 20,
-            color: activeColors.text,
-          }}
-          >
-          Back to Profile
-        </Text>
-      </TouchableOpacity>
 
       <View>
         <Text
