@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { 
-  Dimensions,
-  StatusBar,
-} from "react-native";
+import { Dimensions, StatusBar } from "react-native";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -33,7 +30,8 @@ const Header = ({ navigation, name, type }) => {
     navigation.navigate("Friends");
   };
 
-  if (type == "withFriends") { // add friends icon
+  if (type == "withFriends") {
+    // add friends icon
     return (
       <View
         style={{
@@ -68,19 +66,29 @@ const Header = ({ navigation, name, type }) => {
             justifyContent: "flex-end",
           }}
         >
-          <TouchableOpacity onPress={goFriends} style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={goFriends}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
             <FontAwesome5 name="user-friends" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={openNotifDropdown} style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={openNotifDropdown}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
             <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={goSettings} style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={goSettings}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
             <Octicons name="gear" size={25} color={"#FFF"} />
           </TouchableOpacity>
         </View>
       </View>
     );
-  } else if (type == "backButton") { // have the option of the back arrow
+  } else if (type == "backButton") {
+    // have the option of the back arrow
     return (
       <View
         style={{
@@ -101,7 +109,10 @@ const Header = ({ navigation, name, type }) => {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity onPress={goBack} style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={goBack}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
             <AntDesign name="back" size={25} color={"#FFF"} />
           </TouchableOpacity>
 
@@ -120,7 +131,8 @@ const Header = ({ navigation, name, type }) => {
         </View>
       </View>
     );
-  } else { // return the default header
+  } else {
+    // return the default header
     return (
       <View
         style={{
@@ -155,10 +167,13 @@ const Header = ({ navigation, name, type }) => {
             justifyContent: "flex-end",
           }}
         >
-          <TouchableOpacity style={{ padding: 10 }}>
+          <TouchableOpacity style={{ padding: 10, width: 50, height: 50 }}>
             <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={goSettings} style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={goSettings}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
             <Octicons name="gear" size={25} color={"#FFF"} />
           </TouchableOpacity>
         </View>
