@@ -14,8 +14,20 @@ const Header = ({ navigation, name, type }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
-  const gosettings = () => {
+  const goSettings = () => {
     navigation.navigate("Settings");
+  };
+
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+  const openNotifDropdown = () => {
+    //do thing
+  }
+
+  const goFriends = () => {
+    navigation.navigate("Friends");
   };
 
   if (type == "withFriends") {
@@ -52,13 +64,13 @@ const Header = ({ navigation, name, type }) => {
             justifyContent: "flex-end",
           }}
         >
-          <TouchableOpacity style={{ padding: 10 }}>
+          <TouchableOpacity onPress={goFriends} style={{ padding: 10 }}>
             <FontAwesome5 name="user-friends" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity style={{ padding: 10 }}>
+          <TouchableOpacity onPress={openNotifDropdown} style={{ padding: 10 }}>
             <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={gosettings} style={{ padding: 10 }}>
+          <TouchableOpacity onPress={goSettings} style={{ padding: 10 }}>
             <Octicons name="gear" size={25} color={"#FFF"} />
           </TouchableOpacity>
         </View>
@@ -84,7 +96,7 @@ const Header = ({ navigation, name, type }) => {
             alignItems: "center",
           }}
         >
-          <TouchableOpacity style={{ padding: 10 }}>
+          <TouchableOpacity onPress={goBack} style={{ padding: 10 }}>
             <AntDesign name="back" size={25} color={"#FFF"} />
           </TouchableOpacity>
 
@@ -140,7 +152,7 @@ const Header = ({ navigation, name, type }) => {
           <TouchableOpacity style={{ padding: 10 }}>
             <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={gosettings} style={{ padding: 10 }}>
+          <TouchableOpacity onPress={goSettings} style={{ padding: 10 }}>
             <Octicons name="gear" size={25} color={"#FFF"} />
           </TouchableOpacity>
         </View>

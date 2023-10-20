@@ -1,5 +1,4 @@
 import React from "react";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -20,7 +19,12 @@ const Stack = createNativeStackNavigator();
 const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyle: { backgroundColor: "transparent" },
+        }}
+      >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Alarm" component={Alarm} />
         <Stack.Screen name="Bedtime" component={Bedtime} />
