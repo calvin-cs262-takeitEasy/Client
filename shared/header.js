@@ -36,14 +36,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: Platform.OS === "android" ? 90 : 55,
+          height: Platform.OS === "android" ? 100 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop:
-            Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
@@ -94,14 +93,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: Platform.OS === "android" ? 90 : 55,
+          height: Platform.OS === "android" ? 100 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop:
-            Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
         }}
       >
         <View
@@ -139,14 +137,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: Platform.OS === "android" ? 90 : 55,
+          height: Platform.OS === "android" ? 100 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop:
-            Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>

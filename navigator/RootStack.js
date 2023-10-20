@@ -23,19 +23,21 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false,
           cardStyle: { backgroundColor: "transparent" },
+          gestureEnabled: false,
+          animation:'fade'
         }}
       >
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Alarm" component={Alarm} />
-        <Stack.Screen name="Bedtime" component={Bedtime} />
-        <Stack.Screen name="Forgot" component={Forgot} />
-        <Stack.Screen name="Friends" component={Friends} />
-        <Stack.Screen name="Homepage" component={Homepage} />
-        <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Forgot" component={Forgot} />
+        <Stack.Screen name="Homepage" component={Homepage} />
+        <Stack.Screen name="Alarm" component={Alarm} />
         <Stack.Screen name="Study" component={Study} />
-        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="StudyLockdown" component={StudyLockdown} />
+        <Stack.Screen name="Bedtime" component={Bedtime} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Friends" component={Friends} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );
