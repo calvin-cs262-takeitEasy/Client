@@ -44,7 +44,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
@@ -91,7 +91,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0
         }}
       >
         <View
@@ -131,7 +131,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 0
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
