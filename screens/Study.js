@@ -44,7 +44,6 @@ const Study = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
@@ -56,10 +55,8 @@ const Study = ({ navigation }) => {
         style={{
           flexDirection: "row",
           borderWidth: 0,
-          //backgroundColor: activeColors.primary,
           alignItems: "center",
           justifyContent: "center",
-          //borderColor: activeColors.background,
           borderRadius: 5,
           padding: 5,
           margin: 10,
@@ -78,7 +75,6 @@ const Study = ({ navigation }) => {
               paddingVertical: 12,
               paddingHorizontal: 10,
               borderWidth: 0,
-              //borderColor: activeColors.accent,
               borderRadius: 4,
               color: activeColors.text,
               paddingRight: 30,
@@ -89,7 +85,6 @@ const Study = ({ navigation }) => {
               paddingHorizontal: 10,
               paddingVertical: 8,
               borderWidth: 0,
-              //borderColor: activeColors.accent,
               borderRadius: 8,
               color: activeColors.text,
               paddingRight: 30,
@@ -119,7 +114,6 @@ const Study = ({ navigation }) => {
               paddingVertical: 12,
               paddingHorizontal: 10,
               borderWidth: 0,
-              //borderColor: activeColors.accent,
               borderRadius: 4,
               color: activeColors.text,
               paddingRight: 30,
@@ -130,7 +124,6 @@ const Study = ({ navigation }) => {
               paddingHorizontal: 10,
               paddingVertical: 8,
               borderWidth: 0,
-              //borderColor: activeColors.accent,
               borderRadius: 8,
               color: activeColors.text,
               paddingRight: 30,
@@ -151,7 +144,7 @@ const Study = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        <Text style={{ color: activeColors.text, fontSize: 25 }}>
+        <Text style={{ color: "#FFF", fontSize: 25 }}>
           START TIMER
         </Text>
       </TouchableOpacity>
@@ -172,7 +165,6 @@ Study.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },

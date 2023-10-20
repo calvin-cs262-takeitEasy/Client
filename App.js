@@ -30,7 +30,7 @@ export default function App() {
     storeData("theme", newTheme);
   };
 
-  // moniter system for theme change
+  // monitor system for theme change
   if (theme.system) {
     Appearance.addChangeListener(({ colorScheme }) => {
       updateTheme({ system: true, mode: colorScheme });

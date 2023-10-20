@@ -23,14 +23,14 @@ const Header = ({ navigation, name, type }) => {
   };
 
   const openNotifDropdown = () => {
-    //do thing
-  }
+    // do thing
+  };
 
   const goFriends = () => {
     navigation.navigate("Friends");
   };
 
-  if (type == "withFriends") {
+  if (type == "withFriends") { // add friends icon
     return (
       <View
         style={{
@@ -76,7 +76,7 @@ const Header = ({ navigation, name, type }) => {
         </View>
       </View>
     );
-  } else if (type == "backButton") {
+  } else if (type == "backButton") { // have the option of the back arrow
     return (
       <View
         style={{
@@ -115,7 +115,7 @@ const Header = ({ navigation, name, type }) => {
         </View>
       </View>
     );
-  } else {
+  } else { // return the default header
     return (
       <View
         style={{
