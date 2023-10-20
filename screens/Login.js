@@ -38,6 +38,7 @@ const Login = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
+        padding: 20,
         justifyContent: "center",
         backgroundColor: activeColors.background,
       }}

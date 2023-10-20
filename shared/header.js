@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { Dimensions } from "react-native";
+import { 
+  Dimensions,
+  StatusBar,
+} from "react-native";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -35,12 +38,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: 55,
+          height: Platform.OS === "android" ? 90 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
@@ -81,12 +85,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: 55,
+          height: Platform.OS === "android" ? 90 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
         }}
       >
         <View
@@ -120,12 +125,13 @@ const Header = ({ navigation, name, type }) => {
       <View
         style={{
           width: Dimensions.get("screen").width,
-          height: 55,
+          height: Platform.OS === "android" ? 90 : 55,
           flexDirection: "row",
           alignItems: "center",
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight - 15 : 100
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
