@@ -26,7 +26,6 @@ const Homepage = () => {
       <Header navigation={navigation} name="Home" />
       <View style={styles.container}>
         <StatusBar style="auto" />
-        <LineGraph />
         <View
           style={{
             backgroundColor: activeColors.backgroundAccent,
