@@ -1,5 +1,3 @@
-// #F0F is for if we don't currently have a color for that
-
 export const Colors = {
   light: {
     primary: "#064663",

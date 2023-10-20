@@ -1,11 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -46,7 +39,6 @@ Forgot.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },

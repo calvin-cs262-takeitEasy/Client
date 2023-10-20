@@ -29,7 +29,6 @@ const Notification = (props) => {
           padding: 10,
           borderRadius: 10,
           flexDirection: "row",
-          //alignItems: "center",
           justifyContent: "space-between",
           margin: 5,
         }}
@@ -50,9 +49,9 @@ const Notification = (props) => {
               name="user"
               size={30}
               color={activeColors.text}
-              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} //don't question the negetive margin, idk how it works either
+              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negetive margin, idk how it works either
             />
-            <View //name + username
+            <View // name + username
               style={{
                 flexDirection: "column",
                 width: 100,
@@ -81,7 +80,6 @@ const Notification = (props) => {
           <View
             style={{
               flexDirection: "row",
-              //alignItems: "center",
               flexWrap: "wrap",
               width: Dimensions.get("window").width - 52,
               height: 48,

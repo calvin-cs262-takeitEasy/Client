@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
   StyleSheet,
@@ -195,13 +194,6 @@ Register.propTypes = {
   }).isRequired,
 };
 
-{
-  /* background color */
-}
-const styles = StyleSheet.create({
-  container: {
-    //backgroundColor: activeColors.background,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default Register;

@@ -20,7 +20,6 @@ const Settings = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        //justifyContent: "center",
         backgroundColor: activeColors.background,
       }}
     >
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: activeColors.background,
   },
 });
 

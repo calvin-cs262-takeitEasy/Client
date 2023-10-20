@@ -11,9 +11,7 @@ const StudyLockdown = ({ route, navigation }) => {
 
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
-  if (duration == 0) {
-    duration = 5;
-  }
+  if (duration == 0) duration = 5;
 
   const [sound, setSound] = useState();
 
@@ -26,7 +24,6 @@ const StudyLockdown = ({ route, navigation }) => {
 
     console.log("Playing Sound");
     await sound.playAsync();
-    console.log("Done Playing Sound");
   }
 
   useEffect(() => {

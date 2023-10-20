@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,7 +21,6 @@ const Alarm = ({ navigation }) => {
     <SafeAreaView
       style={{
         flex: 1,
-        //justifyContent: "center",
         alignItems: "center",
         backgroundColor: activeColors.background,
       }}
@@ -47,7 +45,6 @@ Alarm.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },

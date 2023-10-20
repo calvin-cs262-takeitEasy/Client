@@ -1,7 +1,7 @@
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
+  StyleSheet,
   View,
   TextInput,
   TouchableOpacity,
@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-//import logo from "../assets/commit-logo.png";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -43,16 +42,16 @@ const Login = ({ navigation }) => {
       }}
     >
       <View style={styles.container}>
-        <View style={{ paddingHorizontal: 25}}>
+        <View style={{ paddingHorizontal: 25 }}>
           <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
-          <Image // logo
-            source={require("../assets/commit-logo.png")}
-            style={{
-              width: Dimensions.get("window").width - 170,
-              height: Dimensions.get("window").width - 170,
-              marginBottom: 100,
-            }}
-          />
+            <Image // logo
+              source={require("../assets/commit-logo.png")}
+              style={{
+                width: Dimensions.get("window").width - 170,
+                height: Dimensions.get("window").width - 170,
+                marginBottom: 100,
+              }}
+            />
           </View>
 
           {/* login title text */}
@@ -161,7 +160,6 @@ const Login = ({ navigation }) => {
           <TouchableOpacity
             onPress={register}
             style={{
-              //backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               flexDirection: "row",
@@ -195,14 +193,6 @@ Login.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
-
-{
-  /* background color */
-}
-const styles = StyleSheet.create({
-  container: {
-    //backgroundColor: activeColors.background,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default Login;
