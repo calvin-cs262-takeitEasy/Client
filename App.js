@@ -11,6 +11,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [theme, setTheme] = useState({ mode: "dark" });
 
+  // update the the theme for the light / dark mode
   const updateTheme = (newTheme) => {
     let mode;
     if (!newTheme) {
@@ -37,6 +38,7 @@ export default function App() {
     });
   }
 
+  // fetchs the stored theme from async storage
   const fetchStoredTheme = async () => {
     try {
       const themeData = await getData("theme");

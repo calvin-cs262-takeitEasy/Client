@@ -9,10 +9,6 @@ const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
-  const goBack = () => {
-    navigation.goBack();
-  };
-
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
   if (duration == 0) duration = 5;
@@ -71,15 +67,18 @@ const StudyLockdown = ({ route, navigation }) => {
       }}
     >
       <View>
-        <TouchableOpacity onPress={goBack} style={{ fontWeight: "700" }}>
-              <Text
-                style={{
-                  color: activeColors.text,
-                  padding: 20,
-                }}
-              >
-                go back
-              </Text>
+        <TouchableOpacity
+          onPress={navigation.goBack()}
+          style={{ fontWeight: "700" }}
+        >
+          <Text
+            style={{
+              color: activeColors.text,
+              padding: 20,
+            }}
+          >
+            go back
+          </Text>
         </TouchableOpacity>
       </View>
 
