@@ -1,0 +1,64 @@
+[
+    {
+        "UserAccount": 
+        {
+            "id":1,
+            "username": "elliesand",
+            "password": "password",
+            "creationDate": "2023-03-07T20:23:23"
+        },
+        "UserUser":
+        {
+            "id":2,
+            "userID":1,
+            "friendsID": 5,
+            "creationDate": "2023-03-08T02:23:23"
+        },
+        "Notif":
+        {
+            "id":3,
+            "userID":1,
+            "type":"bedtime",
+            "postTime": "2023-03-09T07:23:23"
+        },
+        "Comment":
+        {
+            "id":4,
+            "userID":1,
+            "notificationID":3,
+            "commentText": "sux to be you haha",
+            "postTime": "2023-03-10T15:23:23"
+        }
+    },
+    {
+        "UserAccount": 
+        {
+            "id":5,
+            "username": "tester",
+            "password": "password1",
+            "creationDate": "2023-03-11T18:23:23"
+        },
+        "UserUser":
+        {
+            "id":6,
+            "userID":5,
+            "friendsID": 1,
+            "creationDate": "2023-03-12T20:23:23"
+        },
+        "Notif":
+        {
+            "id":7,
+            "userID":5,
+            "type":"bedtime",
+            "postTime": "2023-03-13T23:23:23"
+        },
+        "Comment":
+        {
+            "id":8,
+            "userID":5,
+            "notificationID":7,
+            "commentText": "wow you did a bad job lol",
+            "postTime": "2023-03-14T07:23:23"
+        }
+    }
+]
