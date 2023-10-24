@@ -51,35 +51,25 @@ const Profile = ({ navigation }) => {
 
         <View style={styles.infoContainer}>
           <Text
-            style={
-              { fontWeight: "200", fontSize: 36, color: activeColors.text }
-            }
+            style={{
+              fontWeight: "200",
+              fontSize: 36,
+              color: activeColors.text,
+            }}
           >
             User
           </Text>
-          <Text
-            style={{ color: activeColors.text, fontSize: 14 }}
-          >
+          <Text style={{ color: activeColors.text, fontSize: 14 }}>
             Like to sing
           </Text>
         </View>
 
         <View style={[styles.statsContainer, { marginBottom: 15 }]}>
           <View style={styles.statsBox}>
-            <Text
-              style={[
-                { fontSize: 24 },
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               100
             </Text>
-            <Text
-              style={[
-                styles.subText,
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[styles.subText, { color: activeColors.text }]}>
               Commits
             </Text>
           </View>
@@ -93,38 +83,18 @@ const Profile = ({ navigation }) => {
               },
             ]}
           >
-            <Text
-              style={[
-                { fontSize: 24 },
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               20
             </Text>
-            <Text
-              style={[
-                styles.subText,
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[styles.subText, { color: activeColors.text }]}>
               Followers
             </Text>
           </View>
           <View style={styles.statsBox}>
-            <Text
-              style={[
-                { fontSize: 24 },
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               100
             </Text>
-            <Text
-              style={[
-                styles.subText,
-                { color: activeColors.text }]
-              }
-            >
+            <Text style={[styles.subText, { color: activeColors.text }]}>
               Failed Commits
             </Text>
           </View>

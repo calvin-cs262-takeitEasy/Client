@@ -18,14 +18,18 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Login = ({ navigation }) => {
+
+  // when the login button is pressed
   const login = () => {
     navigation.navigate("Homepage");
   };
 
+  // when the register button is pressed
   const register = () => {
     navigation.navigate("Register");
   };
 
+  // when the forgot button is pressed
   const forgot = () => {
     navigation.navigate("Forgot");
   };

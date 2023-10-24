@@ -14,18 +14,22 @@ const Header = ({ navigation, name, type }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  // if the settings button is pressed
   const goSettings = () => {
     navigation.navigate("Settings");
   };
 
+  // if the back button is pressed
   const goBack = () => {
     navigation.goBack();
   };
 
+  // if the notification button is pressed
   const openNotifDropdown = () => {
     // do thing
   };
 
+  // if the friends button is pressed
   const goFriends = () => {
     navigation.navigate("Friends");
   };
@@ -42,7 +46,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
@@ -99,7 +103,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
       >
         <View
@@ -143,7 +147,7 @@ const Header = ({ navigation, name, type }) => {
           backgroundColor: activeColors.primary,
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
-          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>

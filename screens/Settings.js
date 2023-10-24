@@ -23,10 +23,8 @@ const Settings = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-
-      <Header navigation={navigation} name="Settings" type="backButton"/>
+      <Header navigation={navigation} name="Settings" type="backButton" />
       <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-
         <TouchableOpacity
           onPress={() => updateTheme()}
           style={{

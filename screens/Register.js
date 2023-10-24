@@ -17,10 +17,13 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Register = ({ navigation }) => {
+
+  // when the login button is pressed
   const login = () => {
     navigation.navigate("Login");
   };
 
+  // when the register button is pressed
   const register = () => {
     navigation.navigate("Homepage");
   };
@@ -160,7 +163,6 @@ const Register = ({ navigation }) => {
           <TouchableOpacity
             onPress={login}
             style={{
-              //backgroundColor: activeColors.primary,
               padding: 20,
               borderRadius: 10,
               flexDirection: "row",

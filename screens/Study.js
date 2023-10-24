@@ -5,7 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions, 
+  Dimensions,
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -49,7 +49,7 @@ const Study = ({ navigation }) => {
       }}
     >
       <Header navigation={navigation} name="Study" />
-        
+
       {/*//ui here*/}
       <View
         style={{
@@ -144,9 +144,7 @@ const Study = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        <Text style={{ color: "#FFF", fontSize: 25 }}>
-          START TIMER
-        </Text>
+        <Text style={{ color: "#FFF", fontSize: 25 }}>START TIMER</Text>
       </TouchableOpacity>
 
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
