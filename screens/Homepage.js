@@ -1,14 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, View, Dimensions } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Dimensions,
+  FlatList,
+} from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 import Notification from "../components/Notification";
 import { useNavigation } from "@react-navigation/native";
+
+import Notif from "../json/Notif.json";
+import UserAccount from "../json/UserAccount.json";
 
 const Homepage = () => {
   const { theme } = useContext(ThemeContext);
@@ -23,7 +31,7 @@ const Homepage = () => {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Home" />
+      <Header navigation={navigation} name="Home" type="withFriends" />
       <View style={styles.container}>
         <StatusBar style="auto" />
         <View
@@ -33,15 +41,15 @@ const Homepage = () => {
             alignItems: "center",
           }}
         >
-          <Notification
-            name={"Name"}
-            username={"@username"}
-            Text={"What user did not commit too:"}
-          />
-          <Notification
-            name={"Name"}
-            username={"@username"}
-            Text={"What user did not commit too:"}
+          <FlatList
+            data={Notif} // currently using all notifications
+            renderItem={({ item }) => (
+              <Notification
+                name={item.ID} // currently only showing ID
+                username={UserAccount.find((x) => x.ID === item.userID).username}
+                Text={item.type}
+              />
+            )}
           />
         </View>
       </View>

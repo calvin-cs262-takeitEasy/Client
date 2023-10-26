@@ -1,0 +1,37 @@
+[
+      {
+        "ID": 1,
+        "userID": 1,
+        "notificationID": 1,
+        "commentText": "Hi, I'd like to be friends!",
+        "postTime": "2023-10-24T16:00:00"
+      },
+      {
+        "ID": 2,
+        "userID": 2,
+        "notificationID": 2,
+        "commentText": "Great to hear from you!",
+        "postTime": "2023-10-24T17:00:00"
+      },
+      {
+        "ID": 3,
+        "userID": 3,
+        "notificationID": 3,
+        "commentText": "Sure, let's be friends!",
+        "postTime": "2023-10-24T18:00:00"
+      },
+      {
+        "ID": 4,
+        "userID": 4,
+        "notificationID": 4,
+        "commentText": "Hello there!",
+        "postTime": "2023-10-24T19:00:00"
+      },
+      {
+        "ID": 5,
+        "userID": 5,
+        "notificationID": 5,
+        "commentText": "I'd love to be friends!",
+        "postTime": "2023-10-24T20:00:00"
+      }
+    ]

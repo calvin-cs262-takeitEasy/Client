@@ -1,0 +1,32 @@
+[
+      {
+        "ID": 1,
+        "userID": 1,
+        "friendsID": 2,
+        "creationDate": "2023-10-24T12:00:00"
+      },
+      {
+        "ID": 2,
+        "userID": 2,
+        "friendsID": 1,
+        "creationDate": "2023-10-24T13:00:00"
+      },
+      {
+        "ID": 3,
+        "userID": 3,
+        "friendsID": 4,
+        "creationDate": "2023-10-24T14:00:00"
+      },
+      {
+        "ID": 4,
+        "userID": 4,
+        "friendsID": 5,
+        "creationDate": "2023-10-24T15:00:00"
+      },
+      {
+        "ID": 5,
+        "userID": 5,
+        "friendsID": 3,
+        "creationDate": "2023-10-24T16:00:00"
+      }
+    ]
