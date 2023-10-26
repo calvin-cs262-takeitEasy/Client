@@ -53,6 +53,7 @@ const Homepage = () => {
                     (userUser) => currentUser.ID === userUser.userID
                   ).friendsID
             )} // filters to show only your own and your friends notifications
+            
             renderItem={({ item }) => (
               <Notification
                 name={UserAccount.find((x) => x.ID === item.userID).ID} // currently only showing ID
