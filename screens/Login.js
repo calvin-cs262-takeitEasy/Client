@@ -94,7 +94,7 @@ const Login = ({ navigation }) => {
               style={{
                 flex: 1,
                 paddingVertical: 0,
-                color: activeColors.primary,
+                color: activeColors.text,
               }}
               keyboardType="email-address"
             />
@@ -122,7 +122,7 @@ const Login = ({ navigation }) => {
               style={{
                 flex: 1,
                 paddingVertical: 0,
-                color: activeColors.primary,
+                color: activeColors.text,
               }}
               secureTextEntry={true}
             />
