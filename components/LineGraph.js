@@ -14,7 +14,7 @@ export const LineGraph = () => {
       {
         data: [10, 4, 6, 8, 10, 0, 5],
         strokeWidth: 2,
-        color: (opacity = 1) => activeColors.primary,
+        color: (opacity = 1) => activeColors.graphBlue,
       },
       {
         data: [5, 4, 6, 3, 8, 0, 2],
@@ -22,7 +22,7 @@ export const LineGraph = () => {
         color: (opacity = 1) => "#2EBF03", //green for completed commits
       },
     ],
-    legend: ["Commits Made", "Commits Completed"],
+    legend: ["Commitments", "Commitments Completed"],
   };
 
   return (
@@ -33,9 +33,9 @@ export const LineGraph = () => {
       height={200}
       chartConfig={{
         useShadowColorFromDataset: true,
-        backgroundColor: activeColors.accent,
-        backgroundGradientFrom: activeColors.background,
-        backgroundGradientTo: activeColors.accent,
+        // backgroundColor: activeColors.background,
+        backgroundGradientFrom: activeColors.tertiary,
+        backgroundGradientTo: activeColors.backgroundAccent,
         decimalPlaces: 0,
         color: (opacity = 1) => activeColors.text,
         style: {
