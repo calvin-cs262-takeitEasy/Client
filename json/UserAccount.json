@@ -118,5 +118,11 @@
     "username": "tom56",
     "password": "tom_password",
     "creationDate": "2023-10-25T05:50:00"
+  },
+  {
+    "ID": 21,
+    "username": "admin",
+    "password": "admin",
+    "creationDate": "2023-10-25T06:15:00"
   }
 ]

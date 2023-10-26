@@ -4,6 +4,8 @@ import { ThemeContext } from "./contexts/ThemeContext";
 import { Appearance } from "react-native";
 import { storeData, getData } from "./config/asyncStorage";
 import * as SplashScreen from "expo-splash-screen";
+import React from "react";
+import { UserProvider } from "./contexts/UserContext";
 
 // keep the splash screen visible while we fetch the resources
 SplashScreen.preventAutoHideAsync();
@@ -58,8 +60,10 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, updateTheme }}>
-      <RootStack />
-    </ThemeContext.Provider>
+    <UserProvider>
+      <ThemeContext.Provider value={{ theme, updateTheme }}>
+        <RootStack />
+      </ThemeContext.Provider>
+    </UserProvider>
   );
 }

@@ -8,7 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
@@ -17,11 +17,30 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
+import UserAccount from "../json/UserAccount.json";
+import { useUser } from "../contexts/UserContext";
+
 const Login = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { currentUser, setCurrentUser } = useUser();
 
   // when the login button is pressed
   const login = () => {
-    navigation.navigate("Homepage");
+    // check if username and password are correct
+    const user = UserAccount.find(
+      (x) => x.username === username && x.password === password
+    );
+    if (user !== undefined) {
+      // if correct
+      setCurrentUser({ username: user.username, ID: user.ID});
+      navigation.navigate("Homepage");
+    } else {
+      alert("Username or password is incorrect");
+    }
   };
 
   // when the register button is pressed
@@ -33,9 +52,6 @@ const Login = ({ navigation }) => {
   const forgot = () => {
     navigation.navigate("Forgot");
   };
-
-  const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
@@ -91,6 +107,7 @@ const Login = ({ navigation }) => {
             <TextInput
               placeholder="Username"
               placeholderTextColor={activeColors.text}
+              onChangeText={(text) => setUsername(text)}
               style={{
                 flex: 1,
                 paddingVertical: 0,
@@ -119,6 +136,7 @@ const Login = ({ navigation }) => {
             <TextInput
               placeholder="Password"
               placeholderTextColor={activeColors.text}
+              onChangeText={(text) => setPassword(text)}
               style={{
                 flex: 1,
                 paddingVertical: 0,

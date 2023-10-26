@@ -17,11 +17,14 @@ import { useNavigation } from "@react-navigation/native";
 
 import Notif from "../json/Notif.json";
 import UserAccount from "../json/UserAccount.json";
+import UserUser from "../json/UserUser.json";
+import { useUser } from "../contexts/UserContext";
 
 const Homepage = () => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
   const navigation = useNavigation();
+  const { currentUser, setCurrentUser } = useUser();
 
   return (
     <SafeAreaView
@@ -42,11 +45,20 @@ const Homepage = () => {
           }}
         >
           <FlatList
-            data={Notif} // currently using all notifications
+            data={Notif.filter(
+              (notif) =>
+                notif.userID === currentUser.ID ||
+                notif.userID ===
+                  UserUser.find(
+                    (userUser) => currentUser.ID === userUser.userID
+                  ).friendsID
+            )} // filters to show only your own and your friends notifications
             renderItem={({ item }) => (
               <Notification
-                name={item.ID} // currently only showing ID
-                username={UserAccount.find((x) => x.ID === item.userID).username}
+                name={UserAccount.find((x) => x.ID === item.userID).ID} // currently only showing ID
+                username={
+                  UserAccount.find((x) => x.ID === item.userID).username
+                }
                 Text={item.type}
               />
             )}
