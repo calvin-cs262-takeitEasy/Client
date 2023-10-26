@@ -7,6 +7,8 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
+  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../components/styles";
@@ -15,6 +17,12 @@ import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 
+import Notification from "../components/Notification";
+import { useNavigation } from "@react-navigation/native";
+
+import Notif from "../json/Notif.json";
+import UserAccount from "../json/UserAccount.json";
+
 const Profile = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
@@ -22,11 +30,13 @@ const Profile = ({ navigation }) => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: activeColors.background }]}
     >
-      <Header navigation={navigation} name="Profile" type="withFriends" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
+      <Header
+        navigation={navigation}
+        name="Profile"
+        type="withFriends"
         style={{ marginTop: 15 }}
-      >
+      />
+      <ScrollView>
         <View style={{ alignSelf: "left", marginLeft: 10 }}>
           <View style={styles.profileImage}>
             <Image
@@ -102,8 +112,20 @@ const Profile = ({ navigation }) => {
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <LineGraph />
         </View>
+        <FlatList
+          data={Notif} // currently using all notifications
+          renderItem={({ item }) => (
+            <Notification
+              name={item.ID} // currently only showing ID
+              username={UserAccount.find((x) => x.ID === item.userID).username}
+              Text={item.type}
+            />
+          )}
+        />
       </ScrollView>
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+
+      <View
+        style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Profile" />
       </View>
     </SafeAreaView>
