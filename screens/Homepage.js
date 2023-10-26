@@ -34,14 +34,14 @@ const Homepage = () => {
           }}
         >
           <Notification
-            name={"Name"}
-            username={"@username"}
-            Text={"What user did not commit too:"}
+            name={"Jaden"}
+            username={"@jadenbrookens"}
+            Text={"Jaden snoozed the alarm for the third time...."}
           />
           <Notification
-            name={"Name"}
-            username={"@username"}
-            Text={"What user did not commit too:"}
+            name={"ellie"}
+            username={"@elliejellybean"}
+            Text={"Someone needs to tell ellie to stop getting on the phone at 1:00 AM."}
           />
         </View>
       </View>

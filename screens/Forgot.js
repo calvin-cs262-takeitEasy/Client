@@ -23,7 +23,7 @@ const Forgot = ({ navigation }) => {
             color: activeColors.text,
           }}
         >
-          Forgot
+          Forgot your password?
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
