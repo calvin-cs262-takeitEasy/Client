@@ -1,185 +1,118 @@
-import { Audio } from "expo-av";
-import { useState } from "react";
-import { Button, FlatList, StyleSheet, Text, View } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
 
-const soundObject = new Audio.Sound();
+import React, { useState, useEffect } from 'react';
+import { View, Button, Platform, FlatList, TouchableOpacity, Text} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { Audio } from 'expo-av';
 
-export const AlarmClock = () => {
+export default function App() {
   const [alarms, setAlarms] = useState([]);
-  const [showButtons, setShowButtons] = useState(false);
-  const [selectedHour, setSelectedHour] = useState("00");
-  const [selectedMinute, setSelectedMinute] = useState("00");
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
+  const [sound, setSound] = useState();
 
-  const handleAlarm = async () => {
-    try {
-      await soundObject.loadAsync(require("../assets/wake_up.mp3"));
-      const status = await soundObject.getStatusAsync();
-      console.log(status);
-      soundObject.setOnPlaybackStatusUpdate((status) => {
-        if (status.isLoaded && !status.isPlaying) {
-          soundObject.playAsync();
-          setShowButtons(true);
-        }
-        if (status.didJustFinish) {
-          soundObject.unloadAsync();
-        }
-      });
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+    });
+
+    // Load the alarm sound
+    const loadSound = async () => {
+      const { sound } = await Audio.Sound.createAsync(
+        require("../assets/wake_up.mp3")
+      );
+      setSound(sound);
+    };
+
+    loadSound();
+
+    return () => {
+      // Unload the sound when the component unmounts
+      if (sound) {
+        sound.unloadAsync();
+      }
+    };
+  }, []);
+
+  const playSound = async () => {
+    if (sound) {
+      await sound.playAsync();
     }
   };
 
-  const handleSnooze = () => {
-    setShowButtons(false);
-    setTimeout(() => {
-      handleAlarm();
-    }, 7 * 60 * 1000); // 7 minutes
+  const showDateTimePicker = () => {
+    setShowPicker(true);
   };
 
-  const handleStop = async () => {
-    setShowButtons(false);
-    await soundObject.stopAsync();
-    await soundObject.unloadAsync();
+  const hideDateTimePicker = () => {
+    setShowPicker(false);
   };
 
-  const handleAddAlarm = () => {
-    const newAlarm = `${selectedHour}:${selectedMinute}`;
-    setAlarms([...alarms, newAlarm]);
-    setSelectedHour("00");
-    setSelectedMinute("00");
+  const handleDateChange = (event, selectedDate) => {
+    hideDateTimePicker();
+    if (selectedDate) {
+      setDate(selectedDate);
+      const newAlarms = [...alarms, selectedDate];
+      setAlarms(newAlarms);
+      // Schedule the sound to play at the selected time
+      const now = new Date();
+      const delay = Math.max(selectedDate - now, 0); // Delay in milliseconds
+      setTimeout(() => {
+        playSound();
+      }, delay);
+    }
   };
 
-  const handleDeleteAlarm = (index) => {
+  const deleteAlarm = (index) => {
     const newAlarms = [...alarms];
     newAlarms.splice(index, 1);
     setAlarms(newAlarms);
+  }
+
+  const handleStop = () => {
+    if (sound) {
+      sound.stopAsync();
+      setSound(null);
+      // Stop all currently playing sounds before deleting the alarm
+      for (let i = 0; i < alarms.length; i++) {
+        if (sound[i]) {
+          sound[i].stopAsync();
+          sound[i] = null;
+        }
+      }
+    }
   };
-
-  const renderItem = ({ item, index }) => {
-    return (
-      <View style={styles.alarmContainer}>
-        <Text style={styles.alarmText}>{item}</Text>
-        <Button title="Delete" onPress={() => handleDeleteAlarm(index)} />
-      </View>
-    );
-  };
-
-  const hourOptions = Array.from({ length: 24 }, (_, i) => ({
-    label: i.toString().padStart(2, "0"),
-    value: i.toString().padStart(2, "0"),
-  }));
-
-  const minuteOptions = Array.from({ length: 60 }, (_, i) => ({
-    label: i.toString().padStart(2, "0"),
-    value: i.toString().padStart(2, "0"),
-  }));
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Set Alarm Time:</Text>
-      <View style={styles.timeChooser}>
-        <RNPickerSelect
-          onValueChange={(value) => setSelectedHour(value)}
-          items={hourOptions}
-          value={selectedHour}
-          placeholder={{ label: "HH", value: null }}
-          style={pickerSelectStyles}
+    <View>
+      <Button title="Set Alarm" onPress={showDateTimePicker} />
+      {showPicker && (
+        <DateTimePicker
+          value={date}
+          mode="time"
+          is24Hour={true}
+          display="default"
+          onChange={handleDateChange}
+          style={{width: 300, opacity: 1, height: 30, marginTop: 50}}
         />
-        <Text style={styles.timeSeparator}>:</Text>
-        <RNPickerSelect
-          onValueChange={(value) => setSelectedMinute(value)}
-          items={minuteOptions}
-          value={selectedMinute}
-          placeholder={{ label: "MM", value: null }}
-          style={pickerSelectStyles}
-        />
-      </View>
-      <Button title="Add" onPress={handleAddAlarm} />
-      <View style={styles.alarmsContainer}>
-        <FlatList data={alarms} renderItem={renderItem} />
-      </View>
-      {showButtons && (
-        <View style={styles.buttonsContainer}>
-          <Button title="Snooze" onPress={handleSnooze} />
-          <Button title="Stop" onPress={handleStop} />
-        </View>
       )}
+      <Button title="Stop this horrid noise." onPress={handleStop} />
+
+      <FlatList
+        data = {alarms}
+        keyExtractor={(item) => item.toString()}
+        renderItem={({ item, index }) => (
+          <View>
+            <Text>{item.toLocaleTimeString()}</Text>
+            <TouchableOpacity onPress={() => deleteAlarm(index)}>
+              <Text>Delete</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        />
     </View>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  timeChooser: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 5,
-    padding: 5,
-    marginBottom: 10,
-  },
-  timeSeparator: {
-    fontSize: 24,
-    marginHorizontal: 5,
-  },
-  alarmsContainer: {
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 5,
-    padding: 5,
-    marginBottom: 10,
-  },
-  alarmContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
-  },
-  alarmText: {
-    fontSize: 18,
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginTop: 10,
-  },
-});
-
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 4,
-    color: "black",
-    paddingRight: 30,
-    marginBottom: 10,
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: "purple",
-    borderRadius: 8,
-    color: "black",
-    paddingRight: 30,
-    marginBottom: 10,
-  },
-});
+}
