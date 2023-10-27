@@ -31,6 +31,12 @@
         "projectId": "acb82e98-7c70-4e9a-9451-3422d976096b"
       }
     },
-    "owner": "palmerford"
+    "owner": "palmerford",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/acb82e98-7c70-4e9a-9451-3422d976096b"
+    }
   }
 }
