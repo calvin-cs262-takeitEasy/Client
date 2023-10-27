@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext } from "react";
-import { AlarmClock } from "../components/AlarmClock";
+import  AlarmClock  from "../components/AlarmClock";
 
 const Alarm = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
