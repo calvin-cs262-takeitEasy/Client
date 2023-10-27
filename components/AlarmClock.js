@@ -1,14 +1,18 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Button, Platform, FlatList, TouchableOpacity, Text} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Audio } from 'expo-av';
+import { Colors } from "./styles";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function App() {
   const [alarms, setAlarms] = useState([]);
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [sound, setSound] = useState();
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   useEffect(() => {
     Audio.setAudioModeAsync({
@@ -96,7 +100,7 @@ export default function App() {
           is24Hour={true}
           display="default"
           onChange={handleDateChange}
-          style={{width: 300, opacity: 1, height: 30, marginTop: 50}}
+          style={{width: 300, opacity: 1, height: 30, marginTop: 50, color: activeColors.text}}
         />
       )}
       <Button title="Stop this horrid noise." onPress={handleStop} />
@@ -104,11 +108,14 @@ export default function App() {
       <FlatList
         data = {alarms}
         keyExtractor={(item) => item.toString()}
+        style = {{color: activeColors.text}}
         renderItem={({ item, index }) => (
-          <View>
-            <Text>{item.toLocaleTimeString()}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ color: activeColors.text, fontSize: 20 }}>{item.toLocaleTimeString()}</Text>
             <TouchableOpacity onPress={() => deleteAlarm(index)}>
-              <Text>Delete</Text>
+            <View style={{ backgroundColor: activeColors.deleteRed, borderColor: activeColors.text, borderWidth: 1, padding: 5 }}>
+          <Text style={{ color: 'white' }}>Delete</Text>
+        </View>
             </TouchableOpacity>
           </View>
         )}
