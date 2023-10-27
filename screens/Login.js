@@ -157,7 +157,6 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          
           {/* login button */}
           <TouchableOpacity
             onPress={login}
