@@ -11,8 +11,10 @@
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-community/datetimepicker": "7.2.0",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
+    "datetimepicker": "^0.1.39",
     "expo": "^49.0.11",
     "expo-av": "~13.4.1",
     "expo-device": "~5.4.0",
