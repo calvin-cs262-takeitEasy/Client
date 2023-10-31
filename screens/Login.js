@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
     );
     if (user !== undefined) {
       // if correct
-      setCurrentUser({ username: user.username, ID: user.ID});
+      setCurrentUser({ username: user.username, ID: user.ID });
       navigation.navigate("Homepage");
     } else {
       alert("Username or password is incorrect");
@@ -51,6 +51,11 @@ const Login = ({ navigation }) => {
   // when the forgot button is pressed
   const forgot = () => {
     navigation.navigate("Forgot");
+  };
+
+  const forceLogin = () => {
+    setCurrentUser({ username: "alice34", ID: 1 });
+    navigation.navigate("Homepage");
   };
 
   return (
@@ -76,17 +81,19 @@ const Login = ({ navigation }) => {
           </View>
 
           {/* login title text */}
-          <Text
-            style={{
-              fontSize: 28,
-              padding: 5,
-              fontWeight: "500",
-              color: activeColors.text,
-              marginBottom: 30,
-            }}
-          >
-            Login
-          </Text>
+          <TouchableOpacity onPress={forceLogin}>
+            <Text
+              style={{
+                fontSize: 28,
+                padding: 5,
+                fontWeight: "500",
+                color: activeColors.text,
+                marginBottom: 30,
+              }}
+            >
+              Login
+            </Text>
+          </TouchableOpacity>
 
           {/* line to accept username */}
           <View
@@ -157,7 +164,6 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          
           {/* login button */}
           <TouchableOpacity
             onPress={login}
