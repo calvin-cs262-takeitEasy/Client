@@ -11,7 +11,7 @@ const StudyLockdown = ({ route, navigation }) => {
 
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
-  if (duration == 0) duration = 5;
+  if (duration == 0) duration = 5; // for testing and showcasing
 
   const [sound, setSound] = useState();
 
@@ -68,7 +68,7 @@ const StudyLockdown = ({ route, navigation }) => {
     >
       <View>
         <TouchableOpacity
-          onPress={navigation.goBack()}
+          onPress={() => navigation.goBack()}
           style={{ fontWeight: "700" }}
         >
           <Text
@@ -77,7 +77,7 @@ const StudyLockdown = ({ route, navigation }) => {
               padding: 20,
             }}
           >
-            go back
+            Go Back
           </Text>
         </TouchableOpacity>
       </View>
@@ -90,7 +90,7 @@ const StudyLockdown = ({ route, navigation }) => {
         size={250}
         strokeWidth={24}
         trailColor={activeColors.accent}
-        onComplete={timerComplete}
+        onComplete={() => timerComplete()}
       >
         {({ remainingTime }) => (
           <Text style={{ color: activeColors.text, fontSize: 50 }}>
