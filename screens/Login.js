@@ -115,6 +115,7 @@ const Login = ({ navigation }) => {
               placeholder="Username"
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setUsername(text)}
+              autoCapitalize = 'none'
               style={{
                 flex: 1,
                 paddingVertical: 0,
@@ -142,6 +143,7 @@ const Login = ({ navigation }) => {
             />
             <TextInput
               placeholder="Password"
+              autoCapitalize = 'none'
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setPassword(text)}
               style={{

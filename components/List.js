@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
 
 // definition of the Item, which will be rendered in the FlatList
-const Item = ({ name, details }) => (
+const Item = ({ name }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{name}</Text>
-    <Text style={styles.details}>{details}</Text>
+   
   </View>
 );
 
@@ -18,20 +18,13 @@ const List = ({ searchPhrase, setClicked, data }) => {
     }
     // filter of the name
     if (
-      item.name
+      item.username
         .toUpperCase()
         .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
     ) {
-      return <Item name={item.name} details={item.details} />;
+      return <Item name={item.username} />;
     }
-    // filter of the description
-    if (
-      item.details
-        .toUpperCase()
-        .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
-    ) {
-      return <Item name={item.name} details={item.details} />;
-    }
+
   };
 
   return (
@@ -44,7 +37,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.ID}
         />
       </View>
     </SafeAreaView>
