@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { SearchBar } from "../components/SearchBar";
 import List from "../components/List";
 import Header from "../shared/header";
+import UserAccount from "../json/UserAccount.json";
 
 const Friends = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -24,11 +25,11 @@ const Friends = ({ navigation }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const apiResponse = await fetch(
-        "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
-      );
-      const data = await apiResponse.json();
-      setFakeData(data);
+      // const apiResponse = await fetch(
+      //   "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
+      // );
+      // const data = await apiResponse.json();
+      setFakeData(UserAccount);
     };
     getData();
   }, []);
@@ -44,13 +45,7 @@ const Friends = ({ navigation }) => {
       <Header navigation={navigation} name="Friends" type="backButton" />
 
       <View>
-        <Text
-          style={{
-            padding: 130,
-            color: activeColors.primary,
-          }}
-        >
-          Friends
+        
           <SearchBar
             searchPhrase={searchPhrase}
             setSearchPhrase={setSearchPhrase}
@@ -69,7 +64,7 @@ const Friends = ({ navigation }) => {
               setClicked={setClicked}
             />
           )}
-        </Text>
+        
       </View>
     </SafeAreaView>
   );

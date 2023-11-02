@@ -85,6 +85,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Username"
+              autoCapitalize = 'none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               keyboardType="email-address"
@@ -109,6 +110,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Password"
+              autoCapitalize = 'none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}
@@ -132,6 +134,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Confirm Password"
+              autoCapitalize = 'none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}
