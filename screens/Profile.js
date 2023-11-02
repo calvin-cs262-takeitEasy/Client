@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,8 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
+  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../components/styles";
@@ -15,22 +17,38 @@ import { LineGraph } from "../components/LineGraph";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 
+import Notification from "../components/Notification";
+import { useNavigation } from "@react-navigation/native";
+
+import Notif from "../json/Notif.json";
+import UserAccount from "../json/UserAccount.json";
+import { useUser } from "../contexts/UserContext";
+
+import { LogBox } from "react-native";
+
 const Profile = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+  const { currentUser, setCurrentUser } = useUser();
+
+  useEffect(() => {
+    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+  }, []);
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: activeColors.background }]}
     >
-      <Header navigation={navigation} name="Profile" type="withFriends" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
+      <Header
+        navigation={navigation}
+        name="Profile"
+        type="withFriends"
         style={{ marginTop: 15 }}
-      >
+      />
+      <ScrollView>
         <View style={{ alignSelf: "left", marginLeft: 10 }}>
           <View style={styles.profileImage}>
             <Image
-              source={require("../assets/icon.png")}
+              source={require("../assets/Donkey_(Shrek).png")}
               style={styles.image}
             ></Image>
           </View>
@@ -57,17 +75,17 @@ const Profile = ({ navigation }) => {
               color: activeColors.text,
             }}
           >
-            User
+            {currentUser.username}
           </Text>
           <Text style={{ color: activeColors.text, fontSize: 14 }}>
-            Like to sing
+            {currentUser.ID}
           </Text>
         </View>
 
         <View style={[styles.statsContainer, { marginBottom: 15 }]}>
           <View style={styles.statsBox}>
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              100
+              {Notif.filter((notif) => notif.userID === currentUser.ID).length}
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
               Commits
@@ -84,15 +102,30 @@ const Profile = ({ navigation }) => {
             ]}
           >
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              20
+              {
+                Notif.filter(
+                  (notif) =>
+                    notif.userID === currentUser.ID &&
+                    (notif.type === "alarm_success" ||
+                      notif.type === "study_success" ||
+                      notif.type === "bedtime_success")
+                ).length
+              }
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
-              Followers
+              Commitments Completed
             </Text>
           </View>
           <View style={styles.statsBox}>
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              100
+              {Notif.filter(
+                  (notif) =>
+                    notif.userID === currentUser.ID &&
+                    (notif.type === "alarm_fail" ||
+                      notif.type === "study_fail" ||
+                      notif.type === "bedtime_fail")
+                ).length
+              }
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
               Failed Commits
@@ -102,7 +135,19 @@ const Profile = ({ navigation }) => {
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <LineGraph />
         </View>
+        <FlatList
+          style={{ paddingBottom: 40 }}
+          data={Notif.filter((notif) => notif.userID === currentUser.ID)} // currently using all notifications
+          renderItem={({ item }) => (
+            <Notification
+              name={item.ID} // currently only showing ID
+              username={UserAccount.find((x) => x.ID === item.userID).username}
+              Text={item.type}
+            />
+          )}
+        />
       </ScrollView>
+
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Profile" />
       </View>

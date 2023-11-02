@@ -69,7 +69,7 @@ const Notification = (props) => {
               <Text
                 style={{
                   width: Dimensions.get("window").width - 200,
-                  color: "#FFFFFF80",
+                  color: activeColors.text,
                 }}
               >
                 {props.username}
