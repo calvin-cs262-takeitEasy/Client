@@ -12,9 +12,18 @@ import Header from "../shared/header";
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
+import { useUser } from "../contexts/UserContext";
+
 const Settings = ({ navigation }) => {
   const { theme, updateTheme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+
+  const { currentUser, setCurrentUser } = useUser();
+
+  const logout = () => {
+    setCurrentUser({ username: "", ID: -1 });
+    navigation.navigate("Login");
+  };
 
   return (
     <SafeAreaView
@@ -66,6 +75,28 @@ const Settings = ({ navigation }) => {
             System Theme
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => logout()}
+          style={{
+            backgroundColor: activeColors.primary,
+            padding: 20,
+            borderRadius: 10,
+            marginBottom: 30,
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "700",
+              fontSize: 16,
+              color: "#FFF",
+            }}
+          >
+            Logout
+          </Text>
+        </TouchableOpacity>
+
         <StatusBar style="auto" />
       </View>
     </SafeAreaView>
