@@ -5,11 +5,10 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext } from "react";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
-
+import  NightMode  from "../components/NightMode";
 const Bedtime = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
-
   return (
     <SafeAreaView
       style={{
@@ -19,22 +18,18 @@ const Bedtime = ({ navigation }) => {
       }}
     >
       <Header navigation={navigation} name="Bedtime" />
-
-      {/*//ui here*/}
-
+      <NightMode />
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
         <Footer navigation={navigation} page="Bedtime" />
       </View>
     </SafeAreaView>
   );
 };
-
 Bedtime.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -42,5 +37,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
 export default Bedtime;
