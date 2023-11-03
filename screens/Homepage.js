@@ -56,11 +56,14 @@ const Homepage = () => {
             
             renderItem={({ item }) => (
               <Notification
-                name={UserAccount.find((x) => x.ID === item.userID).ID} // currently only showing ID
+                name={UserAccount.find((x) => x.ID === item.userID).name} 
                 username={
                   UserAccount.find((x) => x.ID === item.userID).username
                 }
-                Text={item.type}
+                Text={
+                  (UserAccount.find((x) => x.ID === item.userID).name)+
+                  (item.type)
+                }
               />
             )}
           />

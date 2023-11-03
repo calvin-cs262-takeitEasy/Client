@@ -2,121 +2,121 @@
   {
     "ID": 1,
     "userID": 3,
-    "type": "study_fail",
+    "type": " is addicted to not studying.",
     "postTime": "2023-10-24T10:15:00"
   },
   {
     "ID": 2,
     "userID": 5,
-    "type": "study_success",
+    "type": " is up past their bedtime again...",
     "postTime": "2023-10-24T11:30:00"
   },
   {
     "ID": 3,
     "userID": 2,
-    "type": "alarm_fail",
+    "type": " doesn't care about waking up on time.",
     "postTime": "2023-10-24T12:45:00"
   },
   {
     "ID": 4,
     "userID": 4,
-    "type": "alarm_success",
+    "type": " doesn't care about waking up on time.",
     "postTime": "2023-10-24T13:20:00"
   },
   {
     "ID": 5,
     "userID": 1,
-    "type": "bedtime_fail",
+    "type": " is up past their bedtime again...",
     "postTime": "2023-10-24T14:55:00"
   },
   {
     "ID": 6,
     "userID": 3,
-    "type": "bedtime_success",
+    "type": " needs to set an extra loud alarm for tomorrow.",
     "postTime": "2023-10-24T15:40:00"
   },
   {
     "ID": 7,
     "userID": 5,
-    "type": "study_fail",
+    "type": " is gonna fail if they dont focus.",
     "postTime": "2023-10-24T16:25:00"
   },
   {
     "ID": 8,
     "userID": 4,
-    "type": "study_success",
+    "type": " is gonna fail if they dont focus.",
     "postTime": "2023-10-24T17:10:00"
   },
   {
     "ID": 9,
     "userID": 2,
-    "type": "alarm_fail",
+    "type": " needs to set an extra loud alarm for tomorrow.",
     "postTime": "2023-10-24T18:35:00"
   },
   {
     "ID": 10,
     "userID": 1,
-    "type": "alarm_success",
+    "type": " needs to set an extra loud alarm for tomorrow.",
     "postTime": "2023-10-24T19:50:00"
   },
   {
     "ID": 11,
     "userID": 3,
-    "type": "bedtime_fail",
+    "type": " really needs to learn some self control.",
     "postTime": "2023-10-24T20:15:00"
   },
   {
     "ID": 12,
     "userID": 5,
-    "type": "bedtime_success",
+    "type": " needs to stay on track and put their phone away.",
     "postTime": "2023-10-24T21:30:00"
   },
   {
     "ID": 13,
     "userID": 2,
-    "type": "study_fail",
+    "type": " needs to stay on track and put their phone away.",
     "postTime": "2023-10-24T22:45:00"
   },
   {
     "ID": 14,
     "userID": 4,
-    "type": "study_success",
+    "type": " is being a real lazybones.",
     "postTime": "2023-10-24T23:20:00"
   },
   {
     "ID": 15,
     "userID": 1,
-    "type": "alarm_fail",
+    "type": " is being a real lazybones.",
     "postTime": "2023-10-25T00:55:00"
   },
   {
     "ID": 16,
     "userID": 3,
-    "type": "alarm_success",
+    "type": " is gonna regret getting on their phone past bedtime tomorrow.",
     "postTime": "2023-10-25T01:40:00"
   },
   {
     "ID": 17,
     "userID": 5,
-    "type": "bedtime_fail",
+    "type": " is gonna regret getting on their phone past bedtime tomorrow.",
     "postTime": "2023-10-25T02:25:00"
   },
   {
     "ID": 18,
     "userID": 4,
-    "type": "bedtime_success",
+    "type": " really needs to learn some self control.",
     "postTime": "2023-10-25T03:10:00"
   },
   {
     "ID": 19,
     "userID": 2,
-    "type": "study_fail",
+    "type": " is gonna fail if they dont focus.",
     "postTime": "2023-10-25T04:35:00"
   },
   {
     "ID": 20,
     "userID": 1,
-    "type": "study_success",
+    "type": " is gonna fail if they dont focus.",
     "postTime": "2023-10-25T05:50:00"
   }
 ]

@@ -1,126 +1,147 @@
 [
   {
     "ID": 1,
+    "name": "alice",
     "username": "alice34",
     "password": "alice_password",
     "creationDate": "2023-10-24T10:15:00"
   },
   {
     "ID": 2,
+    "name": "bob",
     "username": "bob92",
     "password": "bob_password",
     "creationDate": "2023-10-24T11:30:00"
   },
   {
     "ID": 3,
+    "name": "charlie",
     "username": "charlie21",
     "password": "charlie_password",
     "creationDate": "2023-10-24T12:45:00"
   },
   {
     "ID": 4,
+    "name": "david",
     "username": "david78",
     "password": "david_password",
     "creationDate": "2023-10-24T13:20:00"
   },
   {
     "ID": 5,
+    "name": "emily",
     "username": "emily45",
     "password": "emily_password",
     "creationDate": "2023-10-24T14:55:00"
   },
   {
     "ID": 6,
+    "name": "frank",
     "username": "frank17",
     "password": "frank_password",
     "creationDate": "2023-10-24T15:40:00"
   },
   {
     "ID": 7,
+    "name": "grace",
     "username": "grace53",
     "password": "grace_password",
     "creationDate": "2023-10-24T16:25:00"
   },
   {
     "ID": 8,
+    "name": "henry",
     "username": "henry39",
     "password": "henry_password",
     "creationDate": "2023-10-24T17:10:00"
   },
   {
     "ID": 9,
+    "name": "isabel",
     "username": "isabel88",
     "password": "isabel_password",
     "creationDate": "2023-10-24T18:35:00"
   },
   {
     "ID": 10,
+    "name": "jason",
     "username": "jason65",
     "password": "jason_password",
     "creationDate": "2023-10-24T19:50:00"
   },
   {
     "ID": 11,
+    "name": "karen",
     "username": "karen76",
     "password": "karen_password",
     "creationDate": "2023-10-24T20:15:00"
   },
   {
     "ID": 12,
+    "name": "lucas",
     "username": "lucas12",
     "password": "lucas_password",
     "creationDate": "2023-10-24T21:30:00"
   },
   {
     "ID": 13,
+    "name": "mary",
     "username": "mary29",
     "password": "mary_password",
     "creationDate": "2023-10-24T22:45:00"
   },
   {
     "ID": 14,
+    "name": "nathan",
     "username": "nathan50",
     "password": "nathan_password",
     "creationDate": "2023-10-24T23:20:00"
   },
   {
     "ID": 15,
+    "name": "olivia",
     "username": "olivia18",
     "password": "olivia_password",
     "creationDate": "2023-10-25T00:55:00"
   },
   {
     "ID": 16,
+    "name": "peter",
     "username": "peter84",
     "password": "peter_password",
     "creationDate": "2023-10-25T01:40:00"
   },
   {
     "ID": 17,
+    "name": "quinn",
     "username": "quinn61",
     "password": "quinn_password",
     "creationDate": "2023-10-25T02:25:00"
   },
   {
     "ID": 18,
+    "name": "rachel",
     "username": "rachel22",
     "password": "rachel_password",
     "creationDate": "2023-10-25T03:10:00"
   },
   {
     "ID": 19,
+    "name": "sam",
     "username": "sam73",
     "password": "sam_password",
     "creationDate": "2023-10-25T04:35:00"
   },
   {
     "ID": 20,
+    "name": "tom",
     "username": "tom56",
     "password": "tom_password",
     "creationDate": "2023-10-25T05:50:00"
   },
   {
     "ID": 21,
+    "name": "teamE",
     "username": "admin",
     "password": "admin",
     "creationDate": "2023-10-25T06:15:00"
