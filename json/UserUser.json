@@ -34,5 +34,17 @@
         "userID": 1,
         "friendsID": 3,
         "creationDate": "2023-10-24T12:00:00"
+      },
+      {
+        "ID": 7,
+        "userID": 1,
+        "friendsID": 3,
+        "creationDate": "2023-10-24T12:00:00"
+      },
+      {
+        "ID": 8,
+        "userID": 1,
+        "friendsID": 4,
+        "creationDate": "2023-10-24T12:00:00"
       }
     ]
