@@ -40,17 +40,17 @@ export default function App() {
     }, []);
     return (
         <View style={styles.container}>
-          <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
+          <Text style={{ color: activeColors.text, fontSize: 24 }}>{displayText}</Text>
           <CountdownCircleTimer
             isPlaying={isPlaying}
             duration={60}
             colors={activeColors.primary}
+            trailColor={activeColors.accent}
             colorsTime={[10, 6, 3, 0]}
             onComplete={() => ({ shouldRepeat: true, delay: 2 })}
-            updateInterval={1}
           >
             {({ remainingTime }) => (
-              <Text style={{ color:activeColors.Text, fontSize: 40 }}>
+              <Text style={{ color:activeColors.text, fontSize: 40 }}>
                 {remainingTime}
               </Text>
             )}

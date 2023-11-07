@@ -8,7 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { Colors } from "../components/styles";
@@ -28,15 +28,24 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const { currentUser, setCurrentUser } = useUser();
 
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    fetch("https://cs262-commit.azurewebsites.net/username")
+      .then((response) => response.json())
+      .then((json) => setUserData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
   // when the login button is pressed
   const login = () => {
     // check if username and password are correct
-    const user = UserAccount.find(
+    const user = userData.find(
       (x) => x.username === username && x.password === password
     );
     if (user !== undefined) {
       // if correct
-      setCurrentUser({ username: user.username, ID: user.ID });
+      setCurrentUser({ username: user.username, ID: user.ID, name: user.name });
+      console.log(currentUser.username);
       navigation.navigate("Homepage");
     } else {
       alert("Username or password is incorrect");
@@ -54,7 +63,7 @@ const Login = ({ navigation }) => {
   };
 
   const forceLogin = () => {
-    setCurrentUser({ username: "alice34", ID: 1 });
+    setCurrentUser({ username: "alice34", ID: 1, name: "alice" });
     navigation.navigate("Homepage");
   };
 
@@ -115,7 +124,7 @@ const Login = ({ navigation }) => {
               placeholder="Username"
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setUsername(text)}
-              autoCapitalize = 'none'
+              autoCapitalize="none"
               style={{
                 flex: 1,
                 paddingVertical: 0,
@@ -143,7 +152,7 @@ const Login = ({ navigation }) => {
             />
             <TextInput
               placeholder="Password"
-              autoCapitalize = 'none'
+              autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setPassword(text)}
               style={{
