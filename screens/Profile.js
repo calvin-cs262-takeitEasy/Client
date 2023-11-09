@@ -11,7 +11,6 @@ import {
   FlatList,
   LogBox,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
@@ -54,14 +53,15 @@ const Profile = ({ navigation }) => {
       />
       <ScrollView>
         <View style={{ alignSelf: "left", marginLeft: 10 }}>
-          <View style={styles.profileImage}>
-            <Image
-              source={require("../assets/Donkey_(Shrek).png")}
-              style={styles.image}
-            ></Image>
+          <View style={{ marginTop: 5 }}>
+            <View style={styles.profileImage}>
+              <Image
+                source={require("../assets/keith.jpg")}
+                style={styles.image}
+              />
+            </View>
           </View>
-          <View style={styles.active}></View>
-          <View style={styles.add}>
+          {/* <View style={styles.add}> // got rid of to make image more visible for presentation
             <TouchableOpacity
               style={{ justifyContent: "center", alignItems: "center" }}
             >
@@ -72,7 +72,7 @@ const Profile = ({ navigation }) => {
                 style={{ marginLeft: 2 }}
               ></Ionicons>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
 
         <View style={styles.infoContainer}>
@@ -142,18 +142,20 @@ const Profile = ({ navigation }) => {
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <LineGraph />
         </View>
-        <FlatList
-          nestedScrollEnabled={true}
-          scrollEnabled={false}
-          data={notifData}
-          renderItem={({ item }) => (
-            <Notification
-              name={currentUser.name}
-              username={currentUser.username}
-              Text={item.type}
-            />
-          )}
-        />
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <FlatList
+            nestedScrollEnabled={true}
+            scrollEnabled={false}
+            data={notifData}
+            renderItem={({ item }) => (
+              <Notification
+                name={currentUser.name}
+                username={currentUser.username}
+                Text={item.type}
+              />
+            )}
+          />
+        </View>
       </ScrollView>
 
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>

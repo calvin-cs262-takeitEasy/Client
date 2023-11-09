@@ -24,7 +24,7 @@ const RootStack = () => {
           headerShown: false,
           cardStyle: { backgroundColor: "transparent" },
           gestureEnabled: false,
-          animation:'fade'
+          animation: "fade",
         }}
       >
         <Stack.Screen name="Login" component={Login} />

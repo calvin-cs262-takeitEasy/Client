@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,7 +11,6 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import RNPickerSelect from "react-native-picker-select";
-import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 
@@ -96,8 +94,8 @@ const Study = ({ navigation }) => {
         <Text
           style={{
             fontSize: 64,
-            marginHorizontal: 5,
-            marginBottom: 10,
+            marginRight: 15,
+            marginBottom: 20,
             color: activeColors.text,
           }}
         >
@@ -116,7 +114,6 @@ const Study = ({ navigation }) => {
               borderWidth: 0,
               borderRadius: 4,
               color: activeColors.text,
-              paddingRight: 30,
               marginBottom: 10,
             },
             inputAndroid: {

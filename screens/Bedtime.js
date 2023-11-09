@@ -5,7 +5,8 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext } from "react";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
-import  NightMode  from "../components/NightMode";
+import NightMode from "../components/NightMode";
+
 const Bedtime = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];

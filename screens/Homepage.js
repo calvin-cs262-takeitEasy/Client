@@ -43,7 +43,7 @@ const Homepage = () => {
       }}
     >
       <Header navigation={navigation} name="Home" type="withFriends" />
-      <View style={styles.container}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <StatusBar style="auto" />
         <View
           style={{
@@ -78,11 +78,6 @@ Homepage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });
 
 export default Homepage;

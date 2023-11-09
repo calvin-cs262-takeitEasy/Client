@@ -1,17 +1,11 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { React, useContext } from "react";
-import  AlarmClock  from "../components/AlarmClock";
+import AlarmClock from "../components/AlarmClock";
 
 const Alarm = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);

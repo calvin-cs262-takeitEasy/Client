@@ -17,7 +17,6 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-import UserAccount from "../json/UserAccount.json";
 import { useUser } from "../contexts/UserContext";
 
 const Login = ({ navigation }) => {
@@ -63,7 +62,7 @@ const Login = ({ navigation }) => {
   };
 
   const forceLogin = () => {
-    setCurrentUser({ username: "alice34", ID: 1, name: "alice" });
+    setCurrentUser({ username: "kvlinden", ID: 1, name: "keith" });
     navigation.navigate("Homepage");
   };
 

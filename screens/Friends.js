@@ -20,16 +20,16 @@ const Friends = ({ navigation }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
   const [fakeData, setFakeData] = useState();
+  const [data, setData] = useState([]);
 
   let activeColors = Colors[theme.mode];
 
   useEffect(() => {
     const getData = async () => {
-      // const apiResponse = await fetch(
-      //   "https://my-json-server.typicode.com/kevintomas1995/logRocket_searchBar/languages"
-      // );
-      // const data = await apiResponse.json();
-      setFakeData(UserAccount);
+      fetch("https://cs262-commit.azurewebsites.net/username")
+        .then((response) => response.json())
+        .then((json) => setData(json))
+        .catch((error) => console.error(error));
     };
     getData();
   }, []);
@@ -45,26 +45,24 @@ const Friends = ({ navigation }) => {
       <Header navigation={navigation} name="Friends" type="backButton" />
 
       <View>
-        
-          <SearchBar
-            searchPhrase={searchPhrase}
-            setSearchPhrase={setSearchPhrase}
-            clicked={clicked}
-            setClicked={setClicked}
-          />
-          {/* below this in the {} shows the list of the data, but when it does that it fills the screen. but if you dont have this, 
+        <SearchBar
+          searchPhrase={searchPhrase}
+          setSearchPhrase={setSearchPhrase}
+          clicked={clicked}
+          setClicked={setClicked}
+        />
+        {/* below this in the {} shows the list of the data, but when it does that it fills the screen. but if you dont have this, 
           the answer to the searched thing doesnt come up. im working on getting it so it doesnt show up the list, 
           but when you search the full thing, the answer does come up */}
-          {!fakeData ? (
-            <ActivityIndicator size="large" />
-          ) : (
-            <List
-              searchPhrase={searchPhrase}
-              data={fakeData}
-              setClicked={setClicked}
-            />
-          )}
-        
+        {!data ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <List
+            searchPhrase={searchPhrase}
+            data={data}
+            setClicked={setClicked}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
