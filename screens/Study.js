@@ -6,15 +6,17 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  AppState,
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, Component, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import RNPickerSelect from "react-native-picker-select";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
+
 
 const Study = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -39,6 +41,27 @@ const Study = ({ navigation }) => {
     label: i.toString().padStart(2, "0"),
     value: i.toString().padStart(2, "0"),
   }));
+
+  const appState = useRef(AppState.currentState)
+  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange)
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange)
+    }
+  }, [])
+  const _handleAppStateChange = (nextAppState) => {
+    if (appState.current.match(/inactivebackground/) &&
+    nextAppState === "active") {
+      console.log("app has come to the foreground")
+    }
+
+    appState.current = nextAppState
+    setAppStateVisible(appState.current)
+
+    console.log("AppState: ", appState.current)
+  }
 
   return (
     <SafeAreaView

@@ -1,8 +1,8 @@
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
-import { React, useContext, useState, useEffect } from "react";
-import { SafeAreaView, Text, View, TouchableOpacity } from "react-native";
+import { React, useContext, useState, useEffect, useRef } from "react";
+import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, AppState} from "react-native";
 import { Audio } from "expo-av";
 
 const StudyLockdown = ({ route, navigation }) => {
@@ -56,6 +56,28 @@ const StudyLockdown = ({ route, navigation }) => {
 
     return hours.toString() + ":" + minutesStr + ":" + secondsStr;
   };
+
+  const appState = useRef(AppState.currentState)
+  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange)
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange)
+    }
+  }, [])
+  const _handleAppStateChange = (nextAppState) => {
+    if (appState.current.match(/inactivebackground/) &&
+    nextAppState === "active") {
+      console.log("app has come to the foreground")
+    }
+
+    appState.current = nextAppState
+    setAppStateVisible(appState.current)
+
+    console.log("AppState: ", appState.current)
+    playSound()
+  }
 
   return (
     <SafeAreaView

@@ -23,7 +23,7 @@ export default function App() {
   };
   const checkTimeAndSetPlaying = () => {
     const currentHour = new Date().getHours();
-    if (currentHour >= 22 || currentHour < 6) { // 10 PM to 6 AM
+    if (currentHour >= 13 || currentHour < 6) { // 10 PM to 6 AM
       setIsPlaying(true);
       setDisplayText("It's Bedtime! You have one minute to get off your phone.")
     } else {
