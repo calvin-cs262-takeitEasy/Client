@@ -4,12 +4,23 @@ import Constants from 'expo-constants';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { Colors } from "./styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 export default function App() {
   const [isPlaying, setIsPlaying] = React.useState(true)
   const [displayText, setDisplayText] = React.useState('');
+  const [showPicker, setShowPicker] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [selectedHour, setSelectedHour] = useState(null); // Default to 23 (11 PM)
+  const [selectedMinute, setSelectedMinute] = useState(null);
   const appState = React.useRef(AppState.currentState);
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+
+  useEffect(() => {
+    checkTimeAndSetPlaying();
+  }, [selectedHour, selectedMinute]);
+
   const handleAppStateChange = (nextAppState) => {
     if (
       appState.current.match(/inactive|background/) &&
@@ -21,16 +32,45 @@ export default function App() {
     }
     appState.current = nextAppState;
   };
+
   const checkTimeAndSetPlaying = () => {
+    if (selectedHour === null || selectedMinute === null) {
+      setIsPlaying(false);
+      setDisplayText("No time selected. Timer not started.");
+      return;
+    }
+  
     const currentHour = new Date().getHours();
-    if (currentHour >= 22 || currentHour < 6) { // 10 PM to 6 AM
+    const currentMinute = new Date().getMinutes();
+  
+    if (currentHour < selectedHour || (currentHour === selectedHour && currentMinute < selectedMinute)) {
+      setIsPlaying(false);
+      setDisplayText("It's not bedtime yet. Keep surfing!");
+    } else if ((currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) || currentHour < 4) { // selected PM to 4 AM
       setIsPlaying(true);
       setDisplayText("It's Bedtime! You have one minute to get off your phone.")
     } else {
       setIsPlaying(false);
-        setDisplayText("It's not bedtime yet. Keep surfing!")
+      setDisplayText("It's not bedtime yet. Keep surfing!")
     }
   };
+
+  const showDateTimePicker = () => {
+    setShowPicker(true);
+  };
+
+  const hideDateTimePicker = () => {
+    setShowPicker(false);
+  };
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowPicker(Platform.OS === 'ios');
+    setDate(currentDate);
+    setSelectedMinute(currentDate.getMinutes());
+    setSelectedHour(currentDate.getHours());
+  };
+
   React.useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     checkTimeAndSetPlaying();
@@ -38,6 +78,7 @@ export default function App() {
         AppState.removeEventListener('change', handleAppStateChange);
       };
     }, []);
+    
     return (
         <View style={styles.container}>
           <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
@@ -55,6 +96,17 @@ export default function App() {
               </Text>
             )}
           </CountdownCircleTimer>
+          <Button title="Set Bedtime" onPress={showDateTimePicker} />
+      {showPicker && (
+        <DateTimePicker
+          value={date}
+          mode="time"
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+          style={{width: 300, opacity: 1, height: 30, marginTop: 50, color: activeColors.text}}
+        />
+      )}
         </View>
       );
     }
