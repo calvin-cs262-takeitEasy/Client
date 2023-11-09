@@ -15,14 +15,14 @@ const Notification = (props) => {
   let bedtime_fail_list = [
     "Guess who's up past their bedtime again... " + props.name + "!",
     props.name +
-      " really needs to learn some self control and get off their phone past bedtime.",
+      " really needs to get off their phone past bedtime.",
     props.name +
       " is gonna regret getting on their phone past bedtime tomorrow.",
   ];
   let study_fail_list = [
     props.name + " is addicted to not studying.",
     props.name +
-      " is gonna fail whatever they're studying for if they dont focus.",
+      " is gonna fail whatever they're studying for.",
     props.name + " needs to stay on track and put their phone away.",
   ];
   let alarm_fail_list = [
