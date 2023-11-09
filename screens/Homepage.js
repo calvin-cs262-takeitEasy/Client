@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
@@ -15,9 +15,6 @@ import Footer from "../shared/footer";
 import Notification from "../components/Notification";
 import { useNavigation } from "@react-navigation/native";
 
-import Notif from "../json/Notif.json";
-import UserAccount from "../json/UserAccount.json";
-import UserUser from "../json/UserUser.json";
 import { useUser } from "../contexts/UserContext";
 
 const Homepage = () => {
@@ -25,6 +22,17 @@ const Homepage = () => {
   let activeColors = Colors[theme.mode];
   const navigation = useNavigation();
   const { currentUser, setCurrentUser } = useUser();
+
+  const [notifData, setNotifData] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://cs262-commit.azurewebsites.net/notifications/friends/" +
+        currentUser.ID
+    )
+      .then((response) => response.json())
+      .then((json) => setNotifData(json))
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <SafeAreaView
@@ -45,25 +53,12 @@ const Homepage = () => {
           }}
         >
           <FlatList
-            data={Notif.filter(
-              (notif) =>
-                notif.userID === currentUser.ID ||
-                notif.userID ===
-                  UserUser.find(
-                    (userUser) => currentUser.ID === userUser.userID
-                  ).friendsID
-            )} // filters to show only your own and your friends notifications
-            
+            data={notifData}
             renderItem={({ item }) => (
               <Notification
-                name={UserAccount.find((x) => x.ID === item.userID).name} 
-                username={
-                  UserAccount.find((x) => x.ID === item.userID).username
-                }
-                Text={
-                  (UserAccount.find((x) => x.ID === item.userID).name)+
-                  (item.type)
-                }
+                name={item.name}
+                username={item.username}
+                Text={item.type}
               />
             )}
           />
