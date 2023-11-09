@@ -22,7 +22,7 @@ const Notification = (props) => {
   let study_fail_list = [
     props.name + " is addicted to not studying.",
     props.name +
-      " is gonna fail whatever they're studying for.",
+      " is gonna fail whatever they're studying.",
     props.name + " needs to stay on track and put their phone away.",
   ];
   let alarm_fail_list = [
