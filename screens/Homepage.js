@@ -47,7 +47,7 @@ const Homepage = () => {
         <StatusBar style="auto" />
         <View
           style={{
-            backgroundColor: activeColors.backgroundAccent,
+            backgroundColor: activeColors.background,
             width: Dimensions.get("window").width,
             alignItems: "center",
           }}
