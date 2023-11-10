@@ -152,6 +152,7 @@ const Profile = ({ navigation }) => {
                 name={currentUser.name}
                 username={currentUser.username}
                 Text={item.type}
+                id={item.id}
               />
             )}
           />

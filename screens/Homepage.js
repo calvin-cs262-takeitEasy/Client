@@ -59,6 +59,7 @@ const Homepage = () => {
                 name={item.name}
                 username={item.username}
                 Text={item.type}
+                id={item.id}
               />
             )}
           />

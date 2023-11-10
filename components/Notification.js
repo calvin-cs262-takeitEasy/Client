@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -12,23 +12,21 @@ const Notification = (props) => {
   let activeColors = Colors[theme.mode];
   const { currentUser, setCurrentUser } = useUser();
 
+  let [isPressed, setIsPressed] = useState();
+
   let bedtime_fail_list = [
     "Guess who's up past their bedtime again... " + props.name + "!",
-    props.name +
-      " really needs to get off their phone past bedtime.",
-    props.name +
-      " is gonna regret getting on their phone past bedtime tomorrow.",
+    props.name + " really needs to get off their phone past bedtime.",
+    props.name + " is gonna regret getting on their phone past bedtime.",
   ];
   let study_fail_list = [
     props.name + " is addicted to not studying.",
-    props.name +
-      " is gonna fail whatever they're studying.",
+    props.name + " is gonna fail whatever they're studying.",
     props.name + " needs to stay on track and put their phone away.",
   ];
   let alarm_fail_list = [
     props.name + " is being a real lazybones.",
-    props.name +
-      " needs to set an extra loud alarm for tomorrow.",
+    props.name + " needs to set an extra loud alarm for tomorrow.",
     "Its almost like " + props.name + " doesn't care about waking up on time.",
   ];
 
@@ -39,22 +37,22 @@ const Notification = (props) => {
   let text;
   if (props.Text == "bedtime_fail") {
     text =
-      bedtime_fail_list[Math.floor(Math.random() * bedtime_fail_list.length)];
+      bedtime_fail_list[props.id % bedtime_fail_list.length];
   } else if (props.Text == "study_fail") {
-    text = study_fail_list[Math.floor(Math.random() * study_fail_list.length)];
+    text = study_fail_list[props.id % study_fail_list.length];
   } else if (props.Text == "alarm_fail") {
-    text = alarm_fail_list[Math.floor(Math.random() * alarm_fail_list.length)];
+    text = alarm_fail_list[props.id % alarm_fail_list.length];
   } else if (props.Text == "bedtime_success") {
     text =
       bedtime_success_list[
-        Math.floor(Math.random() * bedtime_success_list.length)
+        props.id % bedtime_success_list.length
       ];
   } else if (props.Text == "study_success") {
     text =
-      study_success_list[Math.floor(Math.random() * study_success_list.length)];
+      study_success_list[props.id % study_success_list.length];
   } else if (props.Text == "alarm_success") {
     text =
-      alarm_success_list[Math.floor(Math.random() * alarm_success_list.length)];
+      alarm_success_list[props.id % alarm_success_list.length];
   } else {
     text =
       "You shouldn't be seeing this. Invalid notification type: " +
@@ -151,9 +149,13 @@ const Notification = (props) => {
               {text}
             </Text>
 
-            <View style={{ margin: 10, marginLeft: 60, flexDirection: "row" }}>
-              <TouchableOpacity>
-                <AntDesign name="meh" size={22} color={activeColors.text} />
+            <View style={{ margin: 10, marginLeft: 55, flexDirection: "row" }}>
+              <TouchableOpacity onPress={() => setIsPressed(!isPressed)}>
+                <AntDesign
+                  name="meh"
+                  size={22}
+                  color={isPressed ? "#F08080" : activeColors.text}
+                />
               </TouchableOpacity>
             </View>
           </View>
