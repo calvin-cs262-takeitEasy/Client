@@ -5,6 +5,7 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
 import { Colors } from "./styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const [isPlaying, setIsPlaying] = React.useState(true)
@@ -14,21 +15,40 @@ export default function App() {
   const [selectedHour, setSelectedHour] = useState(null); // Default to 23 (11 PM)
   const [selectedMinute, setSelectedMinute] = useState(null);
   const appState = React.useRef(AppState.currentState);
+  const [isBedtime, setIsBedtime] = useState(false);
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
   useEffect(() => {
-    checkTimeAndSetPlaying();
+    const isItBedtime = checkIfBedtime(selectedHour, selectedMinute);
+    setIsBedtime(isItBedtime);
+    if (!isItBedtime) {
+      setIsPlaying(false);
+    } else {
+      checkTimeAndSetPlaying();
+    }
   }, [selectedHour, selectedMinute]);
 
-  const handleAppStateChange = (nextAppState) => {
-    if (
-      appState.current.match(/inactive|background/) &&
-      nextAppState === 'active'
-    ) {
-        checkTimeAndSetPlaying();
-    } else {
-      setIsPlaying(false);
+  useEffect(() => {
+    console.log(`isPlaying is now ${isPlaying}`);
+  }, [isPlaying]);
+
+  const handleAppStateChange = async (nextAppState) => {
+    console.log(`App has gone ${nextAppState}`);
+    if (appState.current === 'active' && nextAppState.match(/inactive|background/)) {
+      if (checkIfBedtime(selectedHour, selectedMinute)) {
+        setIsPlaying(false);
+      }
+    } else if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+      const storedHour = await AsyncStorage.getItem('selectedHour');
+      const storedMinute = await AsyncStorage.getItem('selectedMinute');
+      if (storedHour !== null && storedMinute !== null) {
+        setSelectedHour(JSON.parse(storedHour));
+        setSelectedMinute(JSON.parse(storedMinute));
+        if (checkIfBedtime(JSON.parse(storedHour), JSON.parse(storedMinute))) {
+          setIsPlaying(true);
+        }
+      }
     }
     appState.current = nextAppState;
   };
@@ -39,19 +59,16 @@ export default function App() {
       setDisplayText("No time selected. Timer not started.");
       return;
     }
-  
+
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
-  
-    if (currentHour < selectedHour || (currentHour === selectedHour && currentMinute < selectedMinute)) {
-      setIsPlaying(false);
-      setDisplayText("It's not bedtime yet. Keep surfing!");
-    } else if ((currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) || currentHour < 4) { // selected PM to 4 AM
+
+    if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
       setIsPlaying(true);
-      setDisplayText("It's Bedtime! You have one minute to get off your phone.")
+      setDisplayText("It's bedtime! Get off your phone!");
     } else {
       setIsPlaying(false);
-      setDisplayText("It's not bedtime yet. Keep surfing!")
+      setDisplayText("Bedtime mode is off.");
     }
   };
 
@@ -63,24 +80,75 @@ export default function App() {
     setShowPicker(false);
   };
 
-  const onChange = (event, selectedDate) => {
+  const onChange = async (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowPicker(Platform.OS === 'ios');
     setDate(currentDate);
-    setSelectedMinute(currentDate.getMinutes());
-    setSelectedHour(currentDate.getHours());
+    const selectedHour = currentDate.getHours();
+    const selectedMinute = currentDate.getMinutes();
+    setSelectedHour(selectedHour);
+    setSelectedMinute(selectedMinute);
+    await AsyncStorage.setItem('selectedHour', JSON.stringify(selectedHour));
+    await AsyncStorage.setItem('selectedMinute', JSON.stringify(selectedMinute));
+  
+    const currentHour = new Date().getHours();
+    const currentMinute = new Date().getMinutes();
+  
+    const isBedtime = currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute);
+    setIsBedtime(isBedtime);
+    await AsyncStorage.setItem('isBedtime', JSON.stringify(isBedtime));
   };
 
-  React.useEffect(() => {
+  const checkIfBedtime = (selectedHour, selectedMinute) => {
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    const currentMinute = currentTime.getMinutes();
+  
+    // Assuming bedtime starts at the selected time and ends at 4am
+    if (selectedHour < 4) {
+      return (currentHour >= selectedHour && currentMinute >= selectedMinute) || currentHour < 6;
+    } else {
+      return currentHour >= selectedHour && currentMinute >= selectedMinute;
+    }
+  };
+
+  const retrieveTime = async () => {
+    try {
+      const storedHour = await AsyncStorage.getItem('selectedHour');
+      const storedMinute = await AsyncStorage.getItem('selectedMinute');
+      const storedIsBedtime = await AsyncStorage.getItem('isBedtime');
+  
+      if (storedHour !== null) setSelectedHour(JSON.parse(storedHour));
+      if (storedMinute !== null) setSelectedMinute(JSON.parse(storedMinute));
+      if (storedIsBedtime !== null) setIsBedtime(JSON.parse(storedIsBedtime));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const retrieveTime = async () => {
+      const storedHour = await AsyncStorage.getItem('selectedHour');
+      const storedMinute = await AsyncStorage.getItem('selectedMinute');
+      if (storedHour !== null) setSelectedHour(JSON.parse(storedHour));
+      if (storedMinute !== null) setSelectedMinute(JSON.parse(storedMinute));
+    };
+    retrieveTime();
+  }, []);
+
+  useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    checkTimeAndSetPlaying();
+  
     return () => {
-        AppState.removeEventListener('change', handleAppStateChange);
-      };
-    }, []);
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
     
     return (
         <View style={styles.container}>
+          <Text style={{color: activeColors.text}}>
+            {isBedtime ? 'Bedtime mode is on' : 'Bedtime mode is off'}
+          </Text>
           <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
           <CountdownCircleTimer
             isPlaying={isPlaying}
