@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   AppState,
+  LogBox,
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -15,6 +16,8 @@ import RNPickerSelect from "react-native-picker-select";
 import Header from "../shared/header";
 import Footer from "../shared/footer";
 
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Study = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);

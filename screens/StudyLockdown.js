@@ -2,8 +2,18 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { React, useContext, useState, useEffect, useRef } from "react";
-import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, AppState} from "react-native";
+import { SafeAreaView,
+         Text, 
+         View, 
+         TouchableOpacity, 
+         StyleSheet, 
+         AppState, 
+         LogBox,
+        } from "react-native";
 import { Audio } from "expo-av";
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
