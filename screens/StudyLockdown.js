@@ -98,21 +98,6 @@ const StudyLockdown = ({ route, navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{ fontWeight: "700" }}
-        >
-          <Text
-            style={{
-              color: activeColors.text,
-              padding: 20,
-            }}
-          >
-            Go Back
-          </Text>
-        </TouchableOpacity>
-      </View>
 
       <CountdownCircleTimer
         isPlaying
@@ -130,6 +115,22 @@ const StudyLockdown = ({ route, navigation }) => {
           </Text>
         )}
       </CountdownCircleTimer>
+
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{
+          backgroundColor: activeColors.deleteRed,
+          width: Dimensions.get("window").width - 250,
+          height: 50,
+          borderRadius: 5,
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 20,
+        }}
+      >
+        <Text style={{ color: "#FFF", fontSize: 16 }}>Exit Study timer</Text>
+      </TouchableOpacity>
+
     </SafeAreaView>
   );
 };
