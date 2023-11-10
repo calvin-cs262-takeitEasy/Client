@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   FlatList,
+  LogBox,
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
@@ -16,6 +17,9 @@ import Notification from "../components/Notification";
 import { useNavigation } from "@react-navigation/native";
 
 import { useUser } from "../contexts/UserContext";
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Homepage = () => {
   const { theme } = useContext(ThemeContext);
