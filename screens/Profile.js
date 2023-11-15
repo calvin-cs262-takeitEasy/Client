@@ -22,22 +22,33 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useUser } from "../contexts/UserContext";
 
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
-const Profile = ({ navigation }) => {
+const Profile = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
   const { currentUser, setCurrentUser } = useUser();
+  const [profileUser, setProfileUser] = useState();
 
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
   }, []);
 
+  const profileUserID = route.params.profileUserID;
+  if (profileUserID == undefined) {
+    const profileUserUsername = route.params.profileUserUsername;
+  }
+  fetch("https://cs262-commit.azurewebsites.net/username/" + profileUserID)
+    .then((response) => response.json())
+    .then((json) => setProfileUser(json))
+    .catch((error) => console.error(error)); 
+
+
   const [notifData, setNotifData] = useState([]);
   useEffect(() => {
     fetch(
-      "https://cs262-commit.azurewebsites.net/notifications/" + currentUser.ID
+      "https://cs262-commit.azurewebsites.net/notifications/" + profileUserID
     )
       .then((response) => response.json())
       .then((json) => setNotifData(json))
@@ -86,10 +97,10 @@ const Profile = ({ navigation }) => {
               color: activeColors.text,
             }}
           >
-            {currentUser.name}
+            {profileUser.name}
           </Text>
           <Text style={{ color: activeColors.text, fontSize: 14 }}>
-            {currentUser.username}
+            {profileUser.username}
           </Text>
         </View>
 
@@ -152,8 +163,8 @@ const Profile = ({ navigation }) => {
             data={notifData}
             renderItem={({ item }) => (
               <Notification
-                name={currentUser.name}
-                username={currentUser.username}
+                name={profileUser.name}
+                username={profileUser.username}
                 Text={item.type}
                 id={item.id}
               />

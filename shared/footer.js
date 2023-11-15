@@ -9,7 +9,11 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
+import { useUser } from "../contexts/UserContext";
+
 const Footer = ({ navigation, page }) => {
+  const { currentUser, setCurrentUser } = useUser();
+
   const gohome = () => {
     navigation.navigate("Homepage");
   };
@@ -27,7 +31,7 @@ const Footer = ({ navigation, page }) => {
   };
 
   const goprofile = () => {
-    navigation.navigate("Profile");
+    navigation.navigate("Profile", { profileUserID: currentUser.ID });
   };
 
   const { theme } = useContext(ThemeContext);

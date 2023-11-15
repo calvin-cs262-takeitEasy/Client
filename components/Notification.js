@@ -7,7 +7,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 
 import { useUser } from "../contexts/UserContext";
 
-const Notification = (props) => {
+const Notification = (props, { navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
   const { currentUser, setCurrentUser } = useUser();
@@ -36,29 +36,28 @@ const Notification = (props) => {
 
   let text;
   if (props.Text == "bedtime_fail") {
-    text =
-      bedtime_fail_list[props.id % bedtime_fail_list.length];
+    text = bedtime_fail_list[props.id % bedtime_fail_list.length];
   } else if (props.Text == "study_fail") {
     text = study_fail_list[props.id % study_fail_list.length];
   } else if (props.Text == "alarm_fail") {
     text = alarm_fail_list[props.id % alarm_fail_list.length];
   } else if (props.Text == "bedtime_success") {
-    text =
-      bedtime_success_list[
-        props.id % bedtime_success_list.length
-      ];
+    text = bedtime_success_list[props.id % bedtime_success_list.length];
   } else if (props.Text == "study_success") {
-    text =
-      study_success_list[props.id % study_success_list.length];
+    text = study_success_list[props.id % study_success_list.length];
   } else if (props.Text == "alarm_success") {
-    text =
-      alarm_success_list[props.id % alarm_success_list.length];
+    text = alarm_success_list[props.id % alarm_success_list.length];
   } else {
     text =
       "You shouldn't be seeing this. Invalid notification type: " +
       props.Text +
       ". ";
   }
+
+  const goProfile = () => {
+    console.log("Going to profile " + props.username);
+    navigation.navigate("Profile", { profileUserUsername: props.username });
+  };
 
   return (
     <View //outline color
@@ -101,6 +100,10 @@ const Notification = (props) => {
               size={30}
               color={activeColors.text}
               style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negetive margin, idk how it works either
+              onPress={
+                goProfile
+                //console.log("Going to profile " + props.id)
+                }
             />
             <View // name + username
               style={{
@@ -154,7 +157,7 @@ const Notification = (props) => {
                 <AntDesign
                   name="meh"
                   size={22}
-                  color={isPressed ? "#F08080" : activeColors.text}
+                  color={isPressed ? activeColors.accent : activeColors.text}
                 />
               </TouchableOpacity>
             </View>
