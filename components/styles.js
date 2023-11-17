@@ -1,4 +1,4 @@
-export const Colors = {
+const Colors = {
   light: {
     primary: '#064663',
     accent: '#F9C761',
@@ -23,3 +23,5 @@ export const Colors = {
     deleteRed: '#c31515',
   },
 };
+
+export default Colors;
