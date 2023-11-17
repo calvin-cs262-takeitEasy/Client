@@ -9,6 +9,7 @@ import { SafeAreaView,
          StyleSheet, 
          AppState, 
          LogBox,
+         Dimensions
         } from "react-native";
 import { Audio } from "expo-av";
 
