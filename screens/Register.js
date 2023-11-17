@@ -17,7 +17,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Register = ({ navigation }) => {
-
   // when the login button is pressed
   const login = () => {
     navigation.navigate("Login");
@@ -85,7 +84,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Username"
-              autoCapitalize = 'none'
+              autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               keyboardType="email-address"
@@ -110,7 +109,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Password"
-              autoCapitalize = 'none'
+              autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}
@@ -134,7 +133,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Confirm Password"
-              autoCapitalize = 'none'
+              autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry={true}

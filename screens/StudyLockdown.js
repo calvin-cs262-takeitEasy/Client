@@ -1,9 +1,20 @@
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
-import { React, useContext, useState, useEffect } from "react";
-import { SafeAreaView, Text, View, TouchableOpacity } from "react-native";
+import { React, useContext, useState, useEffect, useRef } from "react";
+import { SafeAreaView,
+         Text, 
+         View, 
+         TouchableOpacity, 
+         StyleSheet, 
+         AppState, 
+         LogBox,
+         Dimensions
+        } from "react-native";
 import { Audio } from "expo-av";
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -57,6 +68,28 @@ const StudyLockdown = ({ route, navigation }) => {
     return hours.toString() + ":" + minutesStr + ":" + secondsStr;
   };
 
+  const appState = useRef(AppState.currentState)
+  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange)
+    return () => {
+      AppState.removeEventListener("change", _handleAppStateChange)
+    }
+  }, [])
+  const _handleAppStateChange = (nextAppState) => {
+    if (appState.current.match(/inactivebackground/) &&
+    nextAppState === "active") {
+      console.log("app has come to the foreground")
+    }
+
+    appState.current = nextAppState
+    setAppStateVisible(appState.current)
+
+    console.log("AppState: ", appState.current)
+    playSound()
+  }
+
   return (
     <SafeAreaView
       style={{
@@ -66,21 +99,6 @@ const StudyLockdown = ({ route, navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{ fontWeight: "700" }}
-        >
-          <Text
-            style={{
-              color: activeColors.text,
-              padding: 20,
-            }}
-          >
-            Go Back
-          </Text>
-        </TouchableOpacity>
-      </View>
 
       <CountdownCircleTimer
         isPlaying
@@ -98,6 +116,22 @@ const StudyLockdown = ({ route, navigation }) => {
           </Text>
         )}
       </CountdownCircleTimer>
+
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{
+          backgroundColor: activeColors.deleteRed,
+          width: Dimensions.get("window").width - 250,
+          height: 50,
+          borderRadius: 5,
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 20,
+        }}
+      >
+        <Text style={{ color: "#FFF", fontSize: 16 }}>Exit Study timer</Text>
+      </TouchableOpacity>
+
     </SafeAreaView>
   );
 };

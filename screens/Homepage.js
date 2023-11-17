@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,
@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   FlatList,
+  LogBox,
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
@@ -15,16 +16,27 @@ import Footer from "../shared/footer";
 import Notification from "../components/Notification";
 import { useNavigation } from "@react-navigation/native";
 
-import Notif from "../json/Notif.json";
-import UserAccount from "../json/UserAccount.json";
-import UserUser from "../json/UserUser.json";
 import { useUser } from "../contexts/UserContext";
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Homepage = () => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
   const navigation = useNavigation();
   const { currentUser, setCurrentUser } = useUser();
+
+  const [notifData, setNotifData] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://cs262-commit.azurewebsites.net/notifications/friends/" +
+        currentUser.ID
+    )
+      .then((response) => response.json())
+      .then((json) => setNotifData(json))
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <SafeAreaView
@@ -35,35 +47,23 @@ const Homepage = () => {
       }}
     >
       <Header navigation={navigation} name="Home" type="withFriends" />
-      <View style={styles.container}>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <StatusBar style="auto" />
         <View
           style={{
-            backgroundColor: activeColors.backgroundAccent,
+            backgroundColor: activeColors.background,
             width: Dimensions.get("window").width,
             alignItems: "center",
           }}
         >
           <FlatList
-            data={Notif.filter(
-              (notif) =>
-                notif.userID === currentUser.ID ||
-                notif.userID ===
-                  UserUser.find(
-                    (userUser) => currentUser.ID === userUser.userID
-                  ).friendsID
-            )} // filters to show only your own and your friends notifications
-            
+            data={notifData}
             renderItem={({ item }) => (
               <Notification
-                name={UserAccount.find((x) => x.ID === item.userID).name} 
-                username={
-                  UserAccount.find((x) => x.ID === item.userID).username
-                }
-                Text={
-                  (UserAccount.find((x) => x.ID === item.userID).name)+
-                  (item.type)
-                }
+                name={item.name}
+                username={item.username}
+                Text={item.type}
+                id={item.id}
               />
             )}
           />
@@ -83,11 +83,6 @@ Homepage.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
 });
 
 export default Homepage;

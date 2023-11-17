@@ -22,7 +22,7 @@ export const LineGraph = () => {
         color: (opacity = 1) => "#2EBF03", //green for completed commits
       },
     ],
-    legend: ["Commitments", "Commitments Completed"],
+    legend: ["Commitments", "Successes"],
   };
 
   return (

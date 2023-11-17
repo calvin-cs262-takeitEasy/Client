@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,8 +9,8 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
+  LogBox,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { LineGraph } from "../components/LineGraph";
@@ -20,11 +20,10 @@ import Footer from "../shared/footer";
 import Notification from "../components/Notification";
 import { useNavigation } from "@react-navigation/native";
 
-import Notif from "../json/Notif.json";
-import UserAccount from "../json/UserAccount.json";
 import { useUser } from "../contexts/UserContext";
 
-import { LogBox } from "react-native";
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const Profile = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -34,6 +33,17 @@ const Profile = ({ navigation }) => {
   useEffect(() => {
     LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
   }, []);
+
+  const [notifData, setNotifData] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://cs262-commit.azurewebsites.net/notifications/" + currentUser.ID
+    )
+      .then((response) => response.json())
+      .then((json) => setNotifData(json))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: activeColors.background }]}
@@ -46,14 +56,15 @@ const Profile = ({ navigation }) => {
       />
       <ScrollView>
         <View style={{ alignSelf: "left", marginLeft: 10 }}>
-          <View style={styles.profileImage}>
-            <Image
-              source={require("../assets/Donkey_(Shrek).png")}
-              style={styles.image}
-            ></Image>
+          <View style={{ marginTop: 5 }}>
+            <View style={styles.profileImage}>
+              <Image
+                source={require("../assets/keith.jpg")}
+                style={styles.image}
+              />
+            </View>
           </View>
-          <View style={styles.active}></View>
-          <View style={styles.add}>
+          {/* <View style={styles.add}> // got rid of to make image more visible for presentation
             <TouchableOpacity
               style={{ justifyContent: "center", alignItems: "center" }}
             >
@@ -64,7 +75,7 @@ const Profile = ({ navigation }) => {
                 style={{ marginLeft: 2 }}
               ></Ionicons>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
 
         <View style={styles.infoContainer}>
@@ -75,17 +86,17 @@ const Profile = ({ navigation }) => {
               color: activeColors.text,
             }}
           >
-            {currentUser.username}
+            {currentUser.name}
           </Text>
           <Text style={{ color: activeColors.text, fontSize: 14 }}>
-            {currentUser.ID}
+            {currentUser.username}
           </Text>
         </View>
 
         <View style={[styles.statsContainer, { marginBottom: 15 }]}>
           <View style={styles.statsBox}>
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              {Notif.filter((notif) => notif.userID === currentUser.ID).length}
+              {notifData.length}
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
               Commits
@@ -103,12 +114,11 @@ const Profile = ({ navigation }) => {
           >
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               {
-                Notif.filter(
+                notifData.filter(
                   (notif) =>
-                    notif.userID === currentUser.ID &&
-                    (notif.type === "alarm_success" ||
-                      notif.type === "study_success" ||
-                      notif.type === "bedtime_success")
+                    notif.type === "alarm_success" ||
+                    notif.type === "study_success" ||
+                    notif.type === "bedtime_success"
                 ).length
               }
             </Text>
@@ -118,12 +128,12 @@ const Profile = ({ navigation }) => {
           </View>
           <View style={styles.statsBox}>
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              {Notif.filter(
+              {
+                notifData.filter(
                   (notif) =>
-                    notif.userID === currentUser.ID &&
-                    (notif.type === "alarm_fail" ||
-                      notif.type === "study_fail" ||
-                      notif.type === "bedtime_fail")
+                    notif.type === "alarm_fail" ||
+                    notif.type === "study_fail" ||
+                    notif.type === "bedtime_fail"
                 ).length
               }
             </Text>
@@ -135,17 +145,21 @@ const Profile = ({ navigation }) => {
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <LineGraph />
         </View>
-        <FlatList
-          style={{ paddingBottom: 40 }}
-          data={Notif.filter((notif) => notif.userID === currentUser.ID)} // currently using all notifications
-          renderItem={({ item }) => (
-            <Notification
-              name={item.ID} // currently only showing ID
-              username={UserAccount.find((x) => x.ID === item.userID).username}
-              Text={item.type}
-            />
-          )}
-        />
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <FlatList
+            nestedScrollEnabled={true}
+            scrollEnabled={false}
+            data={notifData}
+            renderItem={({ item }) => (
+              <Notification
+                name={currentUser.name}
+                username={currentUser.username}
+                Text={item.type}
+                id={item.id}
+              />
+            )}
+          />
+        </View>
       </ScrollView>
 
       <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>

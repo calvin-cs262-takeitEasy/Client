@@ -5,7 +5,6 @@ import { Dimensions, StatusBar } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import AntDesign from "react-native-vector-icons/AntDesign";
@@ -57,7 +56,7 @@ const Header = ({ navigation, name, type }) => {
               color: "#FFF",
               letterSpacing: 1,
               marginLeft: 15,
-              width: Dimensions.get("window").width - 160,
+              width: Dimensions.get("window").width - 120,
             }}
           >
             {name}
@@ -75,12 +74,6 @@ const Header = ({ navigation, name, type }) => {
             style={{ padding: 10, width: 50, height: 50 }}
           >
             <FontAwesome5 name="user-friends" size={25} color={"#FFF"} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={openNotifDropdown}
-            style={{ padding: 10, width: 50, height: 50 }}
-          >
-            <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
@@ -158,7 +151,7 @@ const Header = ({ navigation, name, type }) => {
               color: "#FFF",
               letterSpacing: 1,
               marginLeft: 15,
-              width: Dimensions.get("window").width - 110,
+              width: Dimensions.get("window").width - 70,
             }}
           >
             {name}
@@ -171,9 +164,6 @@ const Header = ({ navigation, name, type }) => {
             justifyContent: "flex-end",
           }}
         >
-          <TouchableOpacity style={{ padding: 10, width: 50, height: 50 }}>
-            <SimpleLineIcons name="bell" size={25} color={"#FFF"} />
-          </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
             style={{ padding: 10, width: 50, height: 50 }}

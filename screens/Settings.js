@@ -79,7 +79,7 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => logout()}
           style={{
-            backgroundColor: activeColors.primary,
+            backgroundColor: activeColors.deleteRed,
             padding: 20,
             borderRadius: 10,
             marginBottom: 30,

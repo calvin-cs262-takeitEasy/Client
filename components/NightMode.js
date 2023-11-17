@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, StyleSheet, Button, AppState } from 'react-native';
 import Constants from 'expo-constants';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
+
 import { Colors } from "./styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function App() {
   const [isPlaying, setIsPlaying] = React.useState(true)
@@ -36,6 +38,7 @@ export default function App() {
   useEffect(() => {
     console.log(`isPlaying is now ${isPlaying}`);
   }, [isPlaying]);
+
 
   const handleAppStateChange = async (nextAppState) => {
     console.log(`App has gone ${nextAppState}`);
@@ -69,6 +72,7 @@ export default function App() {
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
 
+
     if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
       setIsPlaying(true);
     } else {
@@ -84,6 +88,7 @@ export default function App() {
     setShowPicker(false);
   };
 
+
   const onChange = async (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowPicker(Platform.OS === 'ios');
@@ -97,7 +102,7 @@ export default function App() {
   
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
-  
+ 
     const isBedtime = currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute);
     setIsBedtime(isBedtime);
     await AsyncStorage.setItem('isBedtime', JSON.stringify(isBedtime));
@@ -107,7 +112,7 @@ export default function App() {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
-  
+
     // Assuming bedtime starts at the selected time and ends at 4am
     if (selectedHour < 4) {
       return (currentHour >= selectedHour && currentMinute >= selectedMinute) || currentHour < 6;
@@ -121,7 +126,7 @@ export default function App() {
       const storedHour = await AsyncStorage.getItem('selectedHour');
       const storedMinute = await AsyncStorage.getItem('selectedMinute');
       const storedIsBedtime = await AsyncStorage.getItem('isBedtime');
-  
+
       if (storedHour !== null) setSelectedHour(JSON.parse(storedHour));
       if (storedMinute !== null) setSelectedMinute(JSON.parse(storedMinute));
       if (storedIsBedtime !== null) setIsBedtime(JSON.parse(storedIsBedtime));
@@ -143,11 +148,12 @@ export default function App() {
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
   
+
     return () => {
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
-    
+
     return (
         <View style={styles.container}>
           <Text style={{color: activeColors.text, fontSize: 30, textAlign: 'center'}}>
@@ -194,3 +200,4 @@ const styles = StyleSheet.create({
     padding: 8,
   }
 });
+
