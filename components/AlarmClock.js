@@ -70,7 +70,10 @@ export default function App() {
       setAlarms(newAlarms);
       // Schedule the sound to play at the selected time
       const now = new Date();
-      const delay = Math.max(selectedDate - now, 0); // Delay in milliseconds
+      let delay = selectedDate - now; // Delay in milliseconds
+      if (delay < 0) {
+        delay += 24 * 60 * 60 * 1000; // add 24 hours if the alarm time is in the past
+      }
       setTimeout(() => {
         playSound();
       }, delay);
