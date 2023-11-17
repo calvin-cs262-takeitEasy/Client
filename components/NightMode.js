@@ -20,12 +20,16 @@ export default function App() {
   let activeColors = Colors[theme.mode];
 
   useEffect(() => {
-    const isItBedtime = checkIfBedtime(selectedHour, selectedMinute);
-    setIsBedtime(isItBedtime);
-    if (!isItBedtime) {
-      setIsPlaying(false);
+    if (selectedHour === null || selectedMinute === null) {
+      setShowPicker(true);
     } else {
-      checkTimeAndSetPlaying();
+      const isItBedtime = checkIfBedtime(selectedHour, selectedMinute);
+      setIsBedtime(isItBedtime);
+      if (isItBedtime) {
+        setIsPlaying(true);
+      } else {
+        setIsPlaying(false);
+      }
     }
   }, [selectedHour, selectedMinute]);
 
@@ -54,10 +58,12 @@ export default function App() {
   };
 
   const checkTimeAndSetPlaying = () => {
-    if (selectedHour === null || selectedMinute === null) {
-      setIsPlaying(false);
-      setDisplayText("No time selected. Timer not started.");
-      return;
+    if (selectedHour !== null && selectedMinute !== null) {
+      if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
+        setIsPlaying(true);
+      } else {
+        setIsPlaying(false);
+      }
     }
 
     const currentHour = new Date().getHours();
@@ -65,10 +71,8 @@ export default function App() {
 
     if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
       setIsPlaying(true);
-      setDisplayText("It's bedtime! Get off your phone!");
     } else {
       setIsPlaying(false);
-      setDisplayText("Bedtime mode is off.");
     }
   };
 
@@ -146,8 +150,8 @@ export default function App() {
     
     return (
         <View style={styles.container}>
-          <Text style={{color: activeColors.text}}>
-            {isBedtime ? 'Bedtime mode is on' : 'Bedtime mode is off'}
+          <Text style={{color: activeColors.text, fontSize: 30, textAlign: 'center'}}>
+            {isBedtime ? 'Bedtime mode is on. Get off your phone!' : 'Bedtime mode is off. Keep scrolling.'}
           </Text>
           <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
           <CountdownCircleTimer
@@ -155,17 +159,20 @@ export default function App() {
             duration={60}
             colors={activeColors.primary}
             colorsTime={[10, 6, 3, 0]}
-            onComplete={() => ({ shouldRepeat: true, delay: 2 })}
+            onComplete={() => ({ shouldRepeat: false, delay: 2 })}
             updateInterval={1}
           >
             {({ remainingTime }) => (
-              <Text style={{ color:activeColors.Text, fontSize: 40 }}>
+              <Text style={{ color: activeColors.Text, fontSize: 40 }}>
                 {remainingTime}
               </Text>
             )}
           </CountdownCircleTimer>
-          <Button title="Set Bedtime" onPress={showDateTimePicker} />
-      {showPicker && (
+      {!isBedtime && (
+        <Button title="Set Bedtime" onPress={showDateTimePicker} />
+      )}
+      {showPicker && !isBedtime &&
+       (
         <DateTimePicker
           value={date}
           mode="time"
