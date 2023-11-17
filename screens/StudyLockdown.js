@@ -1,28 +1,27 @@
-import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-import {
-  React, useContext, useState, useEffect, useRef,
-} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  AppState,
-  LogBox,
-  Dimensions,
-} from 'react-native';
-import { Audio } from 'expo-av';
-import { ThemeContext } from '../contexts/ThemeContext';
-import { Colors } from '../components/styles';
+import { Colors } from "../components/styles";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
+import { React, useContext, useState, useEffect, useRef } from "react";
+import { SafeAreaView,
+         Text, 
+         View, 
+         TouchableOpacity, 
+         StyleSheet, 
+         AppState, 
+         LogBox,
+         Dimensions
+        } from "react-native";
+import { Audio } from "expo-av";
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();// Ignore all log notifications
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
-function StudyLockdown({ route, navigation }) {
+// eslint-disable-next-line react/prop-types
+const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
-  const activeColors = Colors[theme.mode];
+  let activeColors = Colors[theme.mode];
 
+  // eslint-disable-next-line react/prop-types
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
   if (duration == 0) duration = 5; // for testing and showcasing
@@ -30,26 +29,29 @@ function StudyLockdown({ route, navigation }) {
   const [sound, setSound] = useState();
 
   async function playSound() {
-    console.log('Loading Sound');
+    console.log("Loading Sound");
     const { sound } = await Audio.Sound.createAsync(
-      require('../assets/notification.wav'),
+      require("../assets/notification.wav")
     );
     setSound(sound);
 
-    console.log('Playing Sound');
+    console.log("Playing Sound");
     await sound.playAsync();
   }
 
-  useEffect(() => (sound
-    ? () => {
-      console.log('Unloading Sound');
-      sound.unloadAsync();
-    }
-    : undefined), [sound]);
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const timerComplete = () => {
     playSound();
-    navigation.navigate('Study');
+    // eslint-disable-next-line react/prop-types
+    navigation.navigate("Study");
   };
 
   const getTime = (remainingTime) => {
@@ -60,50 +62,50 @@ function StudyLockdown({ route, navigation }) {
     let secondsStr = seconds.toString();
 
     if (minutes < 10) {
-      minutesStr = `0${minutes.toString()}`;
+      minutesStr = "0" + minutes.toString();
     }
     if (seconds < 10) {
-      secondsStr = `0${seconds.toString()}`;
+      secondsStr = "0" + seconds.toString();
     }
 
-    return `${hours.toString()}:${minutesStr}:${secondsStr}`;
+    return hours.toString() + ":" + minutesStr + ":" + secondsStr;
   };
 
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  const appState = useRef(AppState.currentState)
+  const [appStateVisible, setAppStateVisible] = useState(appState.current)
 
   useEffect(() => {
-    AppState.addEventListener('change', _handleAppStateChange);
+    AppState.addEventListener("change", _handleAppStateChange)
     return () => {
-      AppState.removeEventListener('change', _handleAppStateChange);
-    };
-  }, []);
+      AppState.removeEventListener("change", _handleAppStateChange)
+    }
+  }, [])
   const _handleAppStateChange = (nextAppState) => {
-    if (appState.current.match(/inactivebackground/)
-    && nextAppState === 'active') {
-      console.log('app has come to the foreground');
+    if (appState.current.match(/inactivebackground/) &&
+    nextAppState === "active") {
+      console.log("app has come to the foreground")
     }
 
-    appState.current = nextAppState;
-    setAppStateVisible(appState.current);
+    appState.current = nextAppState
+    setAppStateVisible(appState.current)
 
-    console.log('AppState: ', appState.current);
-    playSound();
-  };
+    console.log("AppState: ", appState.current)
+    playSound()
+  }
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: activeColors.background,
       }}
     >
 
       <CountdownCircleTimer
         isPlaying
-        isGrowing
+        isGrowing={true}
         duration={duration}
         colors={activeColors.primary}
         size={250}
@@ -119,22 +121,23 @@ function StudyLockdown({ route, navigation }) {
       </CountdownCircleTimer>
 
       <TouchableOpacity
+        // eslint-disable-next-line react/prop-types
         onPress={() => navigation.goBack()}
         style={{
           backgroundColor: activeColors.deleteRed,
-          width: Dimensions.get('window').width - 250,
+          width: Dimensions.get("window").width - 250,
           height: 50,
           borderRadius: 5,
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: "center",
+          justifyContent: "center",
           marginTop: 20,
         }}
       >
-        <Text style={{ color: '#FFF', fontSize: 16 }}>Exit Study timer</Text>
+        <Text style={{ color: "#FFF", fontSize: 16 }}>Exit Study timer</Text>
       </TouchableOpacity>
 
     </SafeAreaView>
   );
-}
+};
 
 export default StudyLockdown;
