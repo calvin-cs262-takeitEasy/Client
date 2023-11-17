@@ -1,7 +1,7 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-filename-extension */
 import {
   SafeAreaView,
-  StyleSheet,
-  Text,
   View,
   ActivityIndicator,
 } from 'react-native';
@@ -14,14 +14,12 @@ import { ThemeContext } from '../contexts/ThemeContext';
 import { SearchBar } from '../components/SearchBar';
 import List from '../components/List';
 import Header from '../shared/header';
-import UserAccount from '../json/UserAccount.json';
 
 function Friends({ navigation }) {
   const { theme } = useContext(ThemeContext);
 
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
-  const [fakeData, setFakeData] = useState();
   const [data, setData] = useState([]);
 
   const activeColors = Colors[theme.mode];
@@ -44,7 +42,7 @@ function Friends({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name='Friends' type='backButton' />
+      <Header navigation={navigation} name="Friends" type="backButton" />
 
       <View>
         <SearchBar
@@ -57,7 +55,7 @@ function Friends({ navigation }) {
           the answer to the searched thing doesnt come up. im working on getting it so it doesnt show up the list,
           but when you search the full thing, the answer does come up */}
         {!data ? (
-          <ActivityIndicator size='large' />
+          <ActivityIndicator size="large" />
         ) : (
           <List
             searchPhrase={searchPhrase}
@@ -76,13 +74,13 @@ Friends.propTypes = {
   }).isRequired,
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: Colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     // backgroundColor: Colors.background,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
 
 export default Friends;
