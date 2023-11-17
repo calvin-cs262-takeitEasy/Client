@@ -1,30 +1,30 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Alarm from "../screens/Alarm";
-import Bedtime from "../screens/Bedtime";
-import Forgot from "../screens/Forgot";
-import Friends from "../screens/Friends";
-import Homepage from "../screens/Homepage";
-import Login from "../screens/Login";
-import Profile from "../screens/Profile";
-import Register from "../screens/Register";
-import Study from "../screens/Study";
-import Settings from "../screens/Settings";
-import StudyLockdown from "../screens/StudyLockdown";
+import Alarm from '../screens/Alarm';
+import Bedtime from '../screens/Bedtime';
+import Forgot from '../screens/Forgot';
+import Friends from '../screens/Friends';
+import Homepage from '../screens/Homepage';
+import Login from '../screens/Login';
+import Profile from '../screens/Profile';
+import Register from '../screens/Register';
+import Study from '../screens/Study';
+import Settings from '../screens/Settings';
+import StudyLockdown from '../screens/StudyLockdown';
 
 const Stack = createNativeStackNavigator();
 
-const RootStack = () => {
+function RootStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          cardStyle: { backgroundColor: "transparent" },
+          cardStyle: { backgroundColor: 'transparent' },
           gestureEnabled: false,
-          animation: "fade",
+          animation: 'fade',
         }}
       >
         <Stack.Screen name="Login" component={Login} />
@@ -41,6 +41,6 @@ const RootStack = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default RootStack;

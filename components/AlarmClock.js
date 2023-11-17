@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Button,
@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   Text,
   Dimensions,
-} from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Audio } from "expo-av";
-import { Colors } from "./styles";
-import { ThemeContext } from "../contexts/ThemeContext";
+} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { Audio } from 'expo-av';
+import { Colors } from './styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function App() {
   const [alarms, setAlarms] = useState([]);
@@ -19,7 +19,7 @@ export default function App() {
   const [showPicker, setShowPicker] = useState(false);
   const [sound, setSound] = useState();
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
   useEffect(() => {
     Audio.setAudioModeAsync({
@@ -33,7 +33,7 @@ export default function App() {
     // Load the alarm sound
     const loadSound = async () => {
       const { sound } = await Audio.Sound.createAsync(
-        require("../assets/wake_up.mp3")
+        require('../assets/wake_up.mp3'),
       );
       setSound(sound);
     };
@@ -100,20 +100,20 @@ export default function App() {
   return (
     <View>
       {/* <Button title="Set Alarm" onPress={showDateTimePicker} /> */}
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPress={showDateTimePicker}
           style={{
             backgroundColor: activeColors.primary,
-            width: Dimensions.get("window").width / 2 - 50,
+            width: Dimensions.get('window').width / 2 - 50,
             height: 100,
             borderRadius: 10,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             marginTop: 20,
           }}
         >
-          <Text style={{ color: "#FFF", fontSize: 25 }}>Set Alarm</Text>
+          <Text style={{ color: '#FFF', fontSize: 25 }}>Set Alarm</Text>
         </TouchableOpacity>
 
         {/* <Button title="Stop this horrid noise." onPress={handleStop} /> */}
@@ -121,25 +121,25 @@ export default function App() {
           onPress={handleStop}
           style={{
             backgroundColor: activeColors.primary,
-            width: Dimensions.get("window").width / 2 - 50,
+            width: Dimensions.get('window').width / 2 - 50,
             height: 100,
             borderRadius: 10,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
             marginTop: 20,
             marginLeft: 20,
           }}
         >
-          <Text style={{ color: "#FFF", fontSize: 25 }}>Stop Alarm</Text>
+          <Text style={{ color: '#FFF', fontSize: 25 }}>Stop Alarm</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         {showPicker && (
           <DateTimePicker
             value={date}
             mode="time"
-            is24Hour={true}
+            is24Hour
             display="default"
             onChange={handleDateChange}
             style={{
@@ -160,9 +160,9 @@ export default function App() {
         renderItem={({ item, index }) => (
           <View
             style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
               marginTop: 10,
             }}
           >
@@ -180,7 +180,7 @@ export default function App() {
                   marginLeft: 10,
                 }}
               >
-                <Text style={{ color: "#FFF", fontSize: 20 }}>Delete</Text>
+                <Text style={{ color: '#FFF', fontSize: 20 }}>Delete</Text>
               </View>
             </TouchableOpacity>
           </View>

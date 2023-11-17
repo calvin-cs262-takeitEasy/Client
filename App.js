@@ -1,36 +1,34 @@
-import { useState, useEffect } from "react";
-import RootStack from "./navigator/RootStack";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { Appearance } from "react-native";
-import { storeData, getData } from "./config/asyncStorage";
-import * as SplashScreen from "expo-splash-screen";
-import React from "react";
-import { UserProvider } from "./contexts/UserContext";
+import React, { useState, useEffect } from 'react';
+import { Appearance } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import RootStack from './navigator/RootStack';
+import { ThemeContext } from './contexts/ThemeContext';
+import { storeData, getData } from './config/asyncStorage';
+
+import { UserProvider } from './contexts/UserContext';
 
 // keep the splash screen visible while we fetch the resources
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [theme, setTheme] = useState({ mode: "dark" });
+  const [theme, setTheme] = useState({ mode: 'dark' });
 
   // update the the theme for the light / dark mode
   const updateTheme = (newTheme) => {
     let mode;
     if (!newTheme) {
-      mode = theme.mode === "dark" ? "light" : "dark";
+      mode = theme.mode === 'dark' ? 'light' : 'dark';
       newTheme = { mode, system: false };
-    } else {
-      if (newTheme.system) {
-        const systemColorScheme = Appearance.getColorScheme();
-        mode = systemColorScheme === "dark" ? "dark" : "light";
+    } else if (newTheme.system) {
+      const systemColorScheme = Appearance.getColorScheme();
+      mode = systemColorScheme === 'dark' ? 'dark' : 'light';
 
-        newTheme = { ...newTheme, mode };
-      } else {
-        newTheme = { ...newTheme, system: false };
-      }
+      newTheme = { ...newTheme, mode };
+    } else {
+      newTheme = { ...newTheme, system: false };
     }
     setTheme(newTheme);
-    storeData("theme", newTheme);
+    storeData('theme', newTheme);
   };
 
   // monitor system for theme change
@@ -43,7 +41,7 @@ export default function App() {
   // fetchs the stored theme from async storage
   const fetchStoredTheme = async () => {
     try {
-      const themeData = await getData("theme");
+      const themeData = await getData('theme');
 
       if (themeData) {
         updateTheme(themeData);

@@ -1,64 +1,63 @@
-import React, { useContext } from "react";
-import { View, Dimensions, TouchableOpacity } from "react-native";
+import React, { useContext } from 'react';
+import { View, Dimensions, TouchableOpacity } from 'react-native';
 
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { Colors } from '../components/styles';
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-const Footer = ({ navigation, page }) => {
+function Footer({ navigation, page }) {
   const gohome = () => {
-    navigation.navigate("Homepage");
+    navigation.navigate('Homepage');
   };
 
   const goalarm = () => {
-    navigation.navigate("Alarm");
+    navigation.navigate('Alarm');
   };
 
   const gostudy = () => {
-    navigation.navigate("Study");
+    navigation.navigate('Study');
   };
 
   const gobedtime = () => {
-    navigation.navigate("Bedtime");
+    navigation.navigate('Bedtime');
   };
 
   const goprofile = () => {
-    navigation.navigate("Profile");
+    navigation.navigate('Profile');
   };
 
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
-  //selected icon color
-  let homeColor,
-    alarmColor,
-    studyColor,
-    sleepColor,
-    profileColor = activeColors.backgroundAccent;
-  if (page == "Home") {
+  // selected icon color
+  let homeColor;
+  let alarmColor;
+  let studyColor;
+  let sleepColor;
+  let profileColor = activeColors.backgroundAccent;
+  if (page === 'Home') {
     homeColor = activeColors.tertiary;
-  } else if (page == "Alarm") {
+  } else if (page === 'Alarm') {
     alarmColor = activeColors.tertiary;
-  } else if (page == "Study") {
+  } else if (page === 'Study') {
     studyColor = activeColors.tertiary;
-  } else if (page == "Bedtime") {
+  } else if (page === 'Bedtime') {
     sleepColor = activeColors.tertiary;
-  } else if (page == "Profile") {
+  } else if (page === 'Profile') {
     profileColor = activeColors.tertiary;
   }
 
   return (
     <View
       style={{
-        width: Dimensions.get("screen").width,
+        width: Dimensions.get('screen').width,
         height: 60,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
         backgroundColor: activeColors.backgroundAccent,
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -69,8 +68,8 @@ const Footer = ({ navigation, page }) => {
           backgroundColor: homeColor,
           width: 55,
           height: 55,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           marginTop: 5,
@@ -81,8 +80,8 @@ const Footer = ({ navigation, page }) => {
           style={{
             width: 55,
             height: 55,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Ionicons name="home-outline" size={25} color={activeColors.text} />
@@ -94,8 +93,8 @@ const Footer = ({ navigation, page }) => {
           backgroundColor: alarmColor,
           width: 55,
           height: 55,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           marginTop: 5,
@@ -106,8 +105,8 @@ const Footer = ({ navigation, page }) => {
           style={{
             width: 55,
             height: 55,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <MaterialCommunityIcons
@@ -123,8 +122,8 @@ const Footer = ({ navigation, page }) => {
           backgroundColor: studyColor,
           width: 55,
           height: 55,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           marginTop: 5,
@@ -135,8 +134,8 @@ const Footer = ({ navigation, page }) => {
           style={{
             width: 55,
             height: 55,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Feather name="book" size={25} color={activeColors.text} />
@@ -148,8 +147,8 @@ const Footer = ({ navigation, page }) => {
           backgroundColor: sleepColor,
           width: 55,
           height: 55,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           marginTop: 5,
@@ -160,8 +159,8 @@ const Footer = ({ navigation, page }) => {
           style={{
             width: 55,
             height: 55,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <MaterialCommunityIcons
@@ -177,8 +176,8 @@ const Footer = ({ navigation, page }) => {
           backgroundColor: profileColor,
           width: 55,
           height: 55,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           marginTop: 5,
@@ -189,8 +188,8 @@ const Footer = ({ navigation, page }) => {
           style={{
             width: 55,
             height: 55,
-            alignItems: "center",
-            justifyContent: "center",
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <AntDesign name="user" size={25} color={activeColors.text} />
@@ -198,6 +197,6 @@ const Footer = ({ navigation, page }) => {
       </View>
     </View>
   );
-};
+}
 
 export default Footer;

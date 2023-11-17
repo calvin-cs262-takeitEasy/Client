@@ -7,47 +7,46 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-} from "react-native";
-import { React, useContext } from "react";
-import PropTypes from "prop-types";
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
+} from 'react-native';
+import { React, useContext } from 'react';
+import PropTypes from 'prop-types';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Colors } from '../components/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-
-const Register = ({ navigation }) => {
+function Register({ navigation }) {
   // when the login button is pressed
   const login = () => {
-    navigation.navigate("Login");
+    navigation.navigate('Login');
   };
 
   // when the register button is pressed
   const register = () => {
-    navigation.navigate("Homepage");
+    navigation.navigate('Homepage');
   };
 
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
         padding: 20,
-        justifyContent: "center",
+        justifyContent: 'center',
         backgroundColor: activeColors.background,
       }}
     >
       <View style={styles.container}>
         <View style={{ paddingHorizontal: 25 }}>
           {/* placeholder for future app logo */}
-          <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 50 }}>
             <Image // logo
-              source={require("../assets/commit-logo.png")}
+              source={require('../assets/commit-logo.png')}
               style={{
-                width: Dimensions.get("window").width - 170,
-                height: Dimensions.get("window").width - 170,
+                width: Dimensions.get('window').width - 170,
+                height: Dimensions.get('window').width - 170,
                 marginBottom: 100,
               }}
             />
@@ -58,7 +57,7 @@ const Register = ({ navigation }) => {
             style={{
               fontSize: 28,
               padding: 5,
-              fontWeight: "500",
+              fontWeight: '500',
               color: activeColors.text,
               marginBottom: 30,
             }}
@@ -69,7 +68,7 @@ const Register = ({ navigation }) => {
           {/* line to accept username */}
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
@@ -94,7 +93,7 @@ const Register = ({ navigation }) => {
           {/* line to accept password */}
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
@@ -112,13 +111,13 @@ const Register = ({ navigation }) => {
               autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
-              secureTextEntry={true}
+              secureTextEntry
             />
           </View>
 
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
@@ -136,7 +135,7 @@ const Register = ({ navigation }) => {
               autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
-              secureTextEntry={true}
+              secureTextEntry
             />
           </View>
 
@@ -151,10 +150,10 @@ const Register = ({ navigation }) => {
           >
             <Text
               style={{
-                textAlign: "center",
-                fontWeight: "700",
+                textAlign: 'center',
+                fontWeight: '700',
                 fontSize: 16,
-                color: "#FFF",
+                color: '#FFF',
               }}
             >
               Register
@@ -167,9 +166,9 @@ const Register = ({ navigation }) => {
             style={{
               padding: 20,
               borderRadius: 10,
-              flexDirection: "row",
-              alignContent: "center",
-              justifyContent: "center",
+              flexDirection: 'row',
+              alignContent: 'center',
+              justifyContent: 'center',
             }}
           >
             <Text style={{ color: activeColors.text }}>
@@ -177,8 +176,8 @@ const Register = ({ navigation }) => {
             </Text>
             <Text
               style={{
-                textAlign: "center",
-                fontWeight: "700",
+                textAlign: 'center',
+                fontWeight: '700',
                 fontSize: 16,
                 color: activeColors.text,
                 paddingLeft: 5,
@@ -191,7 +190,7 @@ const Register = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 Register.propTypes = {
   navigation: PropTypes.shape({
