@@ -73,13 +73,13 @@ function Header({ navigation, name, type }) {
             onPress={goFriends}
             style={{ padding: 10, width: 50, height: 50 }}
           >
-            <FontAwesome5 name="user-friends" size={25} color="#FFF" />
+            <FontAwesome5 name='user-friends' size={25} color='#FFF' />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
             style={{ padding: 10, width: 50, height: 50 }}
           >
-            <Octicons name="gear" size={25} color="#FFF" />
+            <Octicons name='gear' size={25} color='#FFF' />
           </TouchableOpacity>
         </View>
       </View>
@@ -110,7 +110,7 @@ function Header({ navigation, name, type }) {
             onPress={goBack}
             style={{ padding: 10, width: 50, height: 50 }}
           >
-            <AntDesign name="back" size={25} color="#FFF" />
+            <AntDesign name='back' size={25} color='#FFF' />
           </TouchableOpacity>
 
           <Text
@@ -168,7 +168,7 @@ function Header({ navigation, name, type }) {
           onPress={goSettings}
           style={{ padding: 10, width: 50, height: 50 }}
         >
-          <Octicons name="gear" size={25} color="#FFF" />
+          <Octicons name='gear' size={25} color='#FFF' />
         </TouchableOpacity>
       </View>
     </View>

@@ -74,7 +74,7 @@ function Study({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Study" />
+      <Header navigation={navigation} name='Study' />
 
       {/* //ui here */}
       <View
@@ -176,7 +176,7 @@ function Study({ navigation }) {
         position: 'absolute', left: 0, right: 0, bottom: 0,
       }}
       >
-        <Footer navigation={navigation} page="Study" />
+        <Footer navigation={navigation} page='Study' />
       </View>
     </SafeAreaView>
   );

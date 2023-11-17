@@ -44,7 +44,7 @@ function Friends({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Friends" type="backButton" />
+      <Header navigation={navigation} name='Friends' type='backButton' />
 
       <View>
         <SearchBar
@@ -57,7 +57,7 @@ function Friends({ navigation }) {
           the answer to the searched thing doesnt come up. im working on getting it so it doesnt show up the list,
           but when you search the full thing, the answer does come up */}
         {!data ? (
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size='large' />
         ) : (
           <List
             searchPhrase={searchPhrase}

@@ -76,17 +76,17 @@ function Register({ navigation }) {
             }}
           >
             <MaterialIcons
-              name="alternate-email"
+              name='alternate-email'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Username"
-              autoCapitalize="none"
+              placeholder='Username'
+              autoCapitalize='none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
-              keyboardType="email-address"
+              keyboardType='email-address'
             />
           </View>
 
@@ -101,14 +101,14 @@ function Register({ navigation }) {
             }}
           >
             <Ionicons
-              name="ios-lock-closed-outline"
+              name='ios-lock-closed-outline'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Password"
-              autoCapitalize="none"
+              placeholder='Password'
+              autoCapitalize='none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry
@@ -125,14 +125,14 @@ function Register({ navigation }) {
             }}
           >
             <Ionicons
-              name="ios-lock-closed-outline"
+              name='ios-lock-closed-outline'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Confirm Password"
-              autoCapitalize="none"
+              placeholder='Confirm Password'
+              autoCapitalize='none'
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
               secureTextEntry

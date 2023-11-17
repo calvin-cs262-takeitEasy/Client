@@ -115,22 +115,22 @@ function Login({ navigation }) {
             }}
           >
             <MaterialIcons
-              name="alternate-email"
+              name='alternate-email'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Username"
+              placeholder='Username'
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setUsername(text)}
-              autoCapitalize="none"
+              autoCapitalize='none'
               style={{
                 flex: 1,
                 paddingVertical: 0,
                 color: activeColors.text,
               }}
-              keyboardType="email-address"
+              keyboardType='email-address'
             />
           </View>
 
@@ -145,14 +145,14 @@ function Login({ navigation }) {
             }}
           >
             <Ionicons
-              name="ios-lock-closed-outline"
+              name='ios-lock-closed-outline'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Password"
-              autoCapitalize="none"
+              placeholder='Password'
+              autoCapitalize='none'
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setPassword(text)}
               style={{

@@ -32,7 +32,7 @@ function Settings({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Settings" type="backButton" />
+      <Header navigation={navigation} name='Settings' type='backButton' />
       <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
         <TouchableOpacity
           onPress={() => updateTheme()}
@@ -97,7 +97,7 @@ function Settings({ navigation }) {
           </Text>
         </TouchableOpacity>
 
-        <StatusBar style="auto" />
+        <StatusBar style='auto' />
       </View>
     </SafeAreaView>
   );

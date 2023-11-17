@@ -27,7 +27,7 @@ function Alarm({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Alarm" />
+      <Header navigation={navigation} name='Alarm' />
 
       <AlarmClock />
 
@@ -35,7 +35,7 @@ function Alarm({ navigation }) {
         position: 'absolute', left: 0, right: 0, bottom: 0,
       }}
       >
-        <Footer navigation={navigation} page="Alarm" />
+        <Footer navigation={navigation} page='Alarm' />
       </View>
     </SafeAreaView>
   );

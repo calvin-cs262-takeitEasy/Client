@@ -20,13 +20,13 @@ function Bedtime({ navigation }) {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Bedtime" />
+      <Header navigation={navigation} name='Bedtime' />
       <NightMode />
       <View style={{
         position: 'absolute', left: 0, right: 0, bottom: 0,
       }}
       >
-        <Footer navigation={navigation} page="Bedtime" />
+        <Footer navigation={navigation} page='Bedtime' />
       </View>
     </SafeAreaView>
   );

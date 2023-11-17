@@ -84,7 +84,7 @@ function Footer({ navigation, page }) {
             justifyContent: 'center',
           }}
         >
-          <Ionicons name="home-outline" size={25} color={activeColors.text} />
+          <Ionicons name='home-outline' size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
 
@@ -110,7 +110,7 @@ function Footer({ navigation, page }) {
           }}
         >
           <MaterialCommunityIcons
-            name="alarm"
+            name='alarm'
             size={25}
             color={activeColors.text}
           />
@@ -138,7 +138,7 @@ function Footer({ navigation, page }) {
             justifyContent: 'center',
           }}
         >
-          <Feather name="book" size={25} color={activeColors.text} />
+          <Feather name='book' size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
 
@@ -164,7 +164,7 @@ function Footer({ navigation, page }) {
           }}
         >
           <MaterialCommunityIcons
-            name="alarm-snooze"
+            name='alarm-snooze'
             size={25}
             color={activeColors.text}
           />
@@ -192,7 +192,7 @@ function Footer({ navigation, page }) {
             justifyContent: 'center',
           }}
         >
-          <AntDesign name="user" size={25} color={activeColors.text} />
+          <AntDesign name='user' size={25} color={activeColors.text} />
         </TouchableOpacity>
       </View>
     </View>

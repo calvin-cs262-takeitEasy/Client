@@ -50,8 +50,8 @@ function Profile({ navigation }) {
     >
       <Header
         navigation={navigation}
-        name="Profile"
-        type="withFriends"
+        name='Profile'
+        type='withFriends'
         style={{ marginTop: 15 }}
       />
       <ScrollView>
@@ -66,12 +66,12 @@ function Profile({ navigation }) {
           </View>
           {/* <View style={styles.add}> // got rid of to make image more visible for presentation
             <TouchableOpacity
-              style={{ justifyContent: "center", alignItems: "center" }}
+              style={{ justifyContent: 'center', alignItems: 'center' }}
             >
               <Ionicons
-                name="ios-add"
+                name='ios-add'
                 size={38}
-                color="#DFD8C8"
+                color='#DFD8C8'
                 style={{ marginLeft: 2 }}
               ></Ionicons>
             </TouchableOpacity>
@@ -164,7 +164,7 @@ function Profile({ navigation }) {
         position: 'absolute', left: 0, right: 0, bottom: 0,
       }}
       >
-        <Footer navigation={navigation} page="Profile" />
+        <Footer navigation={navigation} page='Profile' />
       </View>
     </SafeAreaView>
   );
