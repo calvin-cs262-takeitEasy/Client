@@ -1,28 +1,28 @@
-import { StatusBar } from "expo-status-bar";
+import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   SafeAreaView,
-} from "react-native";
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
-import Header from "../shared/header";
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
+} from 'react-native';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { Colors } from '../components/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
+import Header from '../shared/header';
 
-import { useUser } from "../contexts/UserContext";
+import { useUser } from '../contexts/UserContext';
 
-const Settings = ({ navigation }) => {
+function Settings({ navigation }) {
   const { theme, updateTheme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
   const { currentUser, setCurrentUser } = useUser();
 
   const logout = () => {
-    setCurrentUser({ username: "", ID: -1 });
-    navigation.navigate("Login");
+    setCurrentUser({ username: '', ID: -1 });
+    navigation.navigate('Login');
   };
 
   return (
@@ -32,8 +32,8 @@ const Settings = ({ navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Settings" type="backButton" />
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+      <Header navigation={navigation} name='Settings' type='backButton' />
+      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
         <TouchableOpacity
           onPress={() => updateTheme()}
           style={{
@@ -45,13 +45,13 @@ const Settings = ({ navigation }) => {
         >
           <Text
             style={{
-              textAlign: "center",
-              fontWeight: "700",
+              textAlign: 'center',
+              fontWeight: '700',
               fontSize: 16,
-              color: "#FFF",
+              color: '#FFF',
             }}
           >
-            {theme.mode === "dark" ? "Light Mode" : "Dark Mode"}
+            {theme.mode === 'dark' ? 'Light Mode' : 'Dark Mode'}
           </Text>
         </TouchableOpacity>
 
@@ -66,10 +66,10 @@ const Settings = ({ navigation }) => {
         >
           <Text
             style={{
-              textAlign: "center",
-              fontWeight: "700",
+              textAlign: 'center',
+              fontWeight: '700',
               fontSize: 16,
-              color: "#FFF",
+              color: '#FFF',
             }}
           >
             System Theme
@@ -87,21 +87,21 @@ const Settings = ({ navigation }) => {
         >
           <Text
             style={{
-              textAlign: "center",
-              fontWeight: "700",
+              textAlign: 'center',
+              fontWeight: '700',
               fontSize: 16,
-              color: "#FFF",
+              color: '#FFF',
             }}
           >
             Logout
           </Text>
         </TouchableOpacity>
 
-        <StatusBar style="auto" />
+        <StatusBar style='auto' />
       </View>
     </SafeAreaView>
   );
-};
+}
 
 Settings.propTypes = {
   navigation: PropTypes.shape({
@@ -111,8 +111,8 @@ Settings.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

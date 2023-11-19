@@ -7,80 +7,82 @@ import {
   Dimensions,
   AppState,
   LogBox,
-} from "react-native";
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { React, useContext, useState, Component, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import RNPickerSelect from "react-native-picker-select";
-import Header from "../shared/header";
-import Footer from "../shared/footer";
+} from 'react-native';
+import {
+  React, useContext, useState, Component, useRef, useEffect,
+} from 'react';
+import PropTypes from 'prop-types';
+import RNPickerSelect from 'react-native-picker-select';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { Colors } from '../components/styles';
+import Header from '../shared/header';
+import Footer from '../shared/footer';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreAllLogs();// Ignore all log notifications
 
-const Study = ({ navigation }) => {
+function Study({ navigation }) {
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
-  const [selectedHour, setSelectedHour] = useState("00");
-  const [selectedMinute, setSelectedMinute] = useState("00");
+  const [selectedHour, setSelectedHour] = useState('00');
+  const [selectedMinute, setSelectedMinute] = useState('00');
 
   const studyLockdown = () => {
-    navigation.navigate("StudyLockdown", {
+    navigation.navigate('StudyLockdown', {
       hour: selectedHour,
       minute: selectedMinute,
     });
   };
 
   const hourOptions = Array.from({ length: 24 }, (_, i) => ({
-    label: i.toString().padStart(2, "0"),
-    value: i.toString().padStart(2, "0"),
+    label: i.toString().padStart(2, '0'),
+    value: i.toString().padStart(2, '0'),
   }));
 
   const minuteOptions = Array.from({ length: 60 }, (_, i) => ({
-    label: i.toString().padStart(2, "0"),
-    value: i.toString().padStart(2, "0"),
+    label: i.toString().padStart(2, '0'),
+    value: i.toString().padStart(2, '0'),
   }));
 
-  const appState = useRef(AppState.currentState)
-  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
   useEffect(() => {
-    AppState.addEventListener("change", _handleAppStateChange)
+    AppState.addEventListener('change', _handleAppStateChange);
     return () => {
-      AppState.removeEventListener("change", _handleAppStateChange)
-    }
-  }, [])
+      AppState.removeEventListener('change', _handleAppStateChange);
+    };
+  }, []);
   const _handleAppStateChange = (nextAppState) => {
-    if (appState.current.match(/inactivebackground/) &&
-    nextAppState === "active") {
-      console.log("app has come to the foreground")
+    if (appState.current.match(/inactivebackground/)
+    && nextAppState === 'active') {
+      console.log('app has come to the foreground');
     }
 
-    appState.current = nextAppState
-    setAppStateVisible(appState.current)
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
 
-    console.log("AppState: ", appState.current)
-  }
+    console.log('AppState: ', appState.current);
+  };
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        alignItems: "center",
+        alignItems: 'center',
         backgroundColor: activeColors.background,
       }}
     >
-      <Header navigation={navigation} name="Study" />
+      <Header navigation={navigation} name='Study' />
 
-      {/*//ui here*/}
+      {/* //ui here */}
       <View
         style={{
-          flexDirection: "row",
+          flexDirection: 'row',
           borderWidth: 0,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
           borderRadius: 5,
           padding: 5,
           margin: 10,
@@ -92,7 +94,7 @@ const Study = ({ navigation }) => {
           onValueChange={(value) => setSelectedHour(value)}
           items={hourOptions}
           value={selectedHour}
-          placeholder={{ label: "HH", value: null }}
+          placeholder={{ label: 'HH', value: null }}
           style={{
             inputIOS: {
               fontSize: 64,
@@ -131,7 +133,7 @@ const Study = ({ navigation }) => {
           onValueChange={(value) => setSelectedMinute(value)}
           items={minuteOptions}
           value={selectedMinute}
-          placeholder={{ label: "MM", value: null }}
+          placeholder={{ label: 'MM', value: null }}
           style={{
             inputIOS: {
               fontSize: 64,
@@ -160,22 +162,25 @@ const Study = ({ navigation }) => {
         onPress={studyLockdown}
         style={{
           backgroundColor: activeColors.primary,
-          width: Dimensions.get("window").width - 50,
+          width: Dimensions.get('window').width - 50,
           height: 100,
           borderRadius: 10,
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <Text style={{ color: "#FFF", fontSize: 25 }}>START TIMER</Text>
+        <Text style={{ color: '#FFF', fontSize: 25 }}>START TIMER</Text>
       </TouchableOpacity>
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
-        <Footer navigation={navigation} page="Study" />
+      <View style={{
+        position: 'absolute', left: 0, right: 0, bottom: 0,
+      }}
+      >
+        <Footer navigation={navigation} page='Study' />
       </View>
     </SafeAreaView>
   );
-};
+}
 
 Study.propTypes = {
   navigation: PropTypes.shape({
@@ -186,8 +191,8 @@ Study.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

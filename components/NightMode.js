@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, StyleSheet, Button, AppState } from 'react-native';
+import {
+  Text, View, StyleSheet, Button, AppState,
+} from 'react-native';
 import Constants from 'expo-constants';
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer';
-
-import { Colors } from "./styles";
-import { ThemeContext } from "../contexts/ThemeContext";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { Colors } from './styles.js';
+import { ThemeContext } from '../contexts/ThemeContext.js';
 
 export default function App() {
-  const [isPlaying, setIsPlaying] = React.useState(true)
+  const [isPlaying, setIsPlaying] = React.useState(true);
   const [displayText, setDisplayText] = React.useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [date, setDate] = useState(new Date());
@@ -19,8 +19,7 @@ export default function App() {
   const appState = React.useRef(AppState.currentState);
   const [isBedtime, setIsBedtime] = useState(false);
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
-
+  const activeColors = Colors[theme.mode];
   useEffect(() => {
     if (selectedHour === null || selectedMinute === null) {
       setShowPicker(true);
@@ -116,9 +115,8 @@ export default function App() {
     // Assuming bedtime starts at the selected time and ends at 4am
     if (selectedHour < 4) {
       return (currentHour >= selectedHour && currentMinute >= selectedMinute) || currentHour < 6;
-    } else {
-      return currentHour >= selectedHour && currentMinute >= selectedMinute;
     }
+    return currentHour >= selectedHour && currentMinute >= selectedMinute;
   };
 
   const retrieveTime = async () => {
@@ -153,44 +151,42 @@ export default function App() {
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
-
-    return (
-        <View style={styles.container}>
-          <Text style={{color: activeColors.text, fontSize: 30, textAlign: 'center'}}>
-            {isBedtime ? 'Bedtime mode is on. Get off your phone!' : 'Bedtime mode is off. Keep scrolling.'}
+  return (
+    <View style={styles.container}>
+      <Text style={{ color: activeColors.text, fontSize: 30, textAlign: 'center' }}>
+        {isBedtime ? 'Bedtime mode is on. Get off your phone!' : 'Bedtime mode is off. Keep scrolling.'}
+      </Text>
+      <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
+      <CountdownCircleTimer
+        isPlaying={isPlaying}
+        duration={60}
+        colors={activeColors.primary}
+        colorsTime={[10, 6, 3, 0]}
+        onComplete={() => ({ shouldRepeat: true, delay: 2 })}
+        updateInterval={1}
+      >
+        {({ remainingTime }) => (
+          <Text style={{ color: activeColors.Text, fontSize: 40 }}>
+            {remainingTime}
           </Text>
-          <Text style={{ color: activeColors.Text, fontSize: 24 }}>{displayText}</Text>
-          <CountdownCircleTimer
-            isPlaying={isPlaying}
-            duration={60}
-            colors={activeColors.primary}
-            colorsTime={[10, 6, 3, 0]}
-            onComplete={() => ({ shouldRepeat: false, delay: 2 })}
-            updateInterval={1}
-          >
-            {({ remainingTime }) => (
-              <Text style={{ color: activeColors.Text, fontSize: 40 }}>
-                {remainingTime}
-              </Text>
-            )}
-          </CountdownCircleTimer>
-      {!isBedtime && (
-        <Button title="Set Bedtime" onPress={showDateTimePicker} />
+        )}
+      </CountdownCircleTimer>
+      <Button title="Set Bedtime" onPress={showDateTimePicker} />
+      {showPicker && (
+      <DateTimePicker
+        value={date}
+        mode="time"
+        is24Hour
+        display="default"
+        onChange={onChange}
+        style={{
+          width: 300, opacity: 1, height: 30, marginTop: 50, color: activeColors.text,
+        }}
+      />
       )}
-      {showPicker && !isBedtime &&
-       (
-        <DateTimePicker
-          value={date}
-          mode="time"
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-          style={{width: 300, opacity: 1, height: 30, marginTop: 50, color: activeColors.text}}
-        />
-      )}
-        </View>
-      );
-    }
+    </View>
+  );
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -198,6 +194,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
     padding: 8,
-  }
+  },
 });
 

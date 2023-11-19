@@ -1,23 +1,25 @@
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
-import PropTypes from "prop-types";
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { React, useContext } from "react";
+import {
+  SafeAreaView, StyleSheet, Text, TouchableOpacity,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { React, useContext } from 'react';
+import { Colors } from '../components/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
-const Forgot = ({ navigation }) => {
+function Forgot({ navigation }) {
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: activeColors.background,
       }}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text
           style={{
             color: activeColors.text,
@@ -28,7 +30,7 @@ const Forgot = ({ navigation }) => {
       </TouchableOpacity>
     </SafeAreaView>
   );
-};
+}
 
 Forgot.propTypes = {
   navigation: PropTypes.shape({
@@ -39,8 +41,8 @@ Forgot.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

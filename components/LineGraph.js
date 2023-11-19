@@ -1,15 +1,15 @@
-import { React, useContext } from "react";
-import { LineChart } from "react-native-chart-kit";
-import { Dimensions } from "react-native";
-import { Colors } from "./styles";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { React, useContext } from 'react';
+import { LineChart } from 'react-native-chart-kit';
+import { Dimensions } from 'react-native';
+import { Colors } from './styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
-export const LineGraph = () => {
+export function LineGraph() {
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
   const linedata = {
-    labels: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+    labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
     datasets: [
       {
         data: [10, 4, 6, 8, 10, 0, 5],
@@ -19,17 +19,17 @@ export const LineGraph = () => {
       {
         data: [5, 4, 6, 3, 8, 0, 2],
         strokeWidth: 2,
-        color: (opacity = 1) => "#2EBF03", //green for completed commits
+        color: (opacity = 1) => '#2EBF03', // green for completed commits
       },
     ],
-    legend: ["Commitments", "Successes"],
+    legend: ['Commitments', 'Successes'],
   };
 
   return (
     <LineChart
-      bezier //keeps it curvy
+      bezier // keeps it curvy
       data={linedata}
-      width={Dimensions.get("window").width - 16}
+      width={Dimensions.get('window').width - 16}
       height={200}
       chartConfig={{
         useShadowColorFromDataset: true,
@@ -47,4 +47,4 @@ export const LineGraph = () => {
       }}
     />
   );
-};
+}

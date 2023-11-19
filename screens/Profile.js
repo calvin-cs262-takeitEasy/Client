@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,34 +10,34 @@ import {
   Dimensions,
   FlatList,
   LogBox,
-} from "react-native";
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { LineGraph } from "../components/LineGraph";
-import Header from "../shared/header";
-import Footer from "../shared/footer";
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../components/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
+import { LineGraph } from '../components/LineGraph';
+import Header from '../shared/header';
+import Footer from '../shared/footer';
 
-import Notification from "../components/Notification";
-import { useNavigation } from "@react-navigation/native";
+import Notification from '../components/Notification';
 
-import { useUser } from "../contexts/UserContext";
+import { useUser } from '../contexts/UserContext';
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreAllLogs();// Ignore all log notifications
 
-const Profile = ({ navigation }) => {
+function Profile({ navigation }) {
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
   const { currentUser, setCurrentUser } = useUser();
 
   useEffect(() => {
-    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
 
   const [notifData, setNotifData] = useState([]);
   useEffect(() => {
     fetch(
-      "https://cs262-commit.azurewebsites.net/notifications/" + currentUser.ID
+      `https://cs262-commit.azurewebsites.net/notifications/${currentUser.ID}`,
     )
       .then((response) => response.json())
       .then((json) => setNotifData(json))
@@ -50,28 +50,28 @@ const Profile = ({ navigation }) => {
     >
       <Header
         navigation={navigation}
-        name="Profile"
-        type="withFriends"
+        name='Profile'
+        type='withFriends'
         style={{ marginTop: 15 }}
       />
       <ScrollView>
-        <View style={{ alignSelf: "left", marginLeft: 10 }}>
+        <View style={{ alignSelf: 'left', marginLeft: 10 }}>
           <View style={{ marginTop: 5 }}>
             <View style={styles.profileImage}>
               <Image
-                source={require("../assets/keith.jpg")}
+                source={require('../assets/keith.jpg')}
                 style={styles.image}
               />
             </View>
           </View>
           {/* <View style={styles.add}> // got rid of to make image more visible for presentation
             <TouchableOpacity
-              style={{ justifyContent: "center", alignItems: "center" }}
+              style={{ justifyContent: 'center', alignItems: 'center' }}
             >
               <Ionicons
-                name="ios-add"
+                name='ios-add'
                 size={38}
-                color="#DFD8C8"
+                color='#DFD8C8'
                 style={{ marginLeft: 2 }}
               ></Ionicons>
             </TouchableOpacity>
@@ -81,7 +81,7 @@ const Profile = ({ navigation }) => {
         <View style={styles.infoContainer}>
           <Text
             style={{
-              fontWeight: "200",
+              fontWeight: '200',
               fontSize: 36,
               color: activeColors.text,
             }}
@@ -106,7 +106,7 @@ const Profile = ({ navigation }) => {
             style={[
               styles.statsBox,
               {
-                borderColor: "#DFD8C8",
+                borderColor: '#DFD8C8',
                 borderLeftWidth: 1,
                 borderRightWidth: 1,
               },
@@ -115,10 +115,9 @@ const Profile = ({ navigation }) => {
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               {
                 notifData.filter(
-                  (notif) =>
-                    notif.type === "alarm_success" ||
-                    notif.type === "study_success" ||
-                    notif.type === "bedtime_success"
+                  (notif) => notif.type === 'alarm_success'
+                    || notif.type === 'study_success'
+                    || notif.type === 'bedtime_success',
                 ).length
               }
             </Text>
@@ -130,10 +129,9 @@ const Profile = ({ navigation }) => {
             <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
               {
                 notifData.filter(
-                  (notif) =>
-                    notif.type === "alarm_fail" ||
-                    notif.type === "study_fail" ||
-                    notif.type === "bedtime_fail"
+                  (notif) => notif.type === 'alarm_fail'
+                    || notif.type === 'study_fail'
+                    || notif.type === 'bedtime_fail',
                 ).length
               }
             </Text>
@@ -142,12 +140,12 @@ const Profile = ({ navigation }) => {
             </Text>
           </View>
         </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <LineGraph />
         </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <FlatList
-            nestedScrollEnabled={true}
+            nestedScrollEnabled
             scrollEnabled={false}
             data={notifData}
             renderItem={({ item }) => (
@@ -162,12 +160,15 @@ const Profile = ({ navigation }) => {
         </View>
       </ScrollView>
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
-        <Footer navigation={navigation} page="Profile" />
+      <View style={{
+        position: 'absolute', left: 0, right: 0, bottom: 0,
+      }}
+      >
+        <Footer navigation={navigation} page='Profile' />
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -179,46 +180,46 @@ const styles = StyleSheet.create({
     width: undefined,
   },
   titleBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: 24,
     marginHorizontal: 16,
   },
   subText: {
     fontSize: 12,
-    color: "#AEB5BC",
-    textTransform: "uppercase",
-    fontWeight: "500",
+    color: '#AEB5BC',
+    textTransform: 'uppercase',
+    fontWeight: '500',
   },
   profileImage: {
     width: 100,
     height: 100,
     borderRadius: 100,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   add: {
-    backgroundColor: "#41444B",
-    position: "absolute",
+    backgroundColor: '#41444B',
+    position: 'absolute',
     bottom: 0,
     right: 0,
     width: 40,
     height: 40,
     borderRadius: 30,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   infoContainer: {
-    alignSelf: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    alignItems: 'center',
     marginTop: -60,
   },
   statsContainer: {
-    flexDirection: "row",
-    alignSelf: "center",
+    flexDirection: 'row',
+    alignSelf: 'center',
     marginTop: 32,
   },
   statsBox: {
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
   },
 });

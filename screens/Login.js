@@ -7,29 +7,30 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-} from "react-native";
-import { React, useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
+} from 'react-native';
+import {
+  React, useContext, useState, useEffect,
+} from 'react';
+import PropTypes from 'prop-types';
 
-import { Colors } from "../components/styles";
-import { ThemeContext } from "../contexts/ThemeContext";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Colors } from '../components/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useUser } from '../contexts/UserContext';
 
-import { useUser } from "../contexts/UserContext";
-
-const Login = ({ navigation }) => {
+function Login({ navigation }) {
   const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const activeColors = Colors[theme.mode];
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { currentUser, setCurrentUser } = useUser();
 
   const [userData, setUserData] = useState([]);
   useEffect(() => {
-    fetch("https://cs262-commit.azurewebsites.net/username")
+    fetch('https://cs262-commit.azurewebsites.net/username')
       .then((response) => response.json())
       .then((json) => setUserData(json))
       .catch((error) => console.error(error));
@@ -39,31 +40,31 @@ const Login = ({ navigation }) => {
   const login = () => {
     // check if username and password are correct
     const user = userData.find(
-      (x) => x.username === username && x.password === password
+      (x) => x.username === username && x.password === password,
     );
     if (user !== undefined) {
       // if correct
       setCurrentUser({ username: user.username, ID: user.ID, name: user.name });
       console.log(currentUser.username);
-      navigation.navigate("Homepage");
+      navigation.navigate('Homepage');
     } else {
-      alert("Username or password is incorrect");
+      alert('Username or password is incorrect');
     }
   };
 
   // when the register button is pressed
   const register = () => {
-    navigation.navigate("Register");
+    navigation.navigate('Register');
   };
 
   // when the forgot button is pressed
   const forgot = () => {
-    navigation.navigate("Forgot");
+    navigation.navigate('Forgot');
   };
 
   const forceLogin = () => {
-    setCurrentUser({ username: "kvlinden", ID: 1, name: "keith" });
-    navigation.navigate("Homepage");
+    setCurrentUser({ username: 'kvlinden', ID: 1, name: 'keith' });
+    navigation.navigate('Homepage');
   };
 
   return (
@@ -71,18 +72,18 @@ const Login = ({ navigation }) => {
       style={{
         flex: 1,
         padding: 20,
-        justifyContent: "center",
+        justifyContent: 'center',
         backgroundColor: activeColors.background,
       }}
     >
       <View style={styles.container}>
         <View style={{ paddingHorizontal: 25 }}>
-          <View style={{ flex: 1, justifyContent: "center", padding: 50 }}>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 50 }}>
             <Image // logo
-              source={require("../assets/commit-logo.png")}
+              source={require('../assets/commit-logo.png')}
               style={{
-                width: Dimensions.get("window").width - 170,
-                height: Dimensions.get("window").width - 170,
+                width: Dimensions.get('window').width - 170,
+                height: Dimensions.get('window').width - 170,
                 marginBottom: 100,
               }}
             />
@@ -94,7 +95,7 @@ const Login = ({ navigation }) => {
               style={{
                 fontSize: 28,
                 padding: 5,
-                fontWeight: "500",
+                fontWeight: '500',
                 color: activeColors.text,
                 marginBottom: 30,
               }}
@@ -106,7 +107,7 @@ const Login = ({ navigation }) => {
           {/* line to accept username */}
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
@@ -114,29 +115,29 @@ const Login = ({ navigation }) => {
             }}
           >
             <MaterialIcons
-              name="alternate-email"
+              name='alternate-email'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Username"
+              placeholder='Username'
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setUsername(text)}
-              autoCapitalize="none"
+              autoCapitalize='none'
               style={{
                 flex: 1,
                 paddingVertical: 0,
                 color: activeColors.text,
               }}
-              keyboardType="email-address"
+              keyboardType='email-address'
             />
           </View>
 
           {/* line to accept password */}
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               borderBottomColor: activeColors.text,
               borderBottomWidth: 1,
               paddingBottom: 8,
@@ -144,14 +145,14 @@ const Login = ({ navigation }) => {
             }}
           >
             <Ionicons
-              name="ios-lock-closed-outline"
+              name='ios-lock-closed-outline'
               size={20}
               color={activeColors.text}
               style={{ marginRight: 5 }}
             />
             <TextInput
-              placeholder="Password"
-              autoCapitalize="none"
+              placeholder='Password'
+              autoCapitalize='none'
               placeholderTextColor={activeColors.text}
               onChangeText={(text) => setPassword(text)}
               style={{
@@ -159,11 +160,11 @@ const Login = ({ navigation }) => {
                 paddingVertical: 0,
                 color: activeColors.text,
               }}
-              secureTextEntry={true}
+              secureTextEntry
             />
 
             {/* forgot password button */}
-            <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
+            <TouchableOpacity onPress={forgot} style={{ fontWeight: '700' }}>
               <Text
                 style={{
                   color: activeColors.text,
@@ -186,10 +187,10 @@ const Login = ({ navigation }) => {
           >
             <Text
               style={{
-                textAlign: "center",
-                fontWeight: "700",
+                textAlign: 'center',
+                fontWeight: '700',
                 fontSize: 16,
-                color: "#FFF",
+                color: '#FFF',
               }}
             >
               Login
@@ -202,9 +203,9 @@ const Login = ({ navigation }) => {
             style={{
               padding: 20,
               borderRadius: 10,
-              flexDirection: "row",
-              alignContent: "center",
-              justifyContent: "center",
+              flexDirection: 'row',
+              alignContent: 'center',
+              justifyContent: 'center',
             }}
           >
             <Text style={{ color: activeColors.text }}>
@@ -212,8 +213,8 @@ const Login = ({ navigation }) => {
             </Text>
             <Text
               style={{
-                textAlign: "center",
-                fontWeight: "700",
+                textAlign: 'center',
+                fontWeight: '700',
                 fontSize: 16,
                 color: activeColors.text,
                 paddingLeft: 5,
@@ -226,7 +227,7 @@ const Login = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 Login.propTypes = {
   navigation: PropTypes.shape({

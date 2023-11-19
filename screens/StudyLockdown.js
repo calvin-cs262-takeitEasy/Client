@@ -16,10 +16,12 @@ import { Audio } from "expo-av";
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs();//Ignore all log notifications
 
+// eslint-disable-next-line react/prop-types
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
 
+  // eslint-disable-next-line react/prop-types
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
   if (duration == 0) duration = 5; // for testing and showcasing
@@ -48,6 +50,7 @@ const StudyLockdown = ({ route, navigation }) => {
 
   const timerComplete = () => {
     playSound();
+    // eslint-disable-next-line react/prop-types
     navigation.navigate("Study");
   };
 
@@ -118,6 +121,7 @@ const StudyLockdown = ({ route, navigation }) => {
       </CountdownCircleTimer>
 
       <TouchableOpacity
+        // eslint-disable-next-line react/prop-types
         onPress={() => navigation.goBack()}
         style={{
           backgroundColor: activeColors.deleteRed,
