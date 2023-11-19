@@ -21,17 +21,24 @@ export default function App() {
   const { theme } = useContext(ThemeContext);
   const activeColors = Colors[theme.mode];
   useEffect(() => {
-    const isItBedtime = checkIfBedtime(selectedHour, selectedMinute);
-    setIsBedtime(isItBedtime);
-    if (!isItBedtime) {
-      setIsPlaying(false);
+    if (selectedHour === null || selectedMinute === null) {
+      setShowPicker(true);
     } else {
-      checkTimeAndSetPlaying();
+      const isItBedtime = checkIfBedtime(selectedHour, selectedMinute);
+      setIsBedtime(isItBedtime);
+      if (isItBedtime) {
+        setIsPlaying(true);
+      } else {
+        setIsPlaying(false);
+      }
     }
   }, [selectedHour, selectedMinute]);
+
   useEffect(() => {
     console.log(`isPlaying is now ${isPlaying}`);
   }, [isPlaying]);
+
+
   const handleAppStateChange = async (nextAppState) => {
     console.log(`App has gone ${nextAppState}`);
     if (appState.current === 'active' && nextAppState.match(/inactive|background/)) {
@@ -51,6 +58,7 @@ export default function App() {
     }
     appState.current = nextAppState;
   };
+
   const checkTimeAndSetPlaying = () => {
     if (selectedHour !== null && selectedMinute !== null) {
       if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
@@ -59,20 +67,27 @@ export default function App() {
         setIsPlaying(false);
       }
     }
+
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
+
+
     if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
       setIsPlaying(true);
     } else {
       setIsPlaying(false);
     }
   };
+
   const showDateTimePicker = () => {
     setShowPicker(true);
   };
+
   const hideDateTimePicker = () => {
     setShowPicker(false);
   };
+
+
   const onChange = async (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowPicker(Platform.OS === 'ios');
@@ -83,27 +98,33 @@ export default function App() {
     setSelectedMinute(selectedMinute);
     await AsyncStorage.setItem('selectedHour', JSON.stringify(selectedHour));
     await AsyncStorage.setItem('selectedMinute', JSON.stringify(selectedMinute));
+  
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
+ 
     const isBedtime = currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute);
     setIsBedtime(isBedtime);
     await AsyncStorage.setItem('isBedtime', JSON.stringify(isBedtime));
   };
+
   const checkIfBedtime = (selectedHour, selectedMinute) => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
+
     // Assuming bedtime starts at the selected time and ends at 4am
     if (selectedHour < 4) {
       return (currentHour >= selectedHour && currentMinute >= selectedMinute) || currentHour < 6;
     }
     return currentHour >= selectedHour && currentMinute >= selectedMinute;
   };
+
   const retrieveTime = async () => {
     try {
       const storedHour = await AsyncStorage.getItem('selectedHour');
       const storedMinute = await AsyncStorage.getItem('selectedMinute');
       const storedIsBedtime = await AsyncStorage.getItem('isBedtime');
+
       if (storedHour !== null) setSelectedHour(JSON.parse(storedHour));
       if (storedMinute !== null) setSelectedMinute(JSON.parse(storedMinute));
       if (storedIsBedtime !== null) setIsBedtime(JSON.parse(storedIsBedtime));
@@ -111,6 +132,7 @@ export default function App() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     const retrieveTime = async () => {
       const storedHour = await AsyncStorage.getItem('selectedHour');
@@ -120,8 +142,11 @@ export default function App() {
     };
     retrieveTime();
   }, []);
+
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
+  
+
     return () => {
       AppState.removeEventListener('change', handleAppStateChange);
     };
@@ -171,3 +196,4 @@ const styles = StyleSheet.create({
     padding: 8,
   },
 });
+
