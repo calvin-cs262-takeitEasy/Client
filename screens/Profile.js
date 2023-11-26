@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Dimensions,
-  FlatList,
-  LogBox,
+	StyleSheet,
+	Text,
+	View,
+	SafeAreaView,
+	Image,
+	ScrollView,
+	TouchableOpacity,
+	Dimensions,
+	FlatList,
+	LogBox,
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -18,64 +18,84 @@ import Header from "../shared/header";
 import Footer from "../shared/footer";
 
 import Notification from "../components/Notification";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { useUser } from "../contexts/UserContext";
+import { useProfileUser } from "../contexts/UserProfileContext";
 
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); // Ignore all log notifications
 
-const Profile = ({ route, navigation }) => {
-  const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
-  const { currentUser, setCurrentUser } = useUser();
-  const [profileUser, setProfileUser] = useState();
+const Profile = ({ navigation }) => {
+	const { theme } = useContext(ThemeContext);
+	let activeColors = Colors[theme.mode];
+	const { currentUser, setCurrentUser } = useUser();
+	const { profileUser = currentUser, setProfileUser } = useProfileUser();
+	const route = useRoute();
+	const { ID } = route.params;
 
-  useEffect(() => {
-    LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-  }, []);
+	setProfileUser({ ID: ID });
 
-  const profileUserID = route.params.profileUserID;
-  if (profileUserID == undefined) {
-    const profileUserUsername = route.params.profileUserUsername;
-  }
-  fetch("https://cs262-commit.azurewebsites.net/username/" + profileUserID)
-    .then((response) => response.json())
-    .then((json) => setProfileUser(json))
-    .catch((error) => console.error(error)); 
+	useEffect(() => {
+		LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
+	}, []);
 
+	if (!profileUser.ID) {
+		console.error("profileUser is null");
+		return (
+			<View>
+				<Text>Loading...</Text>
+			</View>
+		);
+	}
 
-  const [notifData, setNotifData] = useState([]);
-  useEffect(() => {
-    fetch(
-      "https://cs262-commit.azurewebsites.net/notifications/" + profileUserID
-    )
-      .then((response) => response.json())
-      .then((json) => setNotifData(json))
-      .catch((error) => console.error(error));
-  }, []);
+	useEffect(() => {
+		console.error("profileUser is not null");
+		// if (profileUser && profileUser.ID) {
+		fetch(
+			"https://cs262-commit.azurewebsites.net/username/" + profileUser?.ID
+		)
+			.then((response) => response.json())
+			.then((json) => setProfileUser(json))
+			.catch((error) => console.error(error));
 
-  return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: activeColors.background }]}
-    >
-      <Header
-        navigation={navigation}
-        name="Profile"
-        type="withFriends"
-        style={{ marginTop: 15 }}
-      />
-      <ScrollView>
-        <View style={{ alignSelf: "left", marginLeft: 10 }}>
-          <View style={{ marginTop: 5 }}>
-            <View style={styles.profileImage}>
-              <Image
-                source={require("../assets/keith.jpg")}
-                style={styles.image}
-              />
-            </View>
-          </View>
-          {/* <View style={styles.add}> // got rid of to make image more visible for presentation
+		const [notifData, setNotifData] = useState([]);
+		useEffect(() => {
+			fetch(
+				"https://cs262-commit.azurewebsites.net/notifications/" +
+					profileUser?.ID
+			)
+				.then((response) => response.json())
+				.then((json) => setNotifData(json))
+				.catch((error) => console.error(error));
+		}, []);
+		// }
+	}, [profileUser]);
+
+	return (
+		<SafeAreaView
+			style={[
+				styles.container,
+				{ backgroundColor: activeColors.background },
+			]}
+		>
+			<Header
+				navigation={navigation}
+				name="Profile"
+				type="withFriends"
+				style={{ marginTop: 15 }}
+			/>
+			<ScrollView>
+				<View style={{ alignSelf: "left", marginLeft: 10 }}>
+					<View style={{ marginTop: 5 }}>
+						<View style={styles.profileImage}>
+							<Image
+								source={require("../assets/keith.jpg")}
+								style={styles.image}
+							/>
+						</View>
+					</View>
+					{/* <View style={styles.add}> // got rid of to make image more visible for presentation
             <TouchableOpacity
               style={{ justifyContent: "center", alignItems: "center" }}
             >
@@ -84,154 +104,190 @@ const Profile = ({ route, navigation }) => {
                 size={38}
                 color="#DFD8C8"
                 style={{ marginLeft: 2 }}
-              ></Ionicons>
+              />
             </TouchableOpacity>
           </View> */}
-        </View>
+				</View>
 
-        <View style={styles.infoContainer}>
-          <Text
-            style={{
-              fontWeight: "200",
-              fontSize: 36,
-              color: activeColors.text,
-            }}
-          >
-            {profileUser.name}
-          </Text>
-          <Text style={{ color: activeColors.text, fontSize: 14 }}>
-            {profileUser.username}
-          </Text>
-        </View>
+				<View style={styles.infoContainer}>
+					<Text
+						style={{
+							fontWeight: "200",
+							fontSize: 36,
+							color: activeColors.text,
+						}}
+					>
+						{profileUser.name}
+					</Text>
+					<Text style={{ color: activeColors.text, fontSize: 14 }}>
+						{profileUser.username}
+					</Text>
+				</View>
 
-        <View style={[styles.statsContainer, { marginBottom: 15 }]}>
-          <View style={styles.statsBox}>
-            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              {notifData.length}
-            </Text>
-            <Text style={[styles.subText, { color: activeColors.text }]}>
-              Commits
-            </Text>
-          </View>
-          <View
-            style={[
-              styles.statsBox,
-              {
-                borderColor: "#DFD8C8",
-                borderLeftWidth: 1,
-                borderRightWidth: 1,
-              },
-            ]}
-          >
-            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              {
-                notifData.filter(
-                  (notif) =>
-                    notif.type === "alarm_success" ||
-                    notif.type === "study_success" ||
-                    notif.type === "bedtime_success"
-                ).length
-              }
-            </Text>
-            <Text style={[styles.subText, { color: activeColors.text }]}>
-              Commitments Completed
-            </Text>
-          </View>
-          <View style={styles.statsBox}>
-            <Text style={[{ fontSize: 24 }, { color: activeColors.text }]}>
-              {
-                notifData.filter(
-                  (notif) =>
-                    notif.type === "alarm_fail" ||
-                    notif.type === "study_fail" ||
-                    notif.type === "bedtime_fail"
-                ).length
-              }
-            </Text>
-            <Text style={[styles.subText, { color: activeColors.text }]}>
-              Failed Commits
-            </Text>
-          </View>
-        </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <LineGraph />
-        </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <FlatList
-            nestedScrollEnabled={true}
-            scrollEnabled={false}
-            data={notifData}
-            renderItem={({ item }) => (
-              <Notification
-                name={profileUser.name}
-                username={profileUser.username}
-                Text={item.type}
-                id={item.id}
-              />
-            )}
-          />
-        </View>
-      </ScrollView>
+				<View style={[styles.statsContainer, { marginBottom: 15 }]}>
+					<View style={styles.statsBox}>
+						<Text
+							style={[
+								{ fontSize: 24 },
+								{ color: activeColors.text },
+							]}
+						>
+							{notifData.length ? notifData.length : 0}
+						</Text>
+						<Text
+							style={[
+								styles.subText,
+								{ color: activeColors.text },
+							]}
+						>
+							Commits
+						</Text>
+					</View>
+					<View
+						style={[
+							styles.statsBox,
+							{
+								borderColor: "#DFD8C8",
+								borderLeftWidth: 1,
+								borderRightWidth: 1,
+							},
+						]}
+					>
+						<Text
+							style={[
+								{ fontSize: 24 },
+								{ color: activeColors.text },
+							]}
+						>
+							{
+								notifData.filter(
+									(notif) =>
+										notif.type === "alarm_success" ||
+										notif.type === "study_success" ||
+										notif.type === "bedtime_success"
+								).length
+							}
+						</Text>
+						<Text
+							style={[
+								styles.subText,
+								{ color: activeColors.text },
+							]}
+						>
+							Commitments Completed
+						</Text>
+					</View>
+					<View style={styles.statsBox}>
+						<Text
+							style={[
+								{ fontSize: 24 },
+								{ color: activeColors.text },
+							]}
+						>
+							{
+								notifData.filter(
+									(notif) =>
+										notif.type === "alarm_fail" ||
+										notif.type === "study_fail" ||
+										notif.type === "bedtime_fail"
+								).length
+							}
+						</Text>
+						<Text
+							style={[
+								styles.subText,
+								{ color: activeColors.text },
+							]}
+						>
+							Failed Commits
+						</Text>
+					</View>
+				</View>
+				<View
+					style={{ justifyContent: "center", alignItems: "center" }}
+				>
+					<LineGraph />
+				</View>
+				<View
+					style={{ justifyContent: "center", alignItems: "center" }}
+				>
+					<FlatList
+						nestedScrollEnabled={true}
+						scrollEnabled={false}
+						data={notifData}
+						renderItem={({ item }) => (
+							<Notification
+								name={profileUser.name}
+								username={profileUser.username}
+								Text={item.type}
+								id={item.id}
+							/>
+						)}
+					/>
+				</View>
+			</ScrollView>
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
-        <Footer navigation={navigation} page="Profile" />
-      </View>
-    </SafeAreaView>
-  );
+			<View
+				style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}
+			>
+				<Footer navigation={navigation} page="Profile" />
+			</View>
+		</SafeAreaView>
+	);
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  image: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-  },
-  titleBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 24,
-    marginHorizontal: 16,
-  },
-  subText: {
-    fontSize: 12,
-    color: "#AEB5BC",
-    textTransform: "uppercase",
-    fontWeight: "500",
-  },
-  profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-    overflow: "hidden",
-  },
-  add: {
-    backgroundColor: "#41444B",
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: 40,
-    height: 40,
-    borderRadius: 30,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  infoContainer: {
-    alignSelf: "center",
-    alignItems: "center",
-    marginTop: -60,
-  },
-  statsContainer: {
-    flexDirection: "row",
-    alignSelf: "center",
-    marginTop: 32,
-  },
-  statsBox: {
-    alignItems: "center",
-    flex: 1,
-  },
+	container: {
+		flex: 1,
+	},
+	image: {
+		flex: 1,
+		height: undefined,
+		width: undefined,
+	},
+	titleBar: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginTop: 24,
+		marginHorizontal: 16,
+	},
+	subText: {
+		fontSize: 12,
+		color: "#AEB5BC",
+		textTransform: "uppercase",
+		fontWeight: "500",
+	},
+	profileImage: {
+		width: 100,
+		height: 100,
+		borderRadius: 100,
+		overflow: "hidden",
+	},
+	add: {
+		backgroundColor: "#41444B",
+		position: "absolute",
+		bottom: 0,
+		right: 0,
+		width: 40,
+		height: 40,
+		borderRadius: 30,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	infoContainer: {
+		alignSelf: "center",
+		alignItems: "center",
+		marginTop: -60,
+	},
+	statsContainer: {
+		flexDirection: "row",
+		alignSelf: "center",
+		marginTop: 32,
+	},
+	statsBox: {
+		alignItems: "center",
+		flex: 1,
+	},
 });
 
 export default Profile;

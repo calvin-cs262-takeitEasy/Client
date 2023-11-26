@@ -4,6 +4,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { useNavigation } from "@react-navigation/native";
 
 import { useUser } from "../contexts/UserContext";
 
@@ -99,7 +100,7 @@ const Notification = (props, { navigation }) => {
               name="user"
               size={30}
               color={activeColors.text}
-              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negetive margin, idk how it works either
+              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negetive margin, idk how it works either // actually i do, it's because the icon is a square, so it's centered on the bottom of the square, so we need to move it up by half the height of the square // i didn't write that, copilot did, but i'm leaving it in because it's funny and sounds accurate
               onPress={
                 goProfile
                 //console.log("Going to profile " + props.id)

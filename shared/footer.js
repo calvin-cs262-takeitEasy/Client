@@ -31,7 +31,9 @@ const Footer = ({ navigation, page }) => {
   };
 
   const goprofile = () => {
-    navigation.navigate("Profile", { profileUserID: currentUser.ID });
+    console.log("Going to profile " + currentUser.ID);
+    const ID = currentUser.ID;
+    navigation.navigate("Profile", { ID });
   };
 
   const { theme } = useContext(ThemeContext);
