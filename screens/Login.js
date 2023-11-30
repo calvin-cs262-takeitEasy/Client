@@ -57,9 +57,9 @@ const Login = ({ navigation }) => {
   };
 
   // when the forgot button is pressed
-  const forgot = () => {
-    navigation.navigate("Forgot");
-  };
+  // const forgot = () => {
+  //   navigation.navigate("Forgot");
+  // };
 
   const forceLogin = () => {
     setCurrentUser({ username: "kvlinden", ID: 1, name: "keith" });
@@ -163,7 +163,7 @@ const Login = ({ navigation }) => {
             />
 
             {/* forgot password button */}
-            <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
+            {/* <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
               <Text
                 style={{
                   color: activeColors.text,
@@ -171,7 +171,7 @@ const Login = ({ navigation }) => {
               >
                 Forgot?
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           {/* login button */}

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 
@@ -100,7 +100,7 @@ const Notification = (props) => {
               name="user"
               size={30}
               color={activeColors.text}
-              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negetive margin, idk how it works either
+              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negative margin, idk how it works either
             />
             <View // name + username
               style={{
@@ -151,10 +151,10 @@ const Notification = (props) => {
 
             <View style={{ margin: 10, marginLeft: 55, flexDirection: "row" }}>
               <TouchableOpacity onPress={() => setIsPressed(!isPressed)}>
-                <AntDesign
-                  name="meh"
+                <MaterialIcons
+                  name="thumb-up"
                   size={22}
-                  color={isPressed ? "#F08080" : activeColors.text}
+                  color={isPressed ? activeColors.accent : activeColors.text}
                 />
               </TouchableOpacity>
             </View>

@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useUser } from "../contexts/UserContext";
 
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 const Homepage = () => {
   const { theme } = useContext(ThemeContext);

@@ -1,17 +1,29 @@
-import React from "react";
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
+import { React, useContext } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { Colors } from "../components/styles";
 
 // definition of the Item, which will be rendered in the FlatList
-const Item = ({ name }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{name}</Text>
-   
-  </View>
-);
+const Item = ({ name }) => {
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
+  return (
+    <View style={styles.item}>
+      <Text style={(styles.title, { color: activeColors.text })}>{name}</Text>
+    </View>
+  );
+};
 
 // the filter
 const List = ({ searchPhrase, setClicked, data }) => {
-  const renderItem = ({ item }) => {
+  const RenderItem = ({ item }) => {
     // when no input, show all
     if (searchPhrase === "") {
       return;
@@ -22,9 +34,17 @@ const List = ({ searchPhrase, setClicked, data }) => {
         .toUpperCase()
         .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
     ) {
-      return <Item name={item.username} />;
+      return (
+        <TouchableOpacity onPress={addFriend(item)}>
+          <Item name={item.username} />
+        </TouchableOpacity>
+      );
     }
+  };
 
+  const addFriend = (props) => {
+    console.log("add friend");
+    console.log(props);
   };
 
   return (
@@ -36,7 +56,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
       >
         <FlatList
           data={data}
-          renderItem={renderItem}
+          renderItem={RenderItem}
           keyExtractor={(item) => item.ID}
         />
       </View>
