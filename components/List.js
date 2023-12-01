@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { Colors } from "../components/styles";
+import { useUser } from "../contexts/UserContext";
 
 // definition of the Item, which will be rendered in the FlatList
 const Item = ({ name }) => {
@@ -23,6 +24,10 @@ const Item = ({ name }) => {
 
 // the filter
 const List = ({ searchPhrase, setClicked, data }) => {
+  const { currentUser, setCurrentUser } = useUser();
+
+  const [userData, setUserData] = useState([]);
+
   const RenderItem = ({ item }) => {
     // when no input, show all
     if (searchPhrase === "") {
@@ -35,7 +40,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
         .includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))
     ) {
       return (
-        <TouchableOpacity onPress={addFriend(item)}>
+        <TouchableOpacity onPress={() => addFriend(item)}>
           <Item name={item.username} />
         </TouchableOpacity>
       );
@@ -43,8 +48,32 @@ const List = ({ searchPhrase, setClicked, data }) => {
   };
 
   const addFriend = (props) => {
-    console.log("add friend");
-    console.log(props);
+    // console.log("add friend");
+    console.log("Props: " + props.ID);
+
+    fetch("https://cs262-commit.azurewebsites.net/friends/" + currentUser.ID)
+      // .then((test) => console.log(test))
+      .then((response) => response.json())
+      // .then((test) => console.log(test))
+      .then((json) => setUserData(json))
+      .catch((error) => console.error(error));
+
+    console.log("User Data: " + userData);
+    if (userData.find((x) => x.friendsID === props.ID)) {
+      alert("You are already friends with " + props.username);
+      return;
+    }
+
+    response = fetch("https://cs262-commit.azurewebsites.net/friends", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        friendID: props.ID,
+        userID: currentUser.ID,
+      }),
+    });
   };
 
   return (

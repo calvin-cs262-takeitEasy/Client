@@ -95,7 +95,7 @@ const Notification = (props) => {
             borderRadius: 10,
           }}
         >
-          <TouchableOpacity>
+          <View>
             <AntDesign
               name="user"
               size={30}
@@ -126,7 +126,7 @@ const Notification = (props) => {
                 {props.username}
               </Text>
             </View>
-          </TouchableOpacity>
+          </View>
 
           <View
             style={{
