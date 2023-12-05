@@ -135,6 +135,10 @@ export default function App() {
     }
   };
 
+  const alexFunction = () => {
+    console.log("comm")
+  }
+
   useEffect(() => {
     const retrieveTime = async () => {
       const storedHour = await AsyncStorage.getItem('selectedHour');
@@ -165,11 +169,14 @@ export default function App() {
             duration={60}
             colors={activeColors.primary}
             colorsTime={[10, 6, 3, 0]}
-            onComplete={() => ({ shouldRepeat: false, delay: 2 })}
+            onComplete={() => {
+            alexFunction();
+              return { shouldRepeat: false, delay: 2 };
+            }}
             updateInterval={1}
           >
             {({ remainingTime }) => (
-              <Text style={{ color: activeColors.Text, fontSize: 40 }}>
+              <Text style={{ color: activeColors.text, fontSize: 40 }}>
                 {remainingTime}
               </Text>
             )}

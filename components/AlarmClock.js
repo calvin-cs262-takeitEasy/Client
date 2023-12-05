@@ -52,6 +52,7 @@ export default function App() {
   const playSound = async () => {
     if (sound) {
       await sound.playAsync();
+      console.log("Playing Alarm");
       // Start a timeout that will call the desired function after 20 seconds
       const id = setTimeout(alexFunction, 20000);
       setTimeoutId(id);
