@@ -12,17 +12,14 @@ import PropTypes from "prop-types";
 import { SearchBar } from "../components/SearchBar";
 import List from "../components/List";
 import Header from "../shared/header";
-import UserAccount from "../json/UserAccount.json";
 
 const Friends = ({ navigation }) => {
   const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [fakeData, setFakeData] = useState();
   const [data, setData] = useState([]);
-
-  let activeColors = Colors[theme.mode];
 
   useEffect(() => {
     const getData = async () => {
@@ -77,7 +74,6 @@ Friends.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
