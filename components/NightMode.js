@@ -176,7 +176,7 @@ export default function App() {
             updateInterval={1}
           >
             {({ remainingTime }) => (
-              <Text style={{ color: activeColors.Text, fontSize: 40 }}>
+              <Text style={{ color: activeColors.text, fontSize: 40 }}>
                 {remainingTime}
               </Text>
             )}
