@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Alarm from "../screens/Alarm";
 import Bedtime from "../screens/Bedtime";
-import Forgot from "../screens/Forgot";
 import Friends from "../screens/Friends";
 import Homepage from "../screens/Homepage";
 import Login from "../screens/Login";
@@ -29,7 +28,6 @@ const RootStack = () => {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Forgot" component={Forgot} />
         <Stack.Screen name="Homepage" component={Homepage} />
         <Stack.Screen name="Alarm" component={Alarm} />
         <Stack.Screen name="Study" component={Study} />
