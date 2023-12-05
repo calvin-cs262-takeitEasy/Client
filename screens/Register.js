@@ -8,7 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -16,19 +16,68 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-const Register = ({ navigation }) => {
+export default function Register({ navigation }) {
+  const { theme } = useContext(ThemeContext);
+  let activeColors = Colors[theme.mode];
+
   // when the login button is pressed
   const login = () => {
     navigation.navigate("Login");
   };
 
-  // when the register button is pressed
-  const register = () => {
-    navigation.navigate("Homepage");
-  };
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setconfirmPassword] = useState("");
 
-  const { theme } = useContext(ThemeContext);
-  let activeColors = Colors[theme.mode];
+  const handleRegister = async () => {
+
+    const usernameresponses = await fetch(
+      "https://cs262-commit.azurewebsites.net/username"
+    );
+    const userData = await usernameresponses.json();
+    const currentUser = userData.find(
+      (thecuruser) => thecuruser.username === username
+    );
+
+    console.log(username + " " + password + " " + confirm);
+
+    if (currentUser) {
+      alert("Username already exists. Try again.");
+      console.log("Username already exists. Try again.");
+    } else if (username.length <= 3) {
+      alert("Username must be at least 4 characters.");
+      console.log("Username must be at least 4 characters.");
+    } else if (password.length <= 0) {
+      alert("Your password must be at least 8 characters");
+      console.log("Your password must be at least 8 characters");
+    } else if (password !== confirm) {
+      alert("Wrong Password! Try Again");
+      console.log("Wrong Password! Try Again");
+    } else {
+      try {
+
+        const data = {
+          username,
+          password,
+        };
+        console.log(data);
+        const response = await fetch(
+          "https://cs262-commit.azurewebsites.net/users",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    navigation.navigate("Login");
+  };
 
   return (
     <SafeAreaView
@@ -84,6 +133,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Username"
+              onChangeText={(text) => setUsername(text)}
               autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
@@ -109,6 +159,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Password"
+              onChangeText={(text) => setPassword(text)}
               autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
@@ -133,6 +184,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder="Confirm Password"
+              onChangeText={(text) => setconfirmPassword(text)}
               autoCapitalize="none"
               placeholderTextColor={activeColors.text}
               style={{ flex: 1, paddingVertical: 0, color: activeColors.text }}
@@ -142,7 +194,7 @@ const Register = ({ navigation }) => {
 
           {/* register button */}
           <TouchableOpacity
-            onPress={register}
+            onPress={handleRegister}
             style={{
               backgroundColor: activeColors.primary,
               padding: 20,
@@ -191,7 +243,7 @@ const Register = ({ navigation }) => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 Register.propTypes = {
   navigation: PropTypes.shape({
@@ -201,4 +253,4 @@ Register.propTypes = {
 
 const styles = StyleSheet.create({});
 
-export default Register;
+// export default Register;

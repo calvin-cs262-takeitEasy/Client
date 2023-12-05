@@ -56,11 +56,6 @@ const Login = ({ navigation }) => {
     navigation.navigate("Register");
   };
 
-  // when the forgot button is pressed
-  // const forgot = () => {
-  //   navigation.navigate("Forgot");
-  // };
-
   const forceLogin = () => {
     setCurrentUser({ username: "kvlinden", ID: 1, name: "keith" });
     navigation.navigate("Homepage");
@@ -161,17 +156,6 @@ const Login = ({ navigation }) => {
               }}
               secureTextEntry={true}
             />
-
-            {/* forgot password button */}
-            {/* <TouchableOpacity onPress={forgot} style={{ fontWeight: "700" }}>
-              <Text
-                style={{
-                  color: activeColors.text,
-                }}
-              >
-                Forgot?
-              </Text>
-            </TouchableOpacity> */}
           </View>
 
           {/* login button */}
