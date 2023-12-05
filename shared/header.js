@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Dimensions, StatusBar } from "react-native";
@@ -21,6 +22,11 @@ const Header = ({ navigation, name, type }) => {
   // if the back button is pressed
   const goBack = () => {
     navigation.goBack();
+  };
+
+  // if the help button is pressed
+  const goHelp = () => {
+    navigation.navigate("Help");
   };
 
   // if the notification button is pressed
@@ -151,7 +157,7 @@ const Header = ({ navigation, name, type }) => {
               color: "#FFF",
               letterSpacing: 1,
               marginLeft: 15,
-              width: Dimensions.get("window").width - 70,
+              width: Dimensions.get("window").width - 120,
             }}
           >
             {name}
@@ -164,6 +170,12 @@ const Header = ({ navigation, name, type }) => {
             justifyContent: "flex-end",
           }}
         >
+          <TouchableOpacity
+            onPress={goHelp}
+            style={{ padding: 10, width: 50, height: 50 }}
+          >
+            <Octicons name="question" size={25} color={"#FFF"} />
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
             style={{ padding: 10, width: 50, height: 50 }}

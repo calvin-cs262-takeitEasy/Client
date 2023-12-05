@@ -13,6 +13,7 @@ import Register from "../screens/Register";
 import Study from "../screens/Study";
 import Settings from "../screens/Settings";
 import StudyLockdown from "../screens/StudyLockdown";
+import Help from "../screens/Help";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const RootStack = () => {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Friends" component={Friends} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Help" component={Help} />
       </Stack.Navigator>
     </NavigationContainer>
   );
