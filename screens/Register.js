@@ -8,7 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import { React, useContext } from "react";
+import { React, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -23,9 +23,54 @@ const Register = ({ navigation }) => {
   };
 
   // when the register button is pressed
-  const register = () => {
-    navigation.navigate("Homepage");
+  // const register = () => {
+  //   const [username, setUsername] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const { currentUser, setCurrentUser } = useUser();
+    
+  //   navigation.navigate("Homepage");
+    
+  // };
+
+const salRrounds = 4;
+
+function register({ navigation }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setconfirmPassword] = useState('');
+  const [usererrorMessage, setUserErrorMessage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+
+  const handleRegister = async () => {
+    setUserErrorMessage('');
+    setPasswordErrorMessage('');
+
+    //error messages
+    
+    const usernameresponses = await fetch("https://cs262-commit.azurewebsites.net/username");
+    const userData = await usernameresponses.json();
+    const currentUser = userData.find((thecuruser) => thecuruser.username === username);
+    if (currentUser) {
+      setUserErrorMessage('Username already exists. Try again.');
+    } else if (username.length <= 3) {
+      setUserErrorMessage('Username must be at least 4 characters.');
+    } else if (password.length <= 7) {
+      setPasswordErrorMessage('Your password must be at least 8 characters');
+    } else if (password !== confirm) {
+      setPasswordErrorMessage('Wrong Password! Try Again');
+    } else {
+      try {
+        if (err) {
+          console.error('Error', err);
+          return;
+        }
+      }catch(error){
+        console.error(error);
+      }
+    }
   };
+
+}
 
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
