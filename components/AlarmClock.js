@@ -19,6 +19,7 @@ export default function App() {
   const [showPicker, setShowPicker] = useState(false);
   const [sound, setSound] = useState();
   const { theme } = useContext(ThemeContext);
+  const [timeoutId, setTimeoutId] = useState(null);
   let activeColors = Colors[theme.mode];
 
   useEffect(() => {
@@ -51,6 +52,9 @@ export default function App() {
   const playSound = async () => {
     if (sound) {
       await sound.playAsync();
+      // Start a timeout that will call the desired function after 20 seconds
+      const id = setTimeout(alexFunction, 20000);
+      setTimeoutId(id);
     }
   };
 
@@ -87,9 +91,10 @@ export default function App() {
   };
 
   const handleStop = () => {
-    if (sound) {
-      sound.stopAsync();
-      setSound(null);
+    // Clear the timeout
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      setTimeoutId(null);
       // Stop all currently playing sounds before deleting the alarm
       for (let i = 0; i < alarms.length; i++) {
         if (sound[i]) {
@@ -98,6 +103,10 @@ export default function App() {
         }
       }
     }
+  };
+
+  const alexFunction = () => {
+    console.log("comm")
   };
 
   return (
