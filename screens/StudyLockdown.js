@@ -2,23 +2,27 @@ import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { React, useContext, useState, useEffect, useRef } from "react";
-import { SafeAreaView,
-         Text, 
-         View, 
-         TouchableOpacity, 
-         StyleSheet, 
-         AppState, 
-         LogBox,
-         Dimensions
-        } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  AppState,
+  LogBox,
+  Dimensions,
+} from "react-native";
 import { Audio } from "expo-av";
 
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+import { useUser } from "../contexts/UserContext";
+
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
   let activeColors = Colors[theme.mode];
+  const { currentUser, setCurrentUser } = useUser();
 
   const { hour, minute } = route.params;
   let duration = hour * 3600 + minute * 60;
@@ -68,27 +72,50 @@ const StudyLockdown = ({ route, navigation }) => {
     return hours.toString() + ":" + minutesStr + ":" + secondsStr;
   };
 
-  const appState = useRef(AppState.currentState)
-  const [appStateVisible, setAppStateVisible] = useState(appState.current)
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
   useEffect(() => {
-    AppState.addEventListener("change", _handleAppStateChange)
+    AppState.addEventListener("change", _handleAppStateChange);
     return () => {
-      AppState.removeEventListener("change", _handleAppStateChange)
-    }
-  }, [])
+      AppState.removeEventListener("change", _handleAppStateChange);
+    };
+  }, []);
+  const createNotification = async () => {
+    const data = {
+      userID: currentUser.ID,
+      type: "study_fail",
+    };
+    console.log("Creating Notif : " + data);
+    response = await fetch(
+      "https://cs262-commit.azurewebsites.net/notifications",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+  };
+
   const _handleAppStateChange = (nextAppState) => {
-    if (appState.current.match(/inactivebackground/) &&
-    nextAppState === "active") {
-      console.log("app has come to the foreground")
+    if (
+      appState.current.match(/inactivebackground/) &&
+      nextAppState === "active"
+    ) {
+      console.log("app has come to the foreground");
     }
 
-    appState.current = nextAppState
-    setAppStateVisible(appState.current)
+    appState.current = nextAppState;
+    setAppStateVisible(appState.current);
 
-    console.log("AppState: ", appState.current)
-    playSound()
-  }
+    console.log("AppState: ", appState.current);
+
+    if (appState.current.match("inactive")) {
+      createNotification();
+    }
+  };
 
   return (
     <SafeAreaView
@@ -99,7 +126,6 @@ const StudyLockdown = ({ route, navigation }) => {
         backgroundColor: activeColors.background,
       }}
     >
-
       <CountdownCircleTimer
         isPlaying
         isGrowing={true}
@@ -131,7 +157,6 @@ const StudyLockdown = ({ route, navigation }) => {
       >
         <Text style={{ color: "#FFF", fontSize: 16 }}>Exit Study timer</Text>
       </TouchableOpacity>
-
     </SafeAreaView>
   );
 };
