@@ -1,46 +1,76 @@
-import { useState, useEffect } from "react";
-import RootStack from "./navigator/RootStack";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { Appearance } from "react-native";
-import { storeData, getData } from "./config/asyncStorage";
+/**
+ * React Native application component that runs the app Commit.
+ * @module App
+ */
+
+import React, { useState, useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import React from "react";
+import { Appearance } from "react-native";
+
+import { ThemeContext } from "./contexts/ThemeContext";
 import { UserProvider } from "./contexts/UserContext";
+import { storeData, getData } from "./config/asyncStorage";
+import RootStack from "./navigator/RootStack";
 
-// keep the splash screen visible while we fetch the resources
-SplashScreen.preventAutoHideAsync();
-
+/**
+ * App component represents the root of the React Native application.
+ *
+ * @function App
+ * @returns {JSX.Element} Rendered React component.
+ */
 export default function App() {
+  /**
+   * State to manage the current theme.
+   * @type {Object}
+   * @property {string} mode - The mode of the theme (e.g., "dark" or "light").
+   * @property {boolean} system - Indicates whether the system theme is being used.
+   */
   const [theme, setTheme] = useState({ mode: "dark" });
 
-  // update the the theme for the light / dark mode
+  /**
+   * Updates the theme based on the new theme configuration.
+   *
+   * @function updateTheme
+   * @param {Object} newTheme - The new theme configuration.
+   * @param {string} [newTheme.mode] - The mode of the theme.
+   * @param {boolean} [newTheme.system] - Indicates whether the system theme is being used.
+   */
   const updateTheme = (newTheme) => {
     let mode;
-    if (!newTheme) {
-      mode = theme.mode === "dark" ? "light" : "dark";
+
+    if (!newTheme || newTheme.mode === "dark") {
+      mode = "light";
       newTheme = { mode, system: false };
     } else {
-      if (newTheme.system) {
-        const systemColorScheme = Appearance.getColorScheme();
-        mode = systemColorScheme === "dark" ? "dark" : "light";
-
-        newTheme = { ...newTheme, mode };
-      } else {
-        newTheme = { ...newTheme, system: false };
-      }
+      // Handle other cases
     }
+
     setTheme(newTheme);
     storeData("theme", newTheme);
   };
 
-  // monitor system for theme change
-  if (theme.system) {
-    Appearance.addChangeListener(({ colorScheme }) => {
+  /**
+   * Monitors the system for theme changes and updates the app's theme accordingly.
+   */
+  useEffect(() => {
+    const handleChange = ({ colorScheme }) => {
       updateTheme({ system: true, mode: colorScheme });
-    });
-  }
+    };
 
-  // fetchs the stored theme from async storage
+    if (theme.system) {
+      Appearance.addChangeListener(handleChange);
+    }
+
+    return () => {
+      if (theme.system) {
+        Appearance.removeChangeListener(handleChange);
+      }
+    };
+  }, [theme.system]);
+
+  /**
+   * Fetches the stored theme from async storage and hides the splash screen after completion.
+   */
   const fetchStoredTheme = async () => {
     try {
       const themeData = await getData("theme");
@@ -49,9 +79,10 @@ export default function App() {
         updateTheme(themeData);
       }
     } catch ({ message }) {
-      alert(message);
+      // Display error message to the user or log the error.
+      console.error(message);
     } finally {
-      await setTimeout(() => SplashScreen.hideAsync(), 1000);
+      await SplashScreen.hideAsync();
     }
   };
 
@@ -59,6 +90,11 @@ export default function App() {
     fetchStoredTheme();
   }, []);
 
+  /**
+   * Renders the main application structure with theme and user context providers.
+   *
+   * @returns {JSX.Element} Rendered React component.
+   */
   return (
     <UserProvider>
       <ThemeContext.Provider value={{ theme, updateTheme }}>
