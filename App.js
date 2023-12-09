@@ -37,14 +37,19 @@ export default function App() {
    */
   const updateTheme = (newTheme) => {
     let mode;
-
-    if (!newTheme || newTheme.mode === "dark") {
-      mode = "light";
+    if (!newTheme) {
+      mode = theme.mode === "dark" ? "light" : "dark";
       newTheme = { mode, system: false };
     } else {
-      // Handle other cases
-    }
+      if (newTheme.system) {
+        const systemColorScheme = Appearance.getColorScheme();
+        mode = systemColorScheme === "dark" ? "dark" : "light";
 
+        newTheme = { ...newTheme, mode };
+      } else {
+        newTheme = { ...newTheme, system: false };
+      }
+    }
     setTheme(newTheme);
     storeData("theme", newTheme);
   };
@@ -52,21 +57,11 @@ export default function App() {
   /**
    * Monitors the system for theme changes and updates the app's theme accordingly.
    */
-  useEffect(() => {
-    const handleChange = ({ colorScheme }) => {
+  if (theme.system) {
+    Appearance.addChangeListener(({ colorScheme }) => {
       updateTheme({ system: true, mode: colorScheme });
-    };
-
-    if (theme.system) {
-      Appearance.addChangeListener(handleChange);
-    }
-
-    return () => {
-      if (theme.system) {
-        Appearance.removeChangeListener(handleChange);
-      }
-    };
-  }, [theme.system]);
+    });
+  }
 
   /**
    * Fetches the stored theme from async storage and hides the splash screen after completion.
