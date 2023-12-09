@@ -55,7 +55,7 @@ const Footer = ({ navigation, page }) => {
     <View
       style={{
         width: Dimensions.get("screen").width,
-        height: 60,
+        height: 90,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
@@ -73,7 +73,9 @@ const Footer = ({ navigation, page }) => {
           justifyContent: "center",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          marginTop: 5,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: -15,
         }}
       >
         <TouchableOpacity
@@ -85,7 +87,7 @@ const Footer = ({ navigation, page }) => {
             justifyContent: "center",
           }}
         >
-          <Ionicons name="home-outline" size={25} color={activeColors.text} />
+          <Ionicons name="home-outline" size={35} color={activeColors.text} />
         </TouchableOpacity>
       </View>
 
@@ -98,7 +100,9 @@ const Footer = ({ navigation, page }) => {
           justifyContent: "center",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          marginTop: 5,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: -15,
         }}
       >
         <TouchableOpacity
@@ -112,7 +116,7 @@ const Footer = ({ navigation, page }) => {
         >
           <MaterialCommunityIcons
             name="alarm"
-            size={25}
+            size={35}
             color={activeColors.text}
           />
         </TouchableOpacity>
@@ -127,7 +131,9 @@ const Footer = ({ navigation, page }) => {
           justifyContent: "center",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          marginTop: 5,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: -15,
         }}
       >
         <TouchableOpacity
@@ -139,7 +145,7 @@ const Footer = ({ navigation, page }) => {
             justifyContent: "center",
           }}
         >
-          <Feather name="book" size={25} color={activeColors.text} />
+          <Feather name="book" size={35} color={activeColors.text} />
         </TouchableOpacity>
       </View>
 
@@ -152,7 +158,9 @@ const Footer = ({ navigation, page }) => {
           justifyContent: "center",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          marginTop: 5,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: -15,
         }}
       >
         <TouchableOpacity
@@ -166,7 +174,7 @@ const Footer = ({ navigation, page }) => {
         >
           <MaterialCommunityIcons
             name="alarm-snooze"
-            size={25}
+            size={35}
             color={activeColors.text}
           />
         </TouchableOpacity>
@@ -181,7 +189,9 @@ const Footer = ({ navigation, page }) => {
           justifyContent: "center",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
-          marginTop: 5,
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: -15,
         }}
       >
         <TouchableOpacity
@@ -193,7 +203,7 @@ const Footer = ({ navigation, page }) => {
             justifyContent: "center",
           }}
         >
-          <AntDesign name="user" size={25} color={activeColors.text} />
+          <AntDesign name="user" size={35} color={activeColors.text} />
         </TouchableOpacity>
       </View>
     </View>

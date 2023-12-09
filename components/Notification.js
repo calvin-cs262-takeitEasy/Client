@@ -69,7 +69,7 @@ const Notification = (props) => {
         borderRadius: 10,
         alignItems: "center",
         justifyContent: "center",
-        margin: 5,
+        margin: 10,
       }}
     >
       <View //notif backdrop
@@ -81,7 +81,7 @@ const Notification = (props) => {
           borderRadius: 10,
           flexDirection: "row",
           justifyContent: "space-between",
-          margin: 5,
+          margin: 10,
         }}
       >
         <View // user icon + name + username
@@ -89,8 +89,8 @@ const Notification = (props) => {
             flexDirection: "row",
             alignItems: "center",
             flexWrap: "wrap",
-            width: 140,
-            height: 40,
+            width: 200,
+            height: 42,
             backgroundColor: activeColors.secondary,
             borderRadius: 10,
           }}
@@ -100,13 +100,13 @@ const Notification = (props) => {
               name="user"
               size={30}
               color={activeColors.text}
-              style={{ marginRight: 5, marginBottom: -30, marginTop: 5 }} // don't question the negative margin, idk how it works either
+              style={{ marginRight: 5, marginBottom: -32, marginTop: 5 }} // don't question the negative margin, idk how it works either
             />
             <View // name + username
               style={{
                 flexDirection: "column",
                 width: 100,
-                marginLeft: 30,
+                marginLeft: 35,
               }}
             >
               <Text
@@ -133,7 +133,7 @@ const Notification = (props) => {
               flexDirection: "row",
               flexWrap: "wrap",
               width: Dimensions.get("window").width - 52,
-              height: 48,
+              height: 46,
               backgroundColor: activeColors.secondary,
               borderRadius: 10,
               marginTop: 25,

@@ -145,6 +145,31 @@ const Profile = ({ navigation }) => {
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <LineGraph />
         </View>
+        <View
+              style={{
+                backgroundColor: activeColors.background,
+                width: Dimensions.get("window").width - 20,
+                alignItems: "left",
+                paddingHorizontal: 15,
+                paddingTop: 15,
+              }}
+            >
+              <Text style={{ color: activeColors.text, fontSize: 30, marginBottom: 5 }}>My Comms</Text>
+              <View
+                style={{
+                  borderBottomColor: activeColors.tertiary,
+                  borderBottomWidth: 4,
+                  width: '60%',
+                  borderRadius: 3,
+                }}
+              />
+              {/* Adjusted paddingBottom to give space between text and line */}
+              <View
+                style={{
+                  paddingBottom: 7, 
+                }}
+              />
+            </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <FlatList
             nestedScrollEnabled={true}
@@ -160,9 +185,18 @@ const Profile = ({ navigation }) => {
             )}
           />
         </View>
+        <View
+              style={{
+                backgroundColor: activeColors.background,
+                width: Dimensions.get("window").width - 20,
+                alignItems: "left",
+                paddingHorizontal: 0,
+                paddingTop: 50,
+              }}
+        ></View>
       </ScrollView>
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: -8}}>
         <Footer navigation={navigation} page="Profile" />
       </View>
     </SafeAreaView>

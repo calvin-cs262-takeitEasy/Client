@@ -9,7 +9,6 @@ export const Colors = {
     text: "#000000",
     graphBlue: "#045980",
     deleteRed: "#c31515"
-
   },
   dark: {
     primary: "#064663",

@@ -20,7 +20,7 @@ const Bedtime = ({ navigation }) => {
     >
       <Header navigation={navigation} name="Bedtime" />
       <NightMode />
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: -8}}>
         <Footer navigation={navigation} page="Bedtime" />
       </View>
     </SafeAreaView>

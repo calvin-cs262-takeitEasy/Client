@@ -30,7 +30,7 @@ const Alarm = ({ navigation }) => {
 
       <AlarmClock />
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: -8}}>
         <Footer navigation={navigation} page="Alarm" />
       </View>
     </SafeAreaView>
