@@ -49,24 +49,42 @@ export default function App() {
     };
   }, []);
 
+  /*Checks if the sound object exists, 
+  plays the sound after loading and unloading, and sets a timeout 
+  to call the desired function after 20 seconds
+  */
   const playSound = async () => {
+    // Load the sound
+    if (sound) {
+      await sound.unloadAsync();
+      await sound.loadAsync(require("../assets/wake_up.mp3"));
+    }
+
+    // Play the sound
     if (sound) {
       await sound.playAsync();
-      console.log("Playing Alarm");
-      // Start a timeout that will call the desired function after 20 seconds
-      const id = setTimeout(alexFunction, 20000);
-      setTimeoutId(id);
     }
+
+    // Start a timeout that will call the desired function after 20 seconds
+    const id = setTimeout(alexFunction, 20000);
+    setTimeoutId(id);
+  
   };
 
+  /*Shows the date/time picker*/
   const showDateTimePicker = () => {
     setShowPicker(true);
   };
 
+  /*Hides the date/time picker*/
   const hideDateTimePicker = () => {
     setShowPicker(false);
   };
 
+  /* Hides the datetimepicker, checks for a selected date
+  if seclected, set the date and set the alarm to date.
+  Then, at the date, play the alarm and ensure
+  that if the date is in the past, that it plays tomorrow. */
   const handleDateChange = (event, selectedDate) => {
     hideDateTimePicker();
     if (selectedDate) {
@@ -85,27 +103,31 @@ export default function App() {
     }
   };
 
+  /* Deletes the alarm at the given index */
   const deleteAlarm = (index) => {
     const newAlarms = [...alarms];
     newAlarms.splice(index, 1);
     setAlarms(newAlarms);
   };
 
+  /* Checks and clears timeout
+  stops the sound by unloading it
+    */
   const handleStop = () => {
     // Clear the timeout
     if (timeoutId) {
       clearTimeout(timeoutId);
       setTimeoutId(null);
-      // Stop all currently playing sounds before deleting the alarm
-      for (let i = 0; i < alarms.length; i++) {
-        if (sound[i]) {
-          sound[i].stopAsync();
-          sound[i] = null;
-        }
-      }
+    }
+
+    // Stop and unload the sound
+    if (sound) {
+      sound.stopAsync();
+      sound.unloadAsync();
     }
   };
 
+  /* Allows alex to send comms */
   const alexFunction = () => {
     console.log("comm")
   };
