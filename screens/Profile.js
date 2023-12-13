@@ -99,7 +99,7 @@ const Profile = ({ navigation }) => {
               {notifData.length}
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
-              Commits
+              Commitments
             </Text>
           </View>
           <View
@@ -138,7 +138,7 @@ const Profile = ({ navigation }) => {
               }
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>
-              Failed Commits
+              Commitments Failed 
             </Text>
           </View>
         </View>
