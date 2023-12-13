@@ -75,23 +75,17 @@ const List = ({ searchPhrase, setClicked, data }) => {
 
     console.log("Friend's ID: " + data.friendsID);
     console.log("User ID: " + data.userID);
-    try {
-      // Add the friend to the current user's friends
-      const response = await fetch(
-        "https://cs262-commit.azurewebsites.net/friends",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            data,
-          }),
-        }
-      );
-    } catch (error) {
-      console.error(error);
-    }
+    // Add the friend to the current user's friends
+    response = await fetch("https://cs262-commit.azurewebsites.net/friends", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+    });
+    await console.log("Response: " + response.status); 
   };
 
   return (
