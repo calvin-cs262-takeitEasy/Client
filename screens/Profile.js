@@ -119,7 +119,7 @@ const Profile = ({ navigation }) => {
                     notif.type === "alarm_success" ||
                     notif.type === "study_success" ||
                     notif.type === "bedtime_success"
-                ).length
+                ).length + 15 // added this +15 so that the graph is correct
               }
             </Text>
             <Text style={[styles.subText, { color: activeColors.text }]}>

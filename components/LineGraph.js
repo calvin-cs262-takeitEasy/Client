@@ -12,12 +12,12 @@ export const LineGraph = () => {
     labels: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
     datasets: [
       {
-        data: [10, 4, 6, 8, 10, 0, 5],
+        data: [4, 2, 3, 4, 5, 1, 3],
         strokeWidth: 2,
         color: (opacity = 1) => activeColors.graphBlue,
       },
       {
-        data: [5, 4, 6, 3, 8, 0, 2],
+        data: [2, 2, 3, 1, 4, 0, 1],
         strokeWidth: 2,
         color: (opacity = 1) => "#2EBF03", //green for completed commits
       },
