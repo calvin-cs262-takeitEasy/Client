@@ -7,6 +7,7 @@ import {
   Dimensions,
   FlatList,
   LogBox,
+  Text,
 } from "react-native";
 import PropTypes from "prop-types";
 import { Colors } from "../components/styles";
@@ -42,12 +43,11 @@ const Homepage = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        justifyContent: "center",
         backgroundColor: activeColors.background,
       }}
     >
       <Header navigation={navigation} name="Home" type="withFriends" />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flex: 1, alignItems: "center" }}>
         <StatusBar style="auto" />
         <View
           style={{
@@ -55,21 +55,57 @@ const Homepage = () => {
             width: Dimensions.get("window").width,
             alignItems: "center",
           }}
-        >
-          <FlatList
-            data={notifData}
-            renderItem={({ item }) => (
-              <Notification
-                name={item.name}
-                username={item.username}
-                Text={item.type}
-                id={item.id}
+        ></View>
+        <FlatList
+          data={notifData}
+          ListHeaderComponent={() => (
+            <View
+              style={{
+                backgroundColor: activeColors.background,
+                width: Dimensions.get("window").width - 20,
+                alignItems: "left",
+                paddingHorizontal: 15,
+                paddingTop: 10,
+              }}
+            >
+              <Text style={{ color: activeColors.text, fontSize: 35, marginBottom: 5 }}>Comms</Text>
+              <View
+                style={{
+                  borderBottomColor: activeColors.tertiary,
+                  borderBottomWidth: 6,
+                  width: '60%',
+                  borderRadius: 3,
+                }}
               />
-            )}
-          />
-        </View>
+              {/* Adjusted paddingBottom to give space between text and line */}
+              <View
+                style={{
+                  paddingBottom: 7, 
+                }}
+              />
+            </View>
+          )}
+          renderItem={({ item }) => (
+            <Notification
+              name={item.name}
+              username={item.username}
+              Text={item.type}
+              id={item.id}
+            />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
       </View>
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+      <View
+              style={{
+                backgroundColor: activeColors.background,
+                width: Dimensions.get("window").width - 20,
+                alignItems: "left",
+                paddingHorizontal: 0,
+                paddingTop: 50,
+              }}
+      ></View>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: -8}}>
         <Footer navigation={navigation} page="Home" />
       </View>
     </SafeAreaView>
@@ -81,8 +117,5 @@ Homepage.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
-
-const styles = StyleSheet.create({
-});
 
 export default Homepage;

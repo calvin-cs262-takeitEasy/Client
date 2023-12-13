@@ -58,11 +58,12 @@ const Header = ({ navigation, name, type }) => {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: 20,
+              fontSize: 28,
               color: "#FFF",
               letterSpacing: 1,
               marginLeft: 15,
-              width: Dimensions.get("window").width - 120,
+              marginBottom: 6,
+              width: Dimensions.get("window").width - 115,
             }}
           >
             {name}
@@ -77,15 +78,15 @@ const Header = ({ navigation, name, type }) => {
         >
           <TouchableOpacity
             onPress={goFriends}
-            style={{ padding: 10, width: 50, height: 50 }}
+            style={{ padding: 6, width: 50, height: 50 }}
           >
-            <FontAwesome5 name="user-friends" size={25} color={"#FFF"} />
+            <FontAwesome5 name="user-friends" size={30} color={"#FFF"} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
-            style={{ padding: 10, width: 50, height: 50 }}
+            style={{ padding: 6, width: 50, height: 50 }}
           >
-            <Octicons name="gear" size={25} color={"#FFF"} />
+            <Octicons name="gear" size={30} color={"#FFF"} />
           </TouchableOpacity>
         </View>
       </View>
@@ -114,19 +115,20 @@ const Header = ({ navigation, name, type }) => {
         >
           <TouchableOpacity
             onPress={goBack}
-            style={{ padding: 10, width: 50, height: 50 }}
+            style={{ padding: 8, width: 50, height: 50 }}
           >
-            <AntDesign name="back" size={25} color={"#FFF"} />
+            <AntDesign name="back" size={32} color={"#FFF"} />
           </TouchableOpacity>
 
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: 20,
+              fontSize: 28,
               color: "#FFF",
               letterSpacing: 1,
-              marginLeft: 15,
-              width: Dimensions.get("window").width - 110,
+              marginLeft: 5,
+              marginBottom: 0,
+              width: Dimensions.get("window").width - 115,
             }}
           >
             {name}
@@ -153,11 +155,12 @@ const Header = ({ navigation, name, type }) => {
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: 20,
+              fontSize: 28,
               color: "#FFF",
               letterSpacing: 1,
               marginLeft: 15,
-              width: Dimensions.get("window").width - 120,
+              marginBottom: 6,
+              width: Dimensions.get("window").width - 115,
             }}
           >
             {name}
@@ -172,15 +175,15 @@ const Header = ({ navigation, name, type }) => {
         >
           <TouchableOpacity
             onPress={goHelp}
-            style={{ padding: 10, width: 50, height: 50 }}
+            style={{ padding: 6, width: 50, height: 50 }}
           >
-            <Octicons name="question" size={25} color={"#FFF"} />
+            <Octicons name="question" size={30} color={"#FFF"} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={goSettings}
-            style={{ padding: 10, width: 50, height: 50 }}
+            style={{ padding: 6, width: 50, height: 50 }}
           >
-            <Octicons name="gear" size={25} color={"#FFF"} />
+            <Octicons name="gear" size={30} color={"#FFF"} />
           </TouchableOpacity>
         </View>
       </View>

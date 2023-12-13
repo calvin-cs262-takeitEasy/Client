@@ -43,27 +43,6 @@ const Study = ({ navigation }) => {
     value: i.toString().padStart(2, "0"),
   }));
 
-  const appState = useRef(AppState.currentState)
-  const [appStateVisible, setAppStateVisible] = useState(appState.current)
-
-  useEffect(() => {
-    AppState.addEventListener("change", _handleAppStateChange)
-    return () => {
-      AppState.removeEventListener("change", _handleAppStateChange)
-    }
-  }, [])
-  const _handleAppStateChange = (nextAppState) => {
-    if (appState.current.match(/inactivebackground/) &&
-    nextAppState === "active") {
-      console.log("app has come to the foreground")
-    }
-
-    appState.current = nextAppState
-    setAppStateVisible(appState.current)
-
-    console.log("AppState: ", appState.current)
-  }
-
   return (
     <SafeAreaView
       style={{
@@ -74,7 +53,7 @@ const Study = ({ navigation }) => {
     >
       <Header navigation={navigation} name="Study" />
 
-      {/*//ui here*/}
+      {/* // UI here */}
       <View
         style={{
           flexDirection: "row",
@@ -85,14 +64,14 @@ const Study = ({ navigation }) => {
           padding: 5,
           margin: 10,
           marginTop: 100,
-          marginBottom: 300,
+          marginBottom:0,
         }}
       >
         <RNPickerSelect
           onValueChange={(value) => setSelectedHour(value)}
           items={hourOptions}
           value={selectedHour}
-          placeholder={{ label: "HH", value: null }}
+          placeholder={{ label: "hr", value: null }}
           style={{
             inputIOS: {
               fontSize: 64,
@@ -117,21 +96,24 @@ const Study = ({ navigation }) => {
           }}
         />
 
+        {/* Display hours */}
         <Text
           style={{
-            fontSize: 64,
-            marginRight: 15,
-            marginBottom: 20,
+            fontSize: 40, // Adjusted font size
+            marginRight: 0, // Adjusted margin
+            marginLeft: -25,
+            marginBottom: 10,
             color: activeColors.text,
           }}
         >
-          :
+          hr
         </Text>
+
         <RNPickerSelect
           onValueChange={(value) => setSelectedMinute(value)}
           items={minuteOptions}
           value={selectedMinute}
-          placeholder={{ label: "MM", value: null }}
+          placeholder={{ label: "min", value: null }}
           style={{
             inputIOS: {
               fontSize: 64,
@@ -154,6 +136,19 @@ const Study = ({ navigation }) => {
             },
           }}
         />
+
+        {/* Display minutes */}
+        <Text
+          style={{
+            fontSize: 40, 
+            marginRight:15,
+            marginLeft: -5,
+            marginBottom: 10,
+            color: activeColors.text,
+          }}
+        >
+          min
+        </Text>
       </View>
 
       <TouchableOpacity
@@ -167,14 +162,20 @@ const Study = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        <Text style={{ color: "#FFF", fontSize: 25 }}>START TIMER</Text>
+        <Text style={{ color: "#FFF", fontSize: 35 }}>START TIMER</Text>
       </TouchableOpacity>
 
-      <View style={{ position: "absolute", left: 0, right: 0, bottom: 0 }}>
+      <View style={{ position: "absolute", left: 0, right: 0, bottom: -8 }}>
         <Footer navigation={navigation} page="Study" />
       </View>
     </SafeAreaView>
   );
+};
+
+Study.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 Study.propTypes = {

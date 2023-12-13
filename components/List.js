@@ -47,10 +47,12 @@ const List = ({ searchPhrase, setClicked, data }) => {
     }
   };
 
-  const addFriend = (props) => {
+  const addFriend = async (props) => {
     // console.log("add friend");
-    console.log("Props: " + props.ID);
+    console.log("Props: " + props.id);
+    console.dir(props);
 
+    // Get the current user's friends
     fetch("https://cs262-commit.azurewebsites.net/friends/" + currentUser.ID)
       // .then((test) => console.log(test))
       .then((response) => response.json())
@@ -59,21 +61,37 @@ const List = ({ searchPhrase, setClicked, data }) => {
       .catch((error) => console.error(error));
 
     console.log("User Data: " + userData);
-    if (userData.find((x) => x.friendsID === props.ID)) {
+
+    // Check if the user is already friends with the person
+    if (userData.find((x) => x.friendsID === props.id)) {
       alert("You are already friends with " + props.username);
       return;
     }
 
-    response = fetch("https://cs262-commit.azurewebsites.net/friends", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        friendID: props.ID,
-        userID: currentUser.ID,
-      }),
-    });
+    const data = {
+      userID: currentUser.ID,
+      friendsID: props.id,
+    };
+
+    console.log("Friend's ID: " + data.friendsID);
+    console.log("User ID: " + data.userID);
+    try {
+      // Add the friend to the current user's friends
+      const response = await fetch(
+        "https://cs262-commit.azurewebsites.net/friends",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            data,
+          }),
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
