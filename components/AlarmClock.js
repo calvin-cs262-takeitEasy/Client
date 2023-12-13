@@ -66,7 +66,7 @@ export default function App() {
     }
 
     // Start a timeout that will call the desired function after 20 seconds
-    const id = setTimeout(alexFunction, 20000);
+    const id = setTimeout(createNotification, 20000);
     setTimeoutId(id);
   
   };
@@ -128,8 +128,22 @@ export default function App() {
   };
 
   /* Allows alex to send comms */
-  const alexFunction = () => {
-    console.log("comm")
+  const createNotification = async () => {
+    const data = {
+      userID: currentUser.ID,
+      type: "alarm_fail",
+    };
+    console.log("Creating Notif : " + data);
+    response = await fetch(
+      "https://cs262-commit.azurewebsites.net/notifications",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
   };
 
   return (
