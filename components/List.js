@@ -48,6 +48,8 @@ const List = ({ searchPhrase, setClicked, data }) => {
   };
 
   const addFriend = async (props) => {
+    alert("You are already friends with this person!");
+
     // console.log("add friend");
     console.log("Props: " + props.id);
     console.dir(props);
