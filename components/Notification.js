@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
