@@ -43,7 +43,7 @@ export default function App() {
   Logs the apps state,
   checks whether active or inactive
   and then checks if it is bedtime, if so it sets the isPlaying state to true
-  updates the apps state.
+  check 
   */
   const handleAppStateChange = async (nextAppState) => {
     console.log(`App has gone ${nextAppState}`);
@@ -65,20 +65,36 @@ export default function App() {
     appState.current = nextAppState;
   };
 
-  /* shows time picker 
-  */
+  const checkTimeAndSetPlaying = () => {
+    if (selectedHour !== null && selectedMinute !== null) {
+      if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
+        setIsPlaying(true);
+      } else {
+        setIsPlaying(false);
+      }
+    }
+
+    const currentHour = new Date().getHours();
+    const currentMinute = new Date().getMinutes();
+
+
+    if (currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute)) {
+      setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+
   const showDateTimePicker = () => {
     setShowPicker(true);
   };
 
-  /*
-    takes a selected date and sets the date state to that date
-    sets the showPicker state to false
-    sets the selected hour and minute state to the hour and minute of the selected date
-    sets the isBedtime state to the result of the checkIfBedtime function
-    stores the data asynchonously
-  */
-  const onChange = async (selectedDate) => {
+  const hideDateTimePicker = () => {
+    setShowPicker(false);
+  };
+
+
+  const onChange = async (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShowPicker(Platform.OS === 'ios');
     setDate(currentDate);
@@ -89,18 +105,14 @@ export default function App() {
     await AsyncStorage.setItem('selectedHour', JSON.stringify(selectedHour));
     await AsyncStorage.setItem('selectedMinute', JSON.stringify(selectedMinute));
   
-    // stores the current hours
     const currentHour = new Date().getHours();
-    // stores the current minutes
     const currentMinute = new Date().getMinutes();
  
-    // checks if the current hour is greater than the selected hour
     const isBedtime = currentHour > selectedHour || (currentHour === selectedHour && currentMinute >= selectedMinute);
     setIsBedtime(isBedtime);
     await AsyncStorage.setItem('isBedtime', JSON.stringify(isBedtime));
   };
 
-  // checcks the current time and compares it to the selected time
   const checkIfBedtime = (selectedHour, selectedMinute) => {
     const currentTime = new Date();
     const currentHour = currentTime.getHours();
@@ -111,6 +123,20 @@ export default function App() {
       return (currentHour >= selectedHour && currentMinute >= selectedMinute) || currentHour < 6;
     } else {
       return currentHour >= selectedHour && currentMinute >= selectedMinute;
+    }
+  };
+
+  const retrieveTime = async () => {
+    try {
+      const storedHour = await AsyncStorage.getItem('selectedHour');
+      const storedMinute = await AsyncStorage.getItem('selectedMinute');
+      const storedIsBedtime = await AsyncStorage.getItem('isBedtime');
+
+      if (storedHour !== null) setSelectedHour(JSON.parse(storedHour));
+      if (storedMinute !== null) setSelectedMinute(JSON.parse(storedMinute));
+      if (storedIsBedtime !== null) setIsBedtime(JSON.parse(storedIsBedtime));
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -186,4 +212,6 @@ const styles = StyleSheet.create({
     padding: 8,
   }
 });
+
+
 
