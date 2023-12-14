@@ -58,6 +58,7 @@ const StudyLockdown = ({ route, navigation }) => {
   }, [sound]);
 
   const timerComplete = () => {
+    createSuccess();
     playSound();
     navigation.navigate("Study");
   };
@@ -88,10 +89,27 @@ const StudyLockdown = ({ route, navigation }) => {
       AppState.removeEventListener("change", _handleAppStateChange);
     };
   }, []);
-  const createNotification = async () => {
+  const createFail = async () => {
     const data = {
       userID: currentUser.ID,
       type: "study_fail",
+    };
+    console.log("Creating Notif : " + data);
+    response = await fetch(
+      "https://cs262-commit.azurewebsites.net/notifications",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+  };
+  const createSuccess = async () => {
+    const data = {
+      userID: currentUser.ID,
+      type: "study_success",
     };
     console.log("Creating Notif : " + data);
     response = await fetch(
@@ -120,7 +138,7 @@ const StudyLockdown = ({ route, navigation }) => {
     console.log("AppState: ", appState.current);
 
     if (appState.current.match("inactive")) {
-      createNotification();
+      createFail();
     }
   };
 
