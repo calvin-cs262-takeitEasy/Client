@@ -1,6 +1,20 @@
 /**
  * React Native application component that runs the app Commit.
  * @module App
+ * Screens:
+ * Alarm: Set and delete alarms that will go off when they reach the time set
+ * Bedtime: set bedtime mode and keep track of the minute grace time
+ * Friends: search for users and connect to the database to add friends
+ * Help: show a list of helpful tips
+ * Homepage: show the comms from you and other users
+ * Login: input your username and password to access the other screens
+ * Profile: Show your stats in numbers, a graph, and your comms
+ * Register: connect to the database to create a new user
+ * Settings: switch between light and dark mode, and log out
+ * Study: set a timer that opens StudyLockdown
+ * StudyLockdown: doesnt let you leave the screen without pressing a button that sends a comm
+ * 
+ * navagate between these using the buttons in the header and the footer which uses the RootStack
  */
 
 import React, { useState, useEffect } from "react";
@@ -19,12 +33,7 @@ import RootStack from "./navigator/RootStack";
  * @returns {JSX.Element} Rendered React component.
  */
 export default function App() {
-  /**
-   * State to manage the current theme.
-   * @type {Object}
-   * @property {string} mode - The mode of the theme (e.g., "dark" or "light").
-   * @property {boolean} system - Indicates whether the system theme is being used.
-   */
+
   const [theme, setTheme] = useState({ mode: "dark" });
 
   /**
@@ -85,11 +94,7 @@ export default function App() {
     fetchStoredTheme();
   }, []);
 
-  /**
-   * Renders the main application structure with theme and user context providers.
-   *
-   * @returns {JSX.Element} Rendered React component.
-   */
+
   return (
     <UserProvider>
       <ThemeContext.Provider value={{ theme, updateTheme }}>
