@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import { Colors } from "../components/styles";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -33,14 +34,23 @@ const Settings = ({ navigation }) => {
       }}
     >
       <Header navigation={navigation} name="Settings" type="backButton" />
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+      <View style={{ justifyContent: "flex-start", alignItems: "flex-start", flex: 1 }}>
+        <View
+          style={{
+            paddingBottom: 20, 
+            marginLeft: 10,
+            paddingLeft: 10,
+            paddingHorizontal: 10,
+          }}
+        />
         <TouchableOpacity
           onPress={() => updateTheme()}
           style={{
             backgroundColor: activeColors.primary,
-            padding: 20,
+            padding: 10,
             borderRadius: 10,
-            marginBottom: 30,
+            marginBottom: 10,
+            marginLeft: 15,
           }}
         >
           <Text
@@ -59,9 +69,10 @@ const Settings = ({ navigation }) => {
           onPress={() => updateTheme({ system: true })}
           style={{
             backgroundColor: activeColors.primary,
-            padding: 20,
+            padding: 10,
             borderRadius: 10,
-            marginBottom: 30,
+            marginBottom: 7,
+            marginLeft: 15,
           }}
         >
           <Text
@@ -75,14 +86,38 @@ const Settings = ({ navigation }) => {
             System Theme
           </Text>
         </TouchableOpacity>
-
+        <View
+            style={{
+              backgroundColor: activeColors.background,
+              width: Dimensions.get("window").width - 20,
+              alignItems: "left",
+              paddingHorizontal: 15,
+              paddingTop: 10,
+              marginLeft: 0,
+            }}
+          >
+            <View
+              style={{
+                borderBottomColor: activeColors.tertiary,
+                borderBottomWidth: 6,
+                width: '40%',
+                borderRadius: 4,
+              }}
+            />
+            {/* Adjusted paddingBottom to give space between text and line */}
+            <View
+              style={{
+                paddingBottom: 15, 
+              }}
+            />
+          </View>
         <TouchableOpacity
           onPress={() => logout()}
           style={{
             backgroundColor: activeColors.deleteRed,
-            padding: 20,
+            padding: 10,
             borderRadius: 10,
-            marginBottom: 30,
+            marginLeft: 15,
           }}
         >
           <Text
