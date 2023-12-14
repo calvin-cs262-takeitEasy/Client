@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { React, useContext, useState } from "react";
 import {
   StyleSheet,
