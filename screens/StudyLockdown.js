@@ -17,7 +17,7 @@ import { Audio } from "expo-av";
 import { useUser } from "../contexts/UserContext";
 
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
-LogBox.ignoreAllLogs(); //Ignore all log notifications
+LogBox.ignoreAllLogs(); // Ignore all log notifications
 
 const StudyLockdown = ({ route, navigation }) => {
   const { theme } = useContext(ThemeContext);
@@ -29,6 +29,13 @@ const StudyLockdown = ({ route, navigation }) => {
   if (duration == 0) duration = 5; // for testing and showcasing
 
   const [sound, setSound] = useState();
+  
+  const leaveStudy = () => {
+    createNotification();
+    console.log("Leaving Study");
+    navigation.goBack();
+  }
+
 
   async function playSound() {
     console.log("Loading Sound");
@@ -144,7 +151,7 @@ const StudyLockdown = ({ route, navigation }) => {
       </CountdownCircleTimer>
 
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => leaveStudy()}
         style={{
           backgroundColor: activeColors.deleteRed,
           width: Dimensions.get("window").width - 250,
