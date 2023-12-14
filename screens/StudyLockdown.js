@@ -31,7 +31,7 @@ const StudyLockdown = ({ route, navigation }) => {
   const [sound, setSound] = useState();
   
   const leaveStudy = () => {
-    createNotification();
+    createFail();
     console.log("Leaving Study");
     navigation.goBack();
   }
